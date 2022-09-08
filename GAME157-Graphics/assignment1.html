@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 157</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 157 Graphics </b><br />Programmable Pipeline</div>
+
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule/index.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe/index.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/index.html"> /etc </a><br/></li>
+</ul>
+</div>
+
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glUniform.xhtml">Khronos: glUniform</a><br/>
+</div>
+
+
+
+<p  class="mainbody"> 
+<H1> Assignment 1 - Scene1.cpp</h1>
+
+<h3>Using the Phong model of lighting:<br/></h3>
+<img src="phongEq.png" width="50%" height="50%"alt="Smiley face"><br/>
+(10/15)
+Create a minimum of two lights in Scene1.cpp based on the Phong Shading model.
+This will require you to create two light positions in Scene1. Both of those positions need to be
+sent to the GPU as uniform variables. The phongVert.glsl and PhongFrag.glsl files need to be copied 
+given new names.  Of course the code inside those shaders will have to be modified to reflect the multiple
+light positions. I recommend using two different colours of lights postioned away from each other. <br/>
+</p>
+
+<p  class="mainbody"> 
+<H3>For added marks try the following: (Up to 5% more)<br/></h3>
+ 
+<li>Extra: Store and pass the two light positions as arrays. The vertex shader will need to revieve the array.<br/></li>
+<li>Extra: Store and pass the muliple light positions as arrays. You will need to also pass the length of the array<br/></li>
+<li>Extra: Pass Diffuse and Spectular colour data from the CPU to the GPU. Using C structs? Ask me. <br/></li>
+</p>
+
+
+<p  class="mainbody">
+At minimum your Scene1 should look something like this:<br/> 
+<video width="768" height="432" controls>
+  <source src="./assignment1.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video>
+</p>
+<!--   -->
+
+</body>
+</HTML>
+

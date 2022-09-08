@@ -1,0 +1,249 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 331</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+</head>
+
+<body>
+<div id="header"> <b>GAME 331 </b><br />Numerical Computing 2</div>
+
+<ul class="	nav">
+<li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/myschedule.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/aboutme.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/etc.html"> /etc </a><br /></li>
+</ul>
+
+<H2>Welcome to GAME 331 - Numerical Computing 2</H2>
+
+
+<div id="leftcenterbar">
+
+<p><H3>Assignment 1</H3><br/>
+Let's build a math library that you can use for the rest of your career. <br/>
+I have worked out the prototype of the first class I recommend we build. It involves
+operator overloading and a few C++ technical ideas. I suggest that you read the article, 
+on the right, regarding operator overloading.    
+</p>
+<p>
+    <b>Vec3 definitions</b>
+</p>
+<p>
+    #pragma once
+</p>
+<p>
+    #include &lt;string&gt; /// Used for passing exceptions
+</p>
+<p>
+<i>This is used in normalizing vectors. Dividing by zero is a well known
+  problem but dividing by nearly zero is also a problem.</i>
+</p>
+<p>
+    #ifndef VERY_SMALL
+</p>
+<p>
+    #define VERY_SMALL 1.0e-9
+</p>
+<p>
+    #endif
+</p>
+<p>
+    #ifndef M_PI
+</p>
+<p>
+    #define M_PI 3.14159265358979323846f
+</p>
+<p>
+    #endif
+</p>
+<p>
+    #ifndef DEGREES_TO_RADIANS
+</p>
+<p>
+    #define DEGREES_TO_RADIANS (M_PI / 180.0f)
+</p>
+<p>
+    #endif
+</p>
+<p>
+<i> Structures are default public</i>
+</p>
+<p>
+    struct Vec3 {<br/>
+    float x,y,z; 
+</p>
+<p>
+     <i>Just a little utility to populate a vector,</i>
+</p>
+<p>
+    inline void Load( float _x, float _y, float _z );
+</p>
+<p>
+    <i><b>Here's a set of constructors</b></i>
+</p>
+<p>
+    inline Vec3(){}<br/>
+    inline Vec3( float s = float(0.0) );<br/>
+    inline Vec3( float _x, float _y, float _z );<br/>
+
+</p>
+<p>
+    <i>A copy constructor</i>
+</p>
+<p>
+    inline Vec3( const Vec3&amp; v );
+</p>
+<p>
+    <i> <b>Operator overloads</b> </i>
+
+</p>
+<p>
+    <i><b>An assignment operator</b><br/>
+(ask me about lvalues and rvalues, this one is tricky)</i>
+</p>
+<p>
+    inline Vec3&amp; operator = (const Vec3&amp; v);
+</p>
+<p>
+   <i>Now we can use the Vec3 like an array but we'll need two overloads<br/>
+    This one is for reading the Vec3 as if where an array</i>
+</p>
+<p>
+	<i>(I'll write this one for you)</i><br/>
+    inline const float operator [] ( int index) const {<br/>
+    return *(&amp;x + index);<br/>  
+    }
+</p>
+<p>
+    <i> This one is for writing to the Vec3 as if where an array.</i>
+</p>
+<p>
+    inline float&amp; operator [] ( int index );
+</p>
+<p>
+    <i><b>Add two Vec3s</b></i>
+</p>
+<p>
+    inline const Vec3 operator + ( const Vec3&amp; v ) const ;
+</p>
+<p>
+    <i><b> Add another Vec3 to itself</b></i>
+</p>
+<p>
+    inline Vec3&amp; operator += ( const Vec3&amp; v );
+</p>
+<p>
+    <i><b> Take the negative of a Vec3</b></i>
+
+</p>
+<p>
+    inline const Vec3 operator - () const;
+</p>
+<p>
+    <i><b> Subtract two Vec3s</b></i>
+
+</p>
+<p>
+    inline const Vec3 operator - ( const Vec3&amp; v ) const;
+</p>
+<p>
+    <i><b>Subtract a Vec3 from itself</b></i>
+
+</p>
+<p>
+    inline Vec3&amp; operator -= ( const Vec3&amp; v );
+</p>
+<p>
+    <i><b>Multiply a Vec3 by a scalar</b></i>
+
+</p>
+<p>
+    inline const Vec3 operator * ( const float s ) const;
+</p>
+<p>
+    <i><b> Multiply a Vec3 by a scalar and assign it to itself</b></i>
+
+</p>
+<p>
+    inline Vec3&amp; operator *= ( const float s );
+</p>
+<p>
+   <i><b> Multiply a scalar by a Vec3. It's the scalar first then the Vec3</b></i>
+
+</p>
+<p>
+    <i><b> Overloaded and a friend</b></i>
+</p>
+<p>
+    <i><b> It's the only way to make it work with a scalar first.</b></i>
+
+</p>
+<p>
+    inline friend Vec3 operator * ( const float s, const Vec3&amp; v );
+</p>
+<p>
+    <i><b> Divide by a scalar - Watch for divide by zero issues</b></i>
+
+</p>
+<p>
+    inline const Vec3 operator / ( const float s ) const ;
+</p>
+<p>
+    <i><b> If in debug mode let's worry about divide by zero or nearly zero</b></i>
+</p>
+<p>
+    <i><b> You might do something like this</b></i>
+
+</p>
+<p>
+    #ifdef _DEBUG
+</p>
+<p>
+    if ( fabs(s) &lt; VERY_SMALL ) {
+</p>
+<p>
+    std::string errorMsg("Divide by nearly zero! ");
+</p>
+<p>
+    throw errorMsg;
+</p>
+<p>
+    }
+</p>
+<p>
+    #endif
+</p>
+<p>
+    inline Vec3&amp; operator /= ( const float s );
+</p>
+<p>
+    inline void print() {
+</p>
+<p>
+    printf("%f %f %f\n", x,y,z);
+</p>
+<p>
+    }
+</p>
+<p>
+    };
+</p>
+
+
+
+
+</div>
+<div id="rightsidebar">
+<h4> Helpful tools</h4>
+<a class="nav" href="http://web.stanford.edu/class/cs106l/course-reader/Ch10_OperatorOverloading.pdf"> Operator Overloading</a><br />
+<a class="nav" href="Matrix.h">Matrix.h</a><br />
+<a class="nav" href="VMath.h">VMath.h</a><br />
+<a class="nav" href="VMath.cpp">VMath.cpp</a><br />
+</div>
+
+
+</body>
+</HTML>
+

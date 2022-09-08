@@ -1,0 +1,64 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 258</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 258 Graphics </b><br />OpenGL</div>
+
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule/index.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe/index.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/index.html"> /etc </a><br/></li>
+</ul>
+</div>
+
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Plane.obj">Plane.obj</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/CheckerPiece.obj">CheckerPiece.obj</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/8x8_checkered_board.png">8x8_checkered_board.png</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/blackCheckerPiece.png">blackCheckerPiece.png</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/redCheckerPiece.png">redCheckerPiece.png</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/whiteCheckerPiece.png">whiteCheckerPiece.png</a><br/>
+</div>
+
+
+
+<p  class="mainbody"> 
+<H1> Assignment 2 </H1>
+
+<h3> Making a checkerboard with checkers (16/25)<br/></h3>
+(<I>1/2 point for every checker placed properly)</i> <Br/>
+As usual the art department has given me all kinds of assets that have the wrong orientation and scale. In this assignment the idea is to get all the parts 
+of a checkerboard all put together. <br/><br/>
+ 
+<b>Step 1:</b> </b> <br/>
+Let's create Scene2, I hope you remember how to do it from Graphics class last term.<br/>
+Replace Mario.obj with Plane.obj (see right panel). Use "8x8_checkered_board.png" to texture the surface. You will find that the plane is not on the right axis
+you can fix this with a matrix rotate. Maybe even use the camera to look at the Scene better, Hmmm, just thinking. <br/><br/>
+
+<b>Step 2:</b> <br/>
+Add a new Actor, a checker piece. You can use any of three textures I have provided. Once again, the scale and orientation of this piece is all fouled up. Use matrix 
+manipulations to fix it. <br/><br/>
+
+<b>Step 3:</b><br/>
+Place a singular checker on a square. This might take some thinking and tinkering.  <br/><br/>
+
+<b>Step 4:</b><br/>
+Now make 31 more checkers on the checkerboard, placing each one where it belongs and with proper color. 
+
+<H3>For added marks try the following: (Up to 9% more) <br/></H3>
+ 
+<li>Extra: There must be a better way to manage all 32 pieces. Hint: What if the Scene was an Actor? </li>
+<li>Extra: Can you move any piece? Think about the inverse matrix from first semester. </li>
+
+</p>
+
+
+</body>
+</HTML>
+

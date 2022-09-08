@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 153</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 153</b><br />Intro to C/C++</div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="../MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="../AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="../ETC"> /etc </a><br /></li>
+</ul>
+</div>
+
+<H2>Using C/C++ to create ball bouncing simulation</H2><br />
+<p>
+We dropped a ball in the stairway and measured the time it took to strike the ground. In class I wrote something like this:<br/><br/>
+
+
+<textarea class="code" spellcheck="false" rows=16>
+int main(int argc, char *argv[]){ /// Old style C entry point
+
+	float y, vel, g, time; /// defined four floats 
+	y = 3.0f;		/// meters
+	vel = 0.0f;		/// meters/sec
+	g = -9.8f;		/// meters/sec/sec
+	time = 0.0167f;	/// sec
+
+	for (int i = 0; i < 47; i++){
+		printf("y = %f\n", y);
+		y += (vel * time) + (0.5 * g * time * time); /// Using Newton's law
+		vel += g * time;
+	}
+	getchar(); /// Wait for a char before VS closes the window
+}
+</textarea><br/>
+</p>
+
+
+
+The ball, in our simulation, struck the ground to very close to the same time we measured using our poor iPhone techniques. Cool. <br/>
+
+
+
+</body>
+</HTML>
+

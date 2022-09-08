@@ -1,0 +1,75 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 258</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 258 Graphics </b><br />Programmable Pipeline</div>
+
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule/index.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe/index.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/index.html"> /etc </a><br/></li>
+</ul>
+</div>
+
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Texture.cpp">Texture.cpp</a><br/>
+</div>
+
+
+
+<p  class="mainbody"> 
+<H1> Assignment 1 </h1>
+
+<h3> Making Mario 3-D and texture mapped (15/20)<br/></h3>
+
+<p  class="mainbody"> 
+<b>Step 1:</b> Finish building the MaterialComponent class. Use the code inside of Texture.cpp (from OpenGl class) to see how to load and store the texture (material).<br/>
+You will need to make "textureID" a GLuint member variable of the MaterialComponent class. Probably should create a Get method for the ID value as well.<br/><br/>
+
+<b>Step 2:</b> Download the texture shaders from the main page and store them properly; while you're at it, get all of Mario's textures as well. 
+In Scene0, change the default shaders to the texture shaders.<br/><br/>
+
+<b>Step 3:</b> Add a TextureComponent to Mario using one of his texture maps.<br/><br/>
+
+<b>Step 4:</b> In Render(), get a pointer to Mario's MaterialComponent.<br/>
+<textarea class="code" spellcheck="false" rows=3>
+
+	MaterialComponent* texture = mario->GetComponent<MaterialComponent>();
+</textarea><br/><br/>
+ 
+<b>Step 5:</b> Bind Mario's texture and draw his mesh. <br/>
+<textarea class="code" spellcheck="false" rows=6>
+
+	glBindTexture(GL_TEXTURE_2D, texture->getTextureID());
+	mesh->Render(GL_TRIANGLES);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glUseProgram(0);</textarea><br/><br/>
+</textarea><br/><br/>
+
+
+<H3>For added marks try the following: (Up to 5% more)<br/></H3>
+ 
+<li>Extra: Mario was modelled with his back to us - Ooop's. Correct his orientation by his Tramsform Quaternion. 2%<br/></li>
+<li>Extra: In Scene0 Update(), spin Mario on his y-axis via the Transform Quaterion any way you can or wish. 3% <br/></li>
+
+</p>
+
+<!-- 
+<p  class="mainbody">
+At minimum your Scene1 should look something like this:<br/> 
+<video width="768" height="432" controls>
+  <source src="./assignment1.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video>
+</p>
+-->
+
+</body>
+</HTML>
+

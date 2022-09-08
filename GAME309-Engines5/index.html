@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 309</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 309 Game Engines 5 </b><br /></div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+</ul>
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a class="nav" href="http://munro.humber.ca/~fielder/Rubrics/programmingRubric.html">General Programming Rubric</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 01 Menu.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 01 Menu </a><br />
+<a class="nav" href="http://apollo.humber.ca/~fielder/Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 02 Boys fort.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 02 Boys fort </a><br />
+<a class="nav" href="http://apollo.humber.ca/~fielder/Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 03 City.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 03 City </a><br />
+<a class="nav" href="http://apollo.humber.ca/~fielder/Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 04 Rotating Room.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 04 Rotating Room </a><br />
+<a class="nav" href="http://apollo.humber.ca/~fielder/Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 05 Sister.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 05 Sister</a><br />
+<a class="nav" href="http://apollo.humber.ca/~fielder/Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 06 Gravity Jump.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 06 Gravity Jump</a><br />
+
+
+
+
+
+</div>
+
+<H1> Welcome to Game 309 - Game Engines 5 </h1>
+<ul>
+
+<li>Topic 1 (10%): C++ Concurrency <i>(multi-threading)</i><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME309-Engines5/ThreadDemo1.zip"> Example code:ThreadDemo1 </a><br/><br/>
+
+
+<!--
+
+<li>Topic 2 (10%): GUI build your own or use a pre-made tool kit.<br/>
+
+If you are working in Vulkan: <a href="https://github.com/ocornut/imgui/tree/master/examples/example_sdl_vulkan"> imgui for vulcan </a><br/>
+If you are working in OpenGL: <a href="https://github.com/ocornut/imgui/tree/master/examples/example_sdl_opengl3"> imgui for OpenGL </a><br/> 
+Another option is: <a href="https://github.com/Immediate-Mode-UI/Nuklear"> The nuklear GUI system </a><br/> <br/>
+
+
+
+
+<li>Topic 4 (10%): Audio </i><br/>
+Creating audio without tools is very difficult and requires a knowledge of 3D-audio physics beyond the scope of out program.
+Therefore, I recommend using a pre-made library:<br/>
+<a href="https://www.libsdl.org/projects/SDL_mixer/"> SDL_mixer </a> This is a primitive audio library that cannot handle too many audio clips being played at the same time but it's easy to use and great for backgound music.As you may know, Limbo is my favorite 
+video game from my grogramming and artistic perspective. I love the background music so much, I bought it, check it out in the panel on the right. <br/>
+
+<a href="https://www.openal.org/"> OpenAl - Open Audio Library </a> This offers more features than SDL_mixer. It is free and open source (and a little old) - I dare you to look into it. <br/>
+<a href="https://www.fmod.com/"> FMod - FMOD is a proprietary sound effects engine developed by Firelight Technologies </a> This is very much one of the standards in gaming. To download it you must register with them,
+to use it commercially, you must pay them. It is very complete for 3D sounds and music. It can hook into Unity, Unreal or in your stand-alone applications. Warning: it is a big API, there is a large learning curve associated with it. <br/><br/>
+
+
+<li>Topic 5 (10%): Particle Systems </i><br/>
+
+
+
+<br/><br/>
+
+<li>Topic 6 (10%): Abstracting the Renderer </i><br/><br/>
+
+<li>Topic 7 (10%): Frustum Culling </i><br/>
+
+The first step in to calculate the 6 planes that make up the viewing frustum - try googling that!<br/> 
+<a href="http://apollo.humber.ca/~fielder/Literature/fast-extraction-viewing-frustum-planes-from-world-view-projection-matrix.pdf"> fast-extraction-viewing-frustum-plane.pdf </a>
+<br/><br/>
+
+<li>Topic 8 (10%): Profiling Tools </i><br/>
+Profiling tools are already installed in VS2019. Let me show you a little on geting started analyzing your C# or C++ code. Yup, I said C#.<br/>
+There's technical publications from Microsoft out there on how to use their profiling (diagnostics report) tools but I find them unclear. There are a set
+of (pretty bad) videos from Microsoft on YouTube, but in my opinion they talk a lot and say very little. Just skip to this link 
+<a href="https://www.youtube.com/watch?v=X1-uHpEqNGM&list=PLReL099Y5nRf2cOurn1hI-gSRxsdbC27C&index=4">Profiling CPU usage</a> <br/>
+Use these tools look at what your capstone is doing over time.     
+<br/><br/>
+
+<li>Topic 9 (10%): Unreal, Unity Plug-ins and DLLs</i><br/>
+Plug-ins are nothing more than a DLL written in C/C++ (unmanaged memory) or even C# (managed memory). <br/>
+There are two parts the process (1) build the DLL and (2) create the C# script in Unity that uses it. <br/>
+I'll show you how to create a dll in C/C++ in class, it's easy, but there is some explaining I must do.<br>
+<a href="https://docs.unity3d.com/Manual/NativePlugins.html">How to work with native plug-in in Unity</a> <br/>
+<a href="https://docs.unity3d.com/Manual/NativePluginInterface.html">Low-level native plug-in interface</a> <br/>
+
+
+<br/>
+
+<li>Topic 10 (10%): XML/JSON Parser </i><br/>
+XML(eXtensible Markup Language) was designed to transport and save data in a cross platform, mostly human readable form. <br/>
+The very best site for learning more about XML in general is <a href="https://www.w3schools.com/xml/">www.w3schools.com/xml</a><br/>
+In class, I'll show you a liitle about what XML files look like and present a little demo in C++ for reading a file. Check out this little project
+<a href="http://apollo.humber.ca/~fielder/GAME309-Engines5/XMLProject.zip">XMLProject.zip</a> <br/><br/>
+
+
+
+
+
+
+
+   
+
+<li>Topic 11 (10%): Requests? </i><br/><br/>
+-->
+
+</ul>
+</div>
+
+
+
+
+
+
+
+</body>
+</HTML>
+

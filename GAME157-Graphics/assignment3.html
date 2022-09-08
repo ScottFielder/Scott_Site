@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 157</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 157 Graphics </b><br />Programmable Pipeline</div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule/index.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe/index.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/index.html"> /etc </a><br/></li>
+</ul>
+<H2>&nbsp;</H2>
+<H1> Assignment 3 </h1>
+<h3> This a tough as it gets this semester, hang in there</h3><br/>
+
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a class="nav" href="https://www.opengl.org/">OpenGL reference</a><br/>
+<a class="nav" href="opengl44-quick-reference-card.pdf">OpenGL poster</a><br/>
+<a class="nav" href="CN_Tower.zip">CN_Tower.zip</a><br/>
+<a class="nav" href="Trackball.h">Trackball.h</a><br/>
+<a class="nav" href="Trackball.cpp">Trackball.cpp</a><br/>
+<a class="nav" href="Cube.obj">Cube.obj</a><br/>
+
+</div>
+
+
+
+<p  class="mainbody"> 
+Our next task is to build a Skybox sometimes refered to as an evironment map or a cub map.<br/>
+
+The idea is that a cube could be created where all six faces had a texture assigned to it. <br/>
+The camera, or eye, is still at the origin looking down the negative z-axis, if the cube is a 1x1x1, centered at the origin, <br/>
+
+<img src="skybox1.png" alt="Smiley face"><br/>
+
+Wait! A better plan is to look at this web page <a href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">skybox</a><br/><br/>
+
+In order to see if you have build the sky box correctly, you will need to contol the camera by keyboard or mouse.  I suggeast using the mouse.  
+ 
+You can get the rotation matrix out of the trackball with getMatrix4().  You should use it as the cameraRotationMatrix instead of the Camera's viewMatrix.<br/> <br/>
+</p>
+
+
+<p  class="mainbody">
+Your Scene should look something like this, the jet is optional<br/> 
+<video width="768" height="432" controls>
+  <source src="./assignment3.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video>
+</p>
+
+
+
+</body>
+</HTML>
+

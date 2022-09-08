@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 157</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 157 Graphics </b><br />Programmable Pipeline</div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+</ul>
+<H2>&nbsp;</H2>
+<H1>Phong Lighting Model - explained </h1>
+(come to class anyway, this will not make sence with out me)<br/>
+</div>
+<h2>Starting with the vertex shader </h2><br/>
+
+<textarea class="code" cols=127 rows=27 spellcheck="false">
+#version 450
+#extension GL_ARB_separate_shader_objects : enable
+
+layout(location = 0) in vec4 vVertex;
+layout(location = 1) in vec3 vNormal;
+layout(location = 2) in vec2 uvCoord;
+
+uniform mat4 modelMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 projectionMatrix;
+uniform vec3 lightPos;
+
+layout(location = 0) out vec3 vertNormal;
+layout(location = 1) out vec3 lightDir;
+layout(location = 2) out vec3 eyeDir; 
+
+
+void main() {
+    mat3 normalMatrix = mat3(transpose(inverse(modelMatrix)));
+    vertNormal = normalize(normalMatrix * vNormal); /// Rotate the normal to the correct orientation 
+    vec3 vertPos = vec3(viewMatrix * modelMatrix * vVertex);
+    vec3 vertDir = normalize(vertPos);
+	eyeDir = -vertDir;
+    lightDir = normalize(vec3(lightPos) - vertPos); 
+    gl_Position = projectionMatrix * viewMatrix * modelMatrix * vVertex;
+    
+}
+</textarea><br/>
+
+
+<p>
+Let's discect just the math part of the new code. <Br/> 
+<textarea class="code" cols=127 rows=2 spellcheck="false">
+ vec3 vertPos = vec3(viewMatrix * modelMatrix * vVertex);
+</textarea><br/>
+
+<img src="phong1.png" alt="Smiley face"><br/>
+In this line multiply the vertex by the model matrix and the view matrix.  This will push the vertex away from the 
+origin. Remember the camera is aways at the origin looking down the -Z axis. In many books and websites they refer to this as
+eyePos but really it is the vertex position from the eye.  If the this vector is negated (-vertPos), I agree it is the 
+eyePos but only from the point of view of the now shifted vertex. Too complicated for me. <br/>
+The call to vec3(...) is a typecast to convert the resulting vec4 to a vec3 we no longer need the be in 4-D.<br/>   
+</p>
+
+
+
+
+
+<p>
+The light source is not altered by any of the matrix transformations, so it position remains the location passed by the uniform lightPos. <br/>
+<img src="phong2.png" alt="Smiley face"><br/>
+</p>
+
+
+
+
+<p>
+What is needed now is to calculate the position of the light source with respect to the new position of the vertex.  By subtracting the the 
+lightPos fron the vertPos (add the lightPos to the negative of the vertPos). <br/>
+<textarea class="code" cols=127 rows=2 spellcheck="false">
+ vec3 vertPos = vec3(viewMatrix * modelMatrix * vVertex);
+</textarea>
+<img src="phong4.png" alt="Smiley face"><br/>
+
+
+</p>
+<p> Normalizing the lights position gives the lightDir from the point-of-view of the, matrix shifted, vertex.  The lightDir 
+will be passed to the fragment shader.<br/> <br/> 
+<img src="phong5.png" alt="Smiley face"><br/>
+</p><br/>
+
+<h2>Now the fragment shader </h2><br/>
+<textarea class="code" cols=127 rows=20 spellcheck="false">
+#version 450
+#extension GL_ARB_separate_shader_objects : enable
+
+layout(location = 0) out vec4 fragColor;
+
+layout(location = 0) in vec3 vertNormal;
+layout(location = 1) in vec3 lightDir;
+layout(location = 2) in vec3 eyeDir; 
+
+void main() {
+    vec4 ks = vec4(0.3, 0.3, 0.3, 0.0);
+	vec4 kd = vec4(0.6, 0.6, 0.3, 0.0);
+	vec4 ka = 0.1 * kd;
+	float diff = max(dot(vertNormal, lightDir), 0.0);
+
+	/// Reflection is based incedent which means a vector from the light source
+	/// not the direction to the light source
+	vec3 reflection = normalize(reflect(-lightDir, vertNormal));
+	float spec = max(dot(eyeDir, reflection), 0.0);
+	spec = pow(spec,14.0);
+	fragColor =  ka + (diff * kd) + (spec * ks);	
+}</textarea><br/>
+
+<p>I'm bringing everything in as a vec3 since we no longer need to worry about 4-D homogenious coordinate systems. The final color 
+still needs to be a vec4.  <br/>
+
+Since this is the fragment shader, the code is being run on a per-pixel level. So, given a pixel P<sub>1</sub>, on some triangle,
+the normal to the surface at that point is N and the lightDir vector is drawn below. The drawings I'm providing are a "lying"  
+version of the story.  None of the vectors, except the vertex are "at the vertex position" they are really ate the origin
+but remember, they are directional vectors only, so my pictures, although technically wrong, is painting a
+correct picture.    <br/>
+<img src="phong6.png" alt="Smiley face"><br/>
+The amount of diffused light on the surface is equal to the cos() between the normal to the surface and the lightDir - the dot product.<br/>
+
+<textarea class="code" cols=127 rows=2 spellcheck="false">
+float diff = max(dot(vertNormal, lightDir), 0.0);
+</textarea><br/>
+
+The dot product between the two vectors will go between 1.0 and -1.0.  The max() function keeps all the values positive or zero. <br/>
+</p>
+<p> 
+Calculating the relection vector of the lightPos off the surface defined by the normal, the direction of the reflecting off the surface can 
+be created.<br/>
+<textarea class="code" cols=127 rows=2 spellcheck="false">
+vec3 reflection = normalize(reflect(-lightDir, vertNormal));
+</textarea><br/>
+<img src="phong7.png" alt="Smiley face"><br/>
+Because I'm basing this math at the vertex position (a big lie), this next bit is harder to see. To find the specular value I need to take the dot product 
+of the refletion vector with the eyeDir but is really the vertexPos is the negative of the eyePos from the vertex prespective so reverse it again.
+Therefore, the eyePos is the vertPos.<br/>
+<textarea class="code" cols=127 rows=2 spellcheck="false">
+float spec = max(dot(eyeDir, reflection), 0.0);
+</textarea>    
+<img src="phong8.png" alt="Smiley face"><br/>    
+</p>
+
+<p> 
+The last part is raising the spectular component to a power, spec<sup>exponent</sup>. This is just artistic and has nothing to do with physics. 
+The higer the exponent, the "shinnier" the surface.   <br/>
+<textarea class="code" cols=127 rows=3 spellcheck="false">
+	spec = pow(spec,14.0);
+</textarea><br/>
+<br/>
+</P>   
+</body>
+</HTML>

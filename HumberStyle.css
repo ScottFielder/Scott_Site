@@ -1,0 +1,162 @@
+/*** Humber College Basics Style Page ***/
+/*** SSF 2007 ***/
+
+
+/*** The following "nav" styles are for my menu bar across all my pages ***/
+ul.nav{
+	margin-left:0pc;
+	padding-left:0px;
+	list-style:none;
+	border-bottom:1px #000000;
+	float:left;
+	width:100%;
+}
+
+ul.nav li{
+	float:left;
+}
+
+ul.nav a{
+	width:8em;
+	display:block;
+	border:1px #000000;
+	border-bottom:none;
+	padding:5px;
+	margin-right:5px;
+	background-color:#deb306;
+	text-decoration:none;
+	color:#00265c;
+	text-align:center;
+	font:Arial;
+	font-style:oblique;
+	font-size:18px;
+	font-weight:bold;
+}
+
+a.nav:link {color: #00265c;}
+a.nav:visited {color: #00265c;}
+a.nav:hover {
+	color: #deb306;
+	background-color:#eeeeff;
+}
+a.nav:active {color: #00265c;}
+
+/*** The following "currentcourses" styles are for the left justified links to course pages***/
+div.currentcourses{
+	float:left;
+	padding:10px;
+	padding-right:20px;
+}
+ul.currentcourses{
+	list-style-type:disc;
+	font:Arial;
+	font-size:12px;
+	-style:italic;
+	font-weight:bold;
+	color:#00265c;
+}
+
+h2.currentcourses{
+	font:Arial;
+	font-size:18px;
+	color:#00265c;
+	text-decoration:underline;
+	font-style:italic;
+}
+ul.currentcourses a{	
+	padding:5px;
+	margin-right:5px;
+	color:#00265c;
+	font:Arial;
+	font-style:oblique;
+	font-size:12px;
+}
+
+
+p.mainbody{
+	font:Arial;
+	font-size:20px;
+	color:#000000;
+}
+p.footnote  {
+	clear:both;
+	font:Arial;
+	font-size:12px;
+	color:#00265c;
+	position:absolute;
+	bottom:10px;
+	left:25px;
+	border-top:solid 1px #000000;
+	
+}
+#header{
+	font:Arial;
+	font-size:30px;	
+	height:95px;
+	color:#00265c;
+	text-align:center;
+	background-repeat:no-repeat;
+	background-image:url(http://apollo.humber.ca/~fielder/HumMediaLogo.png);
+	background-position:left;
+	background-color:#eeeeff;
+	border: solid 1px #000000;
+}
+
+*.warning {color: red; font-weight: bold}
+
+.picRight {
+	float: right;
+	margin-left: 20px;
+}
+
+img.scott {
+	float:right;
+}
+
+#rightsidebar{
+	float:right;
+	width: 280px;
+	padding:5px;
+	margin:5px;
+	border: solid 1px #000000;
+	background-color:#eeeeff;
+	font:Arial;
+	font-size:12px;
+	color:#000000;
+}
+#leftcenterbar{
+	float:left; 
+	width: 65%;
+	padding:5px;
+	margin:5px;
+	font:Arial;
+	font-size:12px;
+	color:#000000;
+}
+.{
+	font-family: Arial;
+	font-size: 16px;
+	font-weight: normal;
+	color: #000000;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+}
+.code {
+	width: 800px;
+	border: 0px;
+	background-color:#eeeeff;
+	font-size: 75%;
+	tab-size: 2;
+}
+
+.console {
+	width: 800px;
+	border: 0px;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-size: 90%;
+	tab-size: 2;
+}
+

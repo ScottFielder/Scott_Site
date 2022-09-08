@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 157</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 157 Graphics </b><br />The Programmable Graphics Pipeline</div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+</ul>
+<p class="mainbody"> 
+<H1> <center> Welcome to OpenGL Graphics<sup>*</sup></center></H1> 
+</p>
+<div  class="currentcourses">
+<img width=350 height= 398 src="opengl4-5-specifications.jpg" alt="Smiley face"></h1>
+</div>
+
+<h3><i>"The engines don't move the ship at all. The ship stays where it is and the engines move the universe around it."</i><br/>
+Futurama<br/><br/></h3>
+
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+
+<a class="nav" href="http://apollo.humber.ca/~fielder/Rubrics/programmingRubric.html">Assignment Rubric</a><sup>*</sup><br/>
+<hr/>
+<a href="https://ca.bbcollab.com/guest/3974e9cc0a2640869d5a2ef3de2646b8">Blackboard Collaboration - "Guest Blackboard Site" </a><br/>
+<a href="https://ca.bbcollab.com/guest/88f92a643dfa4c18912f46dbaec0ad03">Blackboard Collaboration - "The Back Table"</a><br/><br/>
+<hr/>
+
+
+<a class="nav" href="http://apollo.humber.ca/~fielder/GameDev/GameDev.zip"><B>GameDev.zip</b></a><br/>
+<a class="nav" href="https://www.opengl.org/">OpenGL reference</a><br/>
+<a class="nav" href="opengl44-quick-reference-card.pdf">OpenGL poster</a><br/>
+<a class="nav" href="https://learnopengl.com">learnopengl.com </a>(Becareful they believe in cameras)<br/>
+<a class="nav" href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">The Obj Format </a>(only if you are curious)<br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/Mario.obj">Mario.obj</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/Skull.obj">Skull.obj</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mario_mime.png">mario_mime.png</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mario_main.png">mario_main.png</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mario_fire.png">mario_fire.png</a><br/>
+
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/skull_texture.jpg">skull_texture.jpg</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/earthclouds.jpg">earthclouds.jpg</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/moon.jpg">moon.jpg</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mars.jpg">mars.jpg</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/evilEye.jpg">evilEye.jpg</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/StarsSkyBox.zip">StarsSkyBox.zip</a><br/>
+
+<hr/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/Texture.h">Texture.h</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/Texture.cpp">Texture.cpp</a><br/>
+<a class="nav" href="Trackball.h">Trackball.h</a><br/>
+<a class="nav" href="Trackball.cpp">Trackball.cpp</a><br/>
+<a class="nav" href="Noise.h">Noise.h</a><br/>
+<a class="nav" href="Noise.cpp">Noise.cpp</a><br/>
+
+
+<!--
+<hr/>
+<a href="https://ca-lti.bbcollab.com/recording/7a6aa99e8cc14ee3bb6bdd5422b95663">Week 1.1</a><br/>
+<a href="https://ca-lti.bbcollab.com/recording/cf5847829f554c33a0e566e39d77b610">Week 1.2</a><br/>
+
+
+
+<a class="nav" href="Noise.h">Noise.h</a><br/>
+<a class="nav" href="Noise.cpp">Noise.cpp</a><br/>
+-->
+
+</div>
+
+<p class="mainbody"> 
+<h3> Assignment 0: worth 0%<br/> </h3>
+The challenge of 3D graphics is juggling all the parts at the same time. Once everything is in motion and working then you might see something on the screen.<br/> <br/> 
+<b>Step 0:</b> Download a new copy of <b>GameDev.zip</b>. It is located on the right-hand side of this page in the blue box in the "Helpful tools" box. <br/>
+Just like last semester unpack the zip file and move to your C: drive (delete the old one first, duh). There are some updates from the various vendors.<br/><br/>
+ 
+<b>Step 1:</b> Download the new framework <a  href="http://apollo.humber.ca/~fielder/GAME157-Graphics/ComponentFramework22.0.0.zip">ComponentFramework22.0.0.zip</a><br/>
+Put it anywhere you can find again (and unpack it). You might even try running it. It should create a black empty screen. <br/><br/>
+
+<b>Step 2:</b> Come to class, I will explain all things, Ha! Trust me.<br/>
+This is where we are at the end of day 1 <a  href="http://apollo.humber.ca/~fielder/GAME157-Graphics/ComponentFramework22.0.1.zip">ComponentFramework22.0.1.zip</a><br/><br/> 
+
+<b>Step 3:</b> Let's start with lighing. On a 2-D surface (a monitor) we need to trick the brain into believing that the view is 3-D.
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/phongExplained.html">phongExplained in code</a><br/><br/>
+<h3><a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment1.html">Assignment 1</a>: worth 20% overall grade due: June 10</H3>
+
+<b>Step 4:</b> Add a texture map onto the 3-D surface, now we are ready to do proper graphics.<br/><br/>
+<h3><a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment2.html">Assignment2</a>: worth 20% overall grade due: June 16 
+
+
+<br/>We are off and running now.<br/>
+<h3><a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment1.html">Assignment 1</a>: worth 15% overall grade due: Sunday Feb 13</H3>
+
+It's reading week next week<br/></h3>
+<h3>Assignment 0.1: worth 0%: Let's build a Camera class. "What?! But you said there's no camera."  I know, let me show you. You will need it. </h3> 
+<h3><a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment3.html">Assignment3</a> worth 20% overall grade<br/></h3>
+
+<h3><a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment4.html">Assignment4</a> worth 20% overall grade<br/></h3>
+<h3><a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment5.html">Assignment5</a> worth 20% overall grade<br/></h3>
+
+
+
+
+
+
+
+ <br/>
+<!--
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/assignment5.html">Assignment5</a> due April 25 (Friday)  20%<br/>
+-->
+
+
+<div>
+
+<p class="footnote"> <sup>*</sup> In my class, we focus on theory and technology through practice; you learn <i>via doing</i>. 
+My assignments are designed to give you a fundamental understanding of programming concepts and best practices. 
+Copying code from friends or taking shortcuts will damage the possibility of a career in this field, whether or not you're caught.
+Passing my classes is not difficult. You need to show up and you need to try. If you do both those things and still need help, 
+I will happily make extra time to ensure you understand what's going on. If it is clear you are phoning it in or shortcutting in your code, 
+I will not be generous with my time.
+</p> 
+</div>
+
+</body>
+</html>

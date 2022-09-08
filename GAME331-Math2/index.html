@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 331</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+</head>
+
+<body>
+<div id="header"> <b>GAME 331 </b><br />Numerical Computing 2</div>
+
+<ul class="	nav">
+<li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href=""http://munro.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href=""http://munro.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href=""http://munro.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+</ul>
+
+<H2>Welcome to GAME 331 - Numerical Computing 2</H2>
+
+
+<div id="leftcenterbar">
+<li><a href="assignment1.html"> Assignment1.html </a><br /></li>
+<li><a href="assignment2.html"> Assignment2.html </a><br /></li>
+<li><a href="assignment3.html"> Assignment3.html </a><br /></li>
+<li><a href="parametric.html"> Parametric Equations.html </a><br /></li>
+
+
+
+<p><h1> Last Topic: Fourier Transform (FFT) </h1><br/>
+<I> Check out Fourier test link to down load a copy of the source code<br/></i>
+</p>
+
+As mentioned in class, data sample size of a FFT must be a power of 2.<br/>
+Let's use 512, if I create a cos wave over the interval 2 * PI / 512<br/>
+I get the following plot.<br/> 
+<img src="orig_data01.png" height="210" width="378" /><br/><br/>
+
+
+Doing a FFT on that data and recogning that Nyquist frequency is 1/2N, <br/>
+I need only plot the first 256 data points.  <br/>
+<img src="transformed01.png" height="210" width="378" /><br/><br/>
+
+
+If I change the frequency to 36.0, I get the following plot.<br/>
+<img src="orig_data02.png" height="210" width="378" /><br/><br/>
+
+
+And here is the FFT plot. Note the spike at 36.0 - Yes, it works!<br/>
+<img src="transformed02.png" height="210" width="378" /><br/><br/>
+
+This time I'm using the same frequency plus V_Randomizer.cpp to create <br/>
+some gaussian noise on the data - here's the result. <br/>
+<img src="orig_data03.png" height="210" width="378" /><br/><br/>
+
+Here's is the data transformed. See the noise?<br/>
+<img src="transformed03.png" height="210" width="378" /><br/><br/>
+
+I'm going to loop through the whole data set and set any value lower that 100.0 to zero. <br/>
+Here is the result:<br/>
+<img src="filtered.png" height="210" width="378" /><br/><br/>
+Ha! The data is filtered.
+ 
+
+
+
+</div>
+<div id="rightsidebar">
+<h4> Helpful tools</h4>
+<a class="nav" href="http://web.stanford.edu/class/cs106l/course-reader/Ch10_OperatorOverloading.pdf"> Operator Overloading</a><br />
+<a class="nav" href="Vector.h">Vector.h</a><br />
+<a class="nav" href="Matrix.h">Matrix.h</a><br />
+<a class="nav" href="Quaternion.h">Quaternion.h</a><br />
+<a class="nav" href="VMath.h">VMath.h</a><br />
+<a class="nav" href="VMath.cpp">VMath.cpp</a><br />
+<a class="nav" href="MMath.h">MMath.h</a><br />
+<a class="nav" href="MMath.cpp">MMath.cpp</a><br />
+<a class="nav" href="Fourier.h">Fourier.h</a><br />
+<a class="nav" href="Fourier.cpp">Fourier.cpp</a><br />
+<a class="nav" href="MathLibrary1.6.zip"</a>Fourier test (zip)<br />
+</div>
+
+
+</body>
+</HTML>
+

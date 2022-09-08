@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 157</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 157 Graphics </b><br />Programmable Pipeline</div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+</ul>
+<H2>&nbsp;</H2>
+<H1>Project 1 - building a 3-D graphics program </h1>
+</div>
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a class="nav" href="https://www.opengl.org/">OpenGL reference</a><br/>
+
+<a class="nav" href="ComponentFramework1.0.0.zip">ComponentFramework1.0.0.zip</a><br/>
+<a class="nav" href="GameDev.zip">GameDev.zip</a><br/>
+<H3>Setting up vertex data (VBOs)</H3><br/>
+<a class="nav" href="https://en.wikipedia.org/wiki/Wavefront_.obj_file">Obj Format</a><br/>
+<a class="nav" href="ObjLoader.h">ObjLoader.h</a><br/>
+<a class="nav" href="ObjLoader.cpp">ObjLoader.cpp</a><br/>
+<a class="nav" href="Mesh.h">Mesh.h</a><br/>
+<a class="nav" href="Mesh.cpp">Mesh.cpp</a><br/>
+<a class="nav" href="cube.obj">cube.obj</a><br/>
+<a class="nav" href="sphere.obj">sphere.obj</a><br/>
+<a class="nav" href="skull.obj">skull.obj</a><br/>
+<H3>Setting up matricies and required math</h3><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ChalkTalk/projection.html">Deriving the projection Matrix</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/Vector.h">Vector.h</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/VMath.h">VMath.h.h</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/VMath.cpp">VMath.cpp</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/Matrix.h">Matrix.h</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/MMath.h">MMath.h</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/MMath.cpp">MMath.cpp</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/Sphere.h">Sphere.h</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/ETC/Code_Samples/MathLibrary/Plane.h">Plane.h</a><br/>
+<H3>Creating a shader</h3><br/>
+<a class="nav" href="Shader.h">Shader.h</a><br/>
+<a class="nav" href="Shader.cpp">Shader.cpp</a><br/>
+<a class="nav" href="phongVert.glsl">phongVert.glsl</a><br/>
+<a class="nav" href="phongFrag.glsl">phongFrag.glsl</a><br/>
+</div>
+
+<div id="leftsidebar">
+<p>
+To begin with, you need to download the ComponentFramework zip file and the Gamedev zip. Unpack the GameDev file and place them at the top of your C:\ drive. 
+Then unpack the ComponentFramework files anywhere on your computer.<br/>Next, copy all the files on the right to your ComponentFramework folder
+where all the other ccp and header files are located - except, the "Obj Format" and "deriving the projection Matrix". Compile the project to test
+ that all is well.<br/><br/>
+Open the Main.cpp and make the window size a little more contemporary. I suggest 1280x720. 
+  
+</p>
+<p>
+Let's start by building a Camera class. If you are grumbling that there is no Camera, I'm pleased, I guess you came to class.
+Go to the solution explorer and add a new class caller Camera. We will need to create a projection matrix and a view matrix.
+In proper OOP style make them private.<br/> Next, build a function to set the projection matrix using MMath:perspective(...) and a second function to populate the
+view matrix using MMath::LookAt(...). In the constructor give both matricies resonable default values. 
+Include the code to "get" the matricies from the Camera. The code should look something like this:  
+</p>
+Camera.h
+<p><textarea class="console" spellcheck="false" rows=10>
+#ifndef CAMERA_H
+#define CAMERA_H
+#include "Vector.h"
+#include "Matrix.h"
+using namespace MATH;
+class Camera {
+private:
+	Matrix4 projection;
+	Matrix4 view;
+public:
+	inline Matrix4 getProjectionMatrix() const { return projection; }
+	inline Matrix4 getViewMatrix() const { return view; }
+	void createProjection(float fovy, float aspectRatio, float near, float far);
+	void createView(Vec3 pos, Vec3 at, Vec3 up);
+	Camera();
+	~Camera();
+};
+#endif
+</textarea></p>
+ 
+Camera.cpp
+<p><textarea class="console" spellcheck="false" rows=10>
+#include "Camera.h"
+#include "MMath.h"
+
+Camera::Camera() {
+	createProjection(45.0f, (16.0f / 9.0f), 0.5f, 100.0f);
+	createView(Vec3(0.0, 0.0, 10.0f), Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 1.0f, 0.0f));
+}
+
+Camera::~Camera(){
+}
+
+void Camera::createProjection(float fovy, float aspect, float near, float far) {
+	projection = MMath::perspective(fovy, aspect, near, far);
+}
+
+void Camera::createView(Vec3 pos, Vec3 at, Vec3 up) {
+	view = MMath::lookAt(pos, at, up);
+}
+</textarea></p>
+
+<p>
+Now we are going to need something to draw.  In the hope of building this code into a game engine, I sugget that we create 
+a new class called GameObject. This class will need to have a model matrix assigned to it so it can positioned in 3-D space. I will
+also need a pointer to Mesh object and a pointer to a Shader object responsible for rendering the mesh. <br/>
+The code should look something like this: 
+</p>
+
+
+GameObject.h
+<p><textarea class="console" spellcheck="false" rows=10>
+#ifndef GAMEOBJECT_H
+#define GAMEOBJECT_H
+#include "Matrix.h"
+using namespace MATH;
+class GameObject {
+private:
+	Matrix4 model;
+	class Mesh *mesh;
+	class Shader *shader;
+public:
+	GameObject(Mesh *mesh_, Shader *shader_);
+	~GameObject();
+	void Render() const;
+	inline Shader* getShader() const { return shader; }
+
+};
+
+#endif
+</textarea></p>
+GameObject.cpp
+<p><textarea class="console" spellcheck="false" rows=10>
+#include "GameObject.h"
+#include "Mesh.h"
+#include "Shader.h"
+
+GameObject::GameObject(Mesh *mesh_, Shader *shader_):mesh(nullptr),shader(nullptr) {
+	mesh = mesh_;
+	shader = shader_;
+}
+
+GameObject::~GameObject(){
+	if (mesh) delete mesh;
+}
+
+void GameObject::Render() const {
+	mesh->Render();
+}
+</textarea></p>
+
+<p>
+Open the file Scene0.h.<br/> It seems reasonable that the Scene would be proper place to hold the Camera, so go ahead and 
+make a pointer to a Camera there and make a pointer to a GameObject. Since the first shader will light the GameObject with 
+a Phong Shader, the project will need a Vec3 to hold the position of the light source. Add that as well.  A fragment of that 
+code should look like this:    
+</p>
+
+Scene0.h
+<p><textarea class="console" spellcheck="false" rows=10>
+...
+class Camera;
+class GameObject;
+
+class Scene0 : public Scene {
+private:
+	Camera *camera;
+	GameObject *ball;
+	Vec3 lightSource;
+public:
+	explicit Scene0();  ...
+</textarea></p>
+<p>
+Open the file Scene0.cpp.<br/>
+The responsibly for creating the camera, for loading the OBJ file and placing into the mesh and for creating a shader, all rest
+here. The code is somewhat complex and will need a lot of explaining - please come to class for the full description. This 
+is what the OnCreate() needs to look like.  You will need to include several header files to make this work.   
+</p>
+Scene0.cpp OnCreate() 
+<p><textarea class="console" spellcheck="false" rows=10>
+bool Scene0::OnCreate() {
+
+	camera = new Camera();
+	
+	if (ObjLoader::loadOBJ("sphere.obj") == false) {
+		return false;
+	}
+	Mesh *meshPtr = new Mesh(GL_TRIANGLES, ObjLoader::vertices, ObjLoader::normals, ObjLoader::uvCoords);
+	Shader *shaderPtr = new Shader("phongVert.glsl", "phongFrag.glsl", 3, 0, "vVertex", 1, "vNormal", 2, "texCoords");
+	ball = new GameObject(meshPtr, shaderPtr);
+
+	lightSource = Vec3(3.0, 6.0, 0.0);
+
+	return true;
+}
+</textarea></p>
+
+<p>
+All that is left is to  render the Scene. There are a few steps first. <Br/>
+Use glUseProgram() to bind to the GameObject's shader.<br/>
+Use glUniformMatrix4fv() to send all the matricies to the GPU. <br/>
+Use glUniform3fv() to send the lightsource's position. <br/>
+Call GameObject's Render()<br/>
+It needs to look like this:
+</p>
+ 
+Scene0.cpp Render()
+<p><textarea class="console" spellcheck="false" rows=10>
+void Scene0::Render() const {
+	
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	/// Draw your scene here
+	GLuint program = ball->getShader()->getProgram();
+	glUseProgram(program);
+
+	/// This should not be done here. You only need to get these
+	/// ID's once after the sharder has been created - TODO
+	GLint projectionMatrixID = glGetUniformLocation(program, "projectionMatrix");
+	GLint viewMatrixID = glGetUniformLocation(program, "viewMatrix");
+	GLint lightPosID = glGetUniformLocation(program, "lightPos");
+	GLint modelMatrixID = glGetUniformLocation(program, "modelMatrix");
+	GLint normalMatrixID = glGetUniformLocation(program, "normalMatrix");
+
+	/// These pass the matricies and the light position to the GPU
+	glUniformMatrix4fv(projectionMatrixID, 1, GL_FALSE, camera->getProjectionMatrix());
+	glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, camera->getViewMatrix());
+	glUniform3fv(lightPosID, 1, lightSource);
+
+	/// These really should be in the GameObject class, it passes
+	/// the model matrix to the GPU - TODO 
+	glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, Matrix4());
+	glUniformMatrix3fv(normalMatrixID, 1, GL_FALSE, Matrix3());
+	
+	ball->Render();
+
+	glUseProgram(0);
+}
+</textarea></p>
+<p>
+<img src="screenshot.png" alt="Smiley face">
+</p>
+<H3> Before you forget, rename the ComponentFramework1.0.0 folder to ComponentFramework1.0.1 and save a copy somewhere.
+This our starting point for the rest of the semester
+</H3>
+</div>
+
+
+
+
+
+
+</body>
+</HTML>

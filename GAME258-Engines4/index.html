@@ -1,0 +1,199 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 258</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 258 Game Engines 4 </b><br /></div>
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+</ul>
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+<a class="nav" href="http://munro.humber.ca/~fielder/Rubrics/programmingRubric.html">General Programming Rubric</a><br/>
+<a class="nav" href="https://ca.bbcollab.com/guest/15b81150187f4306b66b483a488ca96d"> Guest Blackboard Site</a><br/>
+<a href="https://ca.bbcollab.com/guest/88f92a643dfa4c18912f46dbaec0ad03">Blackboard Collaboration - "The Back Table" </a><br/>
+<hr/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GameDev/GameDev.zip"><B>GameDev.zip</b></a><br/>
+<hr/>
+
+<h3> Base Code </h3>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/ComponentFramework22.4.0.zip"> ComponentFramework22.4.0</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/MeshComponent.h">MeshComponent.h</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/MeshComponent.cpp">MeshComponent.cpp</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/tiny_obj_loader.h">tiny_obj_loader.h</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/ShaderComponent.h">ShaderComponent.h</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/ShaderComponent.cpp">ShaderComponent.cpp</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/MaterialComponent.h">MaterialComponent.h</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/MaterialComponent.cpp">MaterialComponent.cpp</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Texture.cpp">Texture.cpp</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/UBO_Padding.h">UBO_Padding.h</a><br/>
+<a href="http://www.grinninglizard.com/tinyxml2/index.html">tinyxml-2</a><br/>
+
+
+
+<hr/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/defaultVert.glsl">defaultVert.glsl</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/defaultFrag.glsl">defaultFrag.glsl</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/textureVert.glsl">textureVert.glsl</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/textureFrag.glsl">textureFrag.glsl</a><br/>
+<hr/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/Mario.obj">Mario.obj</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/Skull.obj">Skull.obj</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mario_mime.png">mario_mime.png</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mario_main.png">mario_main.png</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/mario_fire.png">mario_fire.png</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME157-Graphics/skull_texture.jpg">skull_texture.jpg</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Hammer.obj">Hammer.obj</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME258-Engines4/hammer_BaseColor.png">hammer_BaseColor.png</a><br/>
+<hr/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME258-Engines4/XMLProject.zip">XMLProject.zip</a><br/>
+
+
+
+
+</div>
+
+
+
+<H1> Welcome to Game 258 - Game Engines 4 </h1>
+<H3>ECS <u>E</u>ntity <u>C</u>omponent <u>S</u>ystem</H3>
+
+<ul>
+<li><b>Topic 0:</b> Templates in C++ and other tools<br /></li><br/>
+We'll do some experiments with templates in C++ first. Then prototype some components.<br/>
+Here's where we left off last week.
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/TemplateDemo.zip">TemplateDemo.zip</a><br/><br/> 
+
+This a version of our real starting point  
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/ComponentFramework22.4.0.zip"> ComponentFramework22.4.0</a>,<br/> 
+download it. We will start by incorporating the demo project into the FrameWork.<br/><br/>
+
+<li><b>Topic 1:</b> The Entity (Actor or Component)</li>
+Using the Actor/Component demo code we created over the last one or two weeks, begin inserting these ideas in to the framework - I will guide you, promise. <br/><br/>
+
+
+<li><b>Topic 2:</b> The Components and Actors</li>
+Let's create some basic components and begin to flesh them out: TransformComponent, MeshComponent, Actor, and CameraActor.<br/><br/>
+
+
+<li><b>Topic 3:</b> Using the Components</li>
+In this part we'll get and set data in and out of the added components. <br/><br/>
+
+<li><b>Topic 4:</b> Using Components to render an Actor in 3D. <i> (Finally some graphics)</i></li>
+Finally some graphics. To accomplish this you will need Shader, Material, Light, Transform, and Mesh components.<br/>
+It's going to be a busy day.<br/><br/>
+
+Here's we left off, 2022-Summer Week 4, just in case you didn't follow along 
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/ComponentFramework22.4.4.zip"> ComponentFramework22.4.4</a><br/><br/> 
+
+
+<li><b> Assignment 1:</b> 
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Assignment1.html">Making Mario 3D with a texture.</li></a><br/><br/>
+
+<li><b>Topic 5:</b> Uniform Buffer Objects (UBOs)</li>
+<br/><br/>
+
+<li><b>Topic 6:</b> Parenting objects </li>
+<br/><br/>
+
+<li><b> Assignment 2:</b> 
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Assignment2.html">Making a Checkerboard with Checkers </li></a><br/><br/>
+
+
+<li><b>Topic 7:</b> Better Memory Management (part 1)  - Smart Pointers</li>
+In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful. 
+<br/><br/>
+
+<li><b>Topic 8:</b> Better Memory Management (part 2)  - More on Smart Pointers</li>
+Here's we left off, just in case you didn't follow along 
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/SharedPointers.zip"> SharedPointers.zip</a><br/><br/> 
+
+In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.<br/><br/>
+
+<br/><br/>
+
+<li><b>Topic 9:</b> Better Memory Management (part 3)  - Applying smart pointers to the engine</li>
+Based on what we did last week, let's use the following code definition:<br/>
+<textarea class="code" spellcheck="false" rows=4>
+
+template<typename T>
+using Ref = std::shared_ptr<T>;
+</textarea><br/>
+
+The best place to put is, probably, near the top of Component.h. What do you think?<br/><br/> 
+
+Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
+I can use the std::make_shared idea plus simplify the existing code to look like this:<br/>
+
+<textarea class="code" spellcheck="false" rows=15>
+
+template<typename ComponentTemplate, typename ... Args>
+	void AddComponent(Args&& ... args_) {
+		/// before you add the component, ask if you have the component in the list already,
+		/// if so - don't add a second one. 
+		if (GetComponent<ComponentTemplate>().get() != nullptr) {
+#ifdef _DEBUG
+			std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+#endif
+			return;
+		}
+		/// Using std::make_shared to do the work. This is the new idea!,
+		components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
+	}  
+</textarea><br/><br/>
+Add this to your project.<br/>We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation 
+of the asset manager. This overload will look very much like the one listed above. The easiest approch is just to copy the original and make a simple modification.<br/>
+
+<textarea class="code" spellcheck="false" rows=12>
+
+template<typename ComponentTemplate>
+	void AddComponent(Ref<ComponentTemplate> component_) {
+		if (GetComponent<ComponentTemplate>().get() != nullptr) {
+#ifdef _DEBUG
+			std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+#endif
+			return;
+		}
+		components.push_back(component_);
+	}
+
+</textarea><br/><br/>
+By demand, here's the code for Actor:<br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Actor.h">Actor.h</a><br/>
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Actor.cpp">Actor.cpp</a><br/>
+
+<br/><br/>
+<li><b> Assignment 3:</b> 
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Assignment3.html">Modify the Scene class to store Actors</li></a><br/><br/>
+
+<br/>
+<li><b>Topic 10:</b> Using XML </li>
+Start by downloading this project. <a class="nav" href="http://apollo.humber.ca/~fielder/GAME258-Engines4/XMLProject.zip">XMLProject.zip</a><br/>
+In this project I'll show you how to parse an XML with "tinyXLM2." This is a free open-source XML tool used widely. The code can be use to both read 
+and write XML documents but I will focus on just reading the file. The goal of this small project is to gain the skills and base code that can be used 
+in the framework. <br/><br/>
+
+<li><b> Assignment 4:</b> 
+<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Assignment4.html">Bringing it all Together</li></a><br/><br/>
+
+<br/><br/>
+
+
+</ul>
+
+
+
+
+
+
+
+
+
+</body>
+</HTML>
+

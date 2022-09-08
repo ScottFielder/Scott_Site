@@ -1,0 +1,45 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GAME 258</title>
+<link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
+<body>
+<div id="header"> <b>GAME 258 Graphics </b><br />OpenGL</div>
+
+<ul class="nav">
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule/index.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe/index.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/index.html"> /etc </a><br/></li>
+</ul>
+</div>
+
+
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
+</div>
+
+
+
+<p  class="mainbody"> 
+<H1> Assignment 3 </H1>
+
+<h3> Make the Scene class capable of storing the Refs to all the Actors in the the the current Scene. (16/25)<br/></h3>
+<Br/>
+The idea is that if we store the Refs to all the Actor in the Scene within the Scene so that we would have a single node (std::vector) to Render, Update, and pass events into. 
+This will simlify every aspect of the Scene including removing all Refs to individual Actors in the Scene#.h header file. All we'll need to do now is 
+loop over all Actors in the list Update(), HandleEvents() and Render() everyone.  One way to do this is to have the Scene inherit from Actor. However, the Actor doesn't allow for
+adding multiple components of the same type. Use the Actor class a guide not a the base class.    
+<br/><br/>
+ 
+
+<H3>Extra (Up to 9% more) <br/></H3>
+Rather than storing the Actors in a std::vector like we did in the Actor header file. Could you, should you use a std::unordered_map? (Hint: Look at the AssetManager)
+ 
+</p>
+
+
+</body>
+</HTML>
+
