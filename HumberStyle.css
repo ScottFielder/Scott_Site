@@ -78,12 +78,11 @@ p.mainbody{
 	font-size:20px;
 	color:#000000;
 }
-p.footnote  {
+footer {
 	clear:both;
 	font:Arial;
 	font-size:12px;
 	color:#00265c;
-	position:absolute;
 	bottom:10px;
 	left:25px;
 	border-top:solid 1px #000000;
@@ -96,7 +95,7 @@ p.footnote  {
 	color:#00265c;
 	text-align:center;
 	background-repeat:no-repeat;
-	background-image:url(http://apollo.humber.ca/~fielder/HumMediaLogo.png);
+	/* background-image:url(http://apollo.humber.ca/~fielder/HumMediaLogo.png); */
 	background-position:left;
 	background-color:#eeeeff;
 	border: solid 1px #000000;
@@ -133,6 +132,7 @@ img.scott {
 	font-size:12px;
 	color:#000000;
 }
+
 .{
 	font-family: Arial;
 	font-size: 16px;
@@ -143,6 +143,7 @@ img.scott {
 	border-bottom-style: solid;
 	border-left-style: solid;
 }
+
 .code {
 	width: 800px;
 	border: 0px;
