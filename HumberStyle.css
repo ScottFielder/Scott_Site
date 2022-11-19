@@ -51,7 +51,7 @@ ul.currentcourses{
 	list-style-type:disc;
 	font:Arial;
 	font-size:12px;
-	-style:italic;
+	style:italic;
 	font-weight:bold;
 	color:#00265c;
 }
