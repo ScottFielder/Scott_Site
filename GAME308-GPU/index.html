@@ -7,17 +7,31 @@
 <body>
 <div id="header"> <b>GAME 308 GPU </b><br />Vulkan</div>
 <ul class="nav">
-<li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
-<li class="nav"><a class="nav" href="../MySchedule"> My schedule </a><br /></li>
-<li class="nav"><a class="nav" href="../AboutMe"> About me </a><br /></li>
-<li class="nav"><a class="nav" href="../ETC"> /etc </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
 </ul>
 <div id="rightsidebar">
 <h3> Helpful tools</h3>
-<a class="nav" href="../Rubrics/programmingRubric.html">General Programming Rubric</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/Rubrics/programmingRubric.html">General Programming Rubric</a><br/>
 <a class="nav" href="https://vulkan-tutorial.com/Introduction">Vulkan Tutorial</a><br/>
-<a class="nav" href="../GameDev/GameDev.zip" download>GameDev</a><br/>
-<a class="nav" href="ComponentFramework21.2.1 Vulkan.zip" download>ComponentFramework21.2.1 Vulkan.zip</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GameDev/GameDev.zip">GameDev</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME308-GPU/ComponentFramework22.2.1 Vulkan.zip">ComponentFramework22.2.1 Vulkan.zip</a><br/>
+<a class="nav" href="http://apollo.humber.ca/~fielder/GAME308-GPU/compileShaders.bat">compileShaders.bat</a><br/>
+
+Videos from the online class<br>
+<a class="nav" href="https://youtu.be/aODHSCZvpjw">Week 1</a><br/>
+<a class="nav" href="https://youtu.be/VrOVnP3grwk">Week 2</a><br/>
+<a class="nav" href="https://youtu.be/C_uF_OJRPCQ">Week 3</a><br/>
+<a class="nav" href="https://youtu.be/SJyvrveztGM">Week 4</a><br/>
+<a class="nav" href="https://youtu.be/d9jQ9ZMFA-E">Week 5</a><br/>
+<a class="nav" href="https://youtu.be/QvpvUjV4mRs">Week 6</a><br/>
+<a class="nav" href="https://youtu.be/dqhG2KHzomM">Week 7</a><br/>
+<a class="nav" href="https://youtu.be/QcgHwMOxfYk">Week 8</a><br/>
+<a class="nav" href="https://youtu.be/DkGYoj7l8lI">Week 9</a><br/>
+
+
 
 
 
@@ -29,33 +43,64 @@
 <H2>Assignment 0:(not graded)<br/> </H2> 
 You might want to download the latest copy of GameDev.<br/>
 Be sure you have installed Vulkan on your machine. I currntly using 1.2.189.2.<br/>
-Download ComponentFramework21.2.1 Vulkan and get it to run.<br/>
+Download ComponentFramework22.2.1 Vulkan and get it to run.<br/>
 <br/><br/>
-<!--
 
 <H2>Assignment 1:(16/20)<br/> </H2> 
-Create a Camera class that will hold the Projection and View matricies (Mario's model matrix can just live in Scene0() ),
-and be able to move the Camera's location. Modify the VulkanRenderer code so that the UBO is a member of that class and no longer a 
-local variable. Create a function(s) that will populate the UBO and transfer the matrix data to the GPU.
-Extra: Remove the lookat() call and replave with a translate or rotate, maybe even a quaternion.
-Extra: Use sdlEvents to move the camera
-
-<H2>Assignment 2:(16/20)<br/> </H2> 
 Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify 
 the UBO on both the CPU and GPU to carry the lighing data.<br/>
 Extra: Create a separate Uniform buffer to just handle lighting data.<br/>
 Extra: Create more that two lights.<br/>
 Extra: Pass the color of each light as a Uniform.<br/><br/>
- 
+
+<H2>Assignment 2:(16/20)<br/> </H2> 
+In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader). The in-person class is still fighting
+with technical issues - sorry - I hate it too, video 5 is now uploaded. In this video I will try to explain the idea and mechanism of push constants.<br/>
+Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. But, they do have a drawback, they are restricted 
+to a maximum of 128 bytes of memory. Can you do a projection, view, and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.
+<br/><br/>
+Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). What? Calculate the normal matrix
+for every vertex in the model that's madness. Calculate the normal matrix (as a 4x4) on the CPU side and pass it in via the push constant, along with the normal matrix.<br/><br/>
+
+Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment rules need to be enforced. 
+See std430 and std120 for details. It's just for you to show off. <br/><br/>
 
 <H2>Assignment 3:(16/20)<br/> </H2> 
-<strike>Create a two different objects on the screen in the GPU and draw them. 
-This means storing the data in separate vertex and index buffers. </strike><br/>
+Create a two different objects on the screen in the GPU and draw them. 
+This means storing the data in separate vertex and index buffers.<br/>
 Just create multiple pipelines, multiple objects and have the data downloaded to to the GPU. Store the descriptors as well<br/>
 Extra: Create multiple textures on to the GPU. <br/>
-Extra: <br/> Go ahead and draw multiple objects<br/>
--->
+Extra: Go ahead and draw multiple (more than two) objects<br/><br/>
+
+<H2>Assignment 4:(16/20)<br/> </H2> 
+The task is to visualize the normals on the surface of a 3D object. They should look like little hairs extending off the surface.
+I'll demo it in class. <br/> 
+The geometry shader exists between the vertex shader and the fragment shader. In OpenGL class we never had time to investigate it. Now in Vulkan 
+let's give it a look. <br/>
+The website I showed you in OpenGL <a class="nav" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader"> learnopengl.com </a> is a fair starting point.
+As I mentioned in class a year ago, the writing and explanations are great the coding examples suck. <br/>
+I'll help:<br/>
+
+<a class="nav" href="drawNormals.vert">drawNormals.vert</a><br/>
+<a class="nav" href="drawNormals.geom">drawNormals.geom</a><br/>
+<a class="nav" href="drawNormals.frag">drawNormals.frag</a><br/><br/>
+
+Extra: Can you control the color of the normals from the CPU side? (Pass the color in). <br/>
+Extra: Can you control the length of the normals from the CPU side? <br/>
+ 
+<br/><br/>
+
+
+
 </div>
+
+<!--
+-->
+
+
+
+
+
 </body>
 </HTML>
 
