@@ -20,20 +20,68 @@
 
 <div id="banner">
     <p>
-        This is math library is aimed at showing how the math/code works behind the scenes. It's so you can see how these math functions are coded
-        using the latest standard C++ protocols and techniques. <br />
-        If you are going pro don't use my stuff use something like <b>glm</b>, a standard in the industry.<br />
-        My code is all tested against <b>glm</b> so it works fine, <b>glm</b> may be a little faster in some occasions, but their source code is impossible
-        to read without a Ph.D. from MIT. <br />
-        <H3><a href="https://github.com/ScottFielder/MathLibrary/tree/master/MathLibrary">Scott's Math Library</a></H3><br /><br />
+        This math library is aimed at providing an understanding of the underlying mathematical concepts and their implementation
+        in code, using the latest standard C++ protocols and techniques. It is intended for educational purposes and for those
+        who wish to gain insight into the inner workings of mathematical functions. However,
+        it should be noted that if you are working on a professional project, it is recommended to use a more established
+        and optimized library such as GLM, which is a widely accepted industry standard.
+    </p>
+    <p>
+        The code in this library has been tested against GLM and is known to function correctly. However, it should be
+        acknowledged that GLM may offer better performance in certain cases, but its source code can be challanging 
+        to comprehend without a specialized background in mathematics and advanced C++ templates.
+    </p>
+    <p>
+        The library is written as header-only, which has several benefits. Firstly, it simplifies the process of
+        incorporating the library into other projects by eliminating the need for separate compilation or linking.
+        Instead, the user only needs to include the appropriate header files in their own source code,
+        providing ease of use and flexibility.
+    </p>
+    <p>
+        Additionally, header-only libraries are highly portable, as they do not depend on pre-built binaries or 
+        object files. This allows the library to be used on any platform without the need for separate builds or
+        special configurations, and also eliminates potential runtime issues caused by differences between the
+        library's build environment and the application's runtime environment.
+     </p>
+    <p>
+        However, one of the downsides of header-only libraries is that they may increase compilation time.
+        The functions and classes are defined within the header files, which means that the compiler will process
+        them every time the header is included, resulting in longer build times. Additionally, the increased size
+        of the source files can cause memory issues when working with very large projects.
+    </p>
+        <H3><a href="https://github.com/ScottFielder/MathLibrary/tree/master/MathLibrary">Scott's Math Library</a></H3>
+
+    <p>Inlining, as a feature of C/C++, is used often in this library. One of the main advantages is that it reduces
+    the overhead of function calls. When a function is called, the program must perform a number of operations such
+    as pushing arguments onto the stack, performing a jump to the function's address, and then cleaning up the stack
+    after the function returns. When a function is inlined, the code of the function is replaced by the code of the
+    function at the point where the function is called, thus eliminating the need for these operations and reducing
+    the overhead.
+    </p>
+    <p>
+        Another advantage of inlining is that it can improve the performance of the program by increasing the opportunities
+        for the compiler to perform optimizations. When the code of a function is visible to the compiler, it can 
+        perform more accurate and extensive analysis and optimization of the code, which can lead to better performance.
+    </p>
+    <p>
+        Furthermore, inlining can also be beneficial for readability and maintainability of the code. By inlining small, 
+        simple functions, the code becomes more self-explanatory and can be more easily understood by developers.
+    </p>
+    <p>
+        However, it is important to note that inlining can also have some downsides, such as increasing the size of the
+        generated code and making the code less debuggable as the program counter does not move to the inlined function.
+        Therefore, it is essential to strike a balance between the benefits and drawbacks of inlining when considering
+        whether to use it in a particular case.
+        </p>
+
 
         Just for the smile, this is my C version of the library from 1986. C++ was anounced in 1985 by Bjarne Stroustrup
         but I had just started to code seriously in C.<br />
         <i> I got better. (Open it in a separate window to see the code)</i><br />
         <a href="../ETC/vectormath.h">vectormath.h</a><br />
         <a href="../ETC/vectormath.c">vectormath.c</a><br /><br />
-        Other stuff<br/>
-        <a href="../ETC/BitFlags.c">BitFlags.cs</a><br /><br /><br/>
+        Other stuff<br />
+        <a href="../ETC/BitFlags.c">BitFlags.cs</a><br /><br /><br />
     </p>
 </div>
 </body>

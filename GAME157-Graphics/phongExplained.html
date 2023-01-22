@@ -14,8 +14,29 @@
 	</ul>
 	<H2>&nbsp;</H2>
 	<H1>Phong Lighting Model - explained </H1>
+	<p>
+		The Phong reflection model, developed by Bui Tuong Phong in 1975 (my last year in high school), is a widely used mathematical model
+		in computer graphics for the calculation of the color of pixels on an object's surface. It takes into account
+		three components: ambient, diffuse, and specular reflection, as well as a specular exponent, in order to accurately
+		simulate the way light interacts with surfaces.
+	</p>
 	<img width=700 height=73 src="phongEq.png" alt="🙂" /><br />
-	
+	 <p>
+	 The ambient reflection component represents the color of an object when not directly 
+	 illuminated by any light sources. It is determined by the product of the surface's
+	 ambient color and the ambient color of the light source, anything in shadow.
+	 </p>
+	<p>The diffuse reflection component represents the color of an object when illuminated by a light source.
+	It is determined by the product of the surface's diffuse color, the diffuse color of the light source and
+	the cosine of the angle between the surface normal and the light direction.</p>
+	<p>The specular reflection component represents the color of an object when illuminated by a light source
+	and viewed from a certain angle. It is determined by the product of the surface's specular color,
+	the specular color of the light source and the cosine of the angle, raised to the power of the specular exponent.</p>
+
+	<p>The specular exponent, also known as shininess, is a value that controls the size and intensity of the 
+	specular highlight on the surface. The higher the specular exponent, the smaller and more intense
+	the specular highlight will be.</p>
+
 	<h2>Starting with the vertex shader </h2><br />
 
 <textarea class="code" cols=127 rows=27 spellcheck="false">
