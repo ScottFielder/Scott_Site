@@ -62,7 +62,7 @@ void main() {
     vertNormal = normalize(normalMatrix * vNormal); /// Rotate the normal to the correct orientation 
     vec3 vertPos = vec3(viewMatrix * modelMatrix * vVertex);
     vec3 vertDir = normalize(vertPos);
-	eyeDir = -vertDir;
+    eyeDir = -vertDir;
     lightDir = normalize(vec3(lightPos) - vertPos); 
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vVertex;
     
