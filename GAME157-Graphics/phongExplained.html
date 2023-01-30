@@ -7,10 +7,10 @@
 <body>
 	<div id="header"> <b>GAME 157 Graphics </b><br />Programmable Pipeline</div>
 	<ul class="nav">
-		<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/index.html"> Home </a><br /></li>
-		<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
-		<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
-		<li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+		<li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
+		<li class="nav"><a class="nav" href="../MySchedule"> My schedule </a><br /></li>
+		<li class="nav"><a class="nav" href="../AboutMe"> About me </a><br /></li>
+		<li class="nav"><a class="nav" href="..//ETC"> /etc </a><br /></li>
 	</ul>
 	<H2>&nbsp;</H2>
 	<H1>Phong Lighting Model - explained </H1>
@@ -39,7 +39,7 @@
 
 	<h2>Starting with the vertex shader </h2><br />
 
-<textarea class="code" cols=127 rows=27 spellcheck="false">
+<textarea class="code" cols=127 rows=29 spellcheck="false">
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
@@ -96,7 +96,7 @@ void main() {
 
 
 
-	<p>
+<p>
 		What is needed now is to calculate the position of the light source with respect to the new position of the vertex.  By subtracting the the
 		lightPos fron the vertPos (add the lightPos to the negative of the vertPos). <br />
 <textarea class="code" cols=127 rows=2 spellcheck="false">
@@ -105,15 +105,15 @@ void main() {
 		<img src="phong4.png" alt="Smiley face" /><br />
 
 
-	</p>
-	<p>
+</p>
+<p>
 		Normalizing the lights position gives the lightDir from the point-of-view of the, matrix shifted, vertex.  The lightDir
 		will be passed to the fragment shader.<br /> <br />
 		<img src="phong5.png" alt="Smiley face" /><br />
-	</p><br />
+</p><br />
 
 	<h2>Now the fragment shader </h2><br />
-<textarea class="code" cols=127 rows=20 spellcheck="false">
+<textarea class="code" cols=127 rows=22 spellcheck="false">
 #version 450
 #extension GL_ARB_separate_shader_objects : enable
 
@@ -137,7 +137,7 @@ void main() {
 	fragColor =  ka + (diff * kd) + (spec * ks);	
 }</textarea><br />
 
-	<p>
+<p>
 		I'm bringing everything in as a vec3 since we no longer need to worry about 4-D homogenious coordinate systems. The final color
 		still needs to be a vec4.  <br />
 
@@ -154,8 +154,8 @@ float diff = max(dot(vertNormal, lightDir), 0.0);
 </textarea><br />
 
 		The dot product between the two vectors will go between 1.0 and -1.0.  The max() function keeps all the values positive or zero. <br />
-	</p>
-	<p>
+</p>
+<p>
 		Calculating the relection vector of the lightPos off the surface defined by the normal, the direction of the reflecting off the surface can
 		be created.<br />
 <textarea class="code" cols=127 rows=2 spellcheck="false">
@@ -169,7 +169,7 @@ vec3 reflection = normalize(reflect(-lightDir, vertNormal));
 float spec = max(dot(eyeDir, reflection), 0.0);
 </textarea>
 		<img src="phong8.png" alt="Smiley face" /><br />
-	</p>
+</p>
 
 	<p>
 		The last part is raising the spectular component to a power, spec<sup>exponent</sup>. This is just artistic and has nothing to do with physics.
