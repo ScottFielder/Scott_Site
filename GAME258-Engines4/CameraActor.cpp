@@ -1,7 +1,7 @@
 #include <glew.h>
 #include "CameraActor.h"
-#include "MMath.h"
-#include "QMath.h"
+#include <MMath.h>
+#include <QMath.h>
 #include "TransformComponent.h"
 #include "UBO_Padding.h"
 using namespace MATH;
