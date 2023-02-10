@@ -100,25 +100,21 @@
 			Sorry about last week. This has been the worst start up I remember.<br />
 			<a href="ComponentFramework23.0.4.zip"> ComponentFramework23.0.4</a>
 		</p>
+
+		<li><b>Topic 5:</b> Parenting objects </li>
+		<p>
+		</p>
+
+
+		<li><b>Topic 6:</b> Uniform Buffer Objects (UBOs)</li>
+		<p>
+		</p>
+
+
 		
-		<!--
-			<li>
-				<b> Assignment 1:</b>
-				<a href="Assignment1.html">Making Mario 3D with a texture.</a>
-			</li></a>
-			<br />
-			<br />
-
-			<li><b>Topic 5:</b> Uniform Buffer Objects (UBOs)</li>
-			<br />
-			<br />
-
-			<li><b>Topic 6:</b> Parenting objects </li>
-			<br />
-			<br />
-
-			<li>
-				<b> Assignment 2:</b>
+		<li>
+			<b> Assignment 1: Coming soon</b>
+			<!--
 				<a href="Assignment2.html">Making a Checkerboard with Checkers </a>
 			</li></a>
 			<br />
@@ -146,11 +142,11 @@
 			<li><b>Topic 9:</b> Better Memory Management (part 3)  - Applying smart pointers to the engine</li>
 			Based on what we did last week, let's use the following code definition:
 			<br />
-	<textarea class="code" spellcheck="false" rows=4>
+			<textarea class="code" spellcheck="false" rows=4>
 
-	template<typename T=T>
-	using Ref = std::shared_ptr<T>;
-	</T></typename></textarea>
+			template<typename T=T>
+			using Ref = std::shared_ptr<T>;
+			</T></typename></textarea>
 			<br />
 
 			The best place to put is, probably, near the top of Component.h. What do you think?
@@ -161,22 +157,22 @@
 			I can use the std::make_shared idea plus simplify the existing code to look like this:
 			<br />
 
-	<textarea class="code" spellcheck="false" rows=15>
+			<textarea class="code" spellcheck="false" rows=15>
 
-	template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
-	void AddComponent(Args&& ... args_) {
-	/// before you add the component, ask if you have the component in the list already,
-	/// if so - don't add a second one.
-	if (GetComponent<ComponentTemplate>().get() != nullptr) {
-	#ifdef _DEBUG
-		std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
-	#endif
-		return;
-	}
-	/// Using std::make_shared to do the work. This is the new idea!,
-	components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
-	}
-	</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
+			template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
+			void AddComponent(Args&& ... args_) {
+			/// before you add the component, ask if you have the component in the list already,
+			/// if so - don't add a second one.
+			if (GetComponent<ComponentTemplate>().get() != nullptr) {
+			#ifdef _DEBUG
+				std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+			#endif
+				return;
+			}
+			/// Using std::make_shared to do the work. This is the new idea!,
+			components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
+			}
+			</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
 			<br />
 			<br />
 			Add this to your project.
@@ -184,18 +180,18 @@
 			of the asset manager. This overload will look very much like the one listed above. The easiest approch is just to copy the original and make a simple modification.
 			<br />
 
-	<textarea class="code" spellcheck="false" rows=12>
+			<textarea class="code" spellcheck="false" rows=12>
 
-	template<typename ComponentTemplate=ComponentTemplate>
-	void AddComponent(Ref<ComponentTemplate> component_) {
-	if (GetComponent<ComponentTemplate>().get() != nullptr) {
-	#ifdef _DEBUG
-		std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
-	#endif
-		return;
-	}
-	components.push_back(component_);
-	}
+			template<typename ComponentTemplate=ComponentTemplate>
+			void AddComponent(Ref<ComponentTemplate> component_) {
+			if (GetComponent<ComponentTemplate>().get() != nullptr) {
+			#ifdef _DEBUG
+				std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+			#endif
+				return;
+			}
+			components.push_back(component_);
+			}
 
 	</ComponentTemplate></ComponentTemplate></typename></textarea>
 			<br />
@@ -237,5 +233,5 @@
 			<br>
 		</ul>
 		-->
-	</ul></body>
+		</li></ul></body>
 	</HTML>
