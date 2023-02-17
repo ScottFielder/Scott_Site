@@ -117,7 +117,7 @@
 
 		<li><b>Topic 6:</b> Uniform Buffer Objects (UBOs)</li>
 		<p>
-			Lets's look at LightComponent in more detail.
+			Lets's look at Light
 		</p>
 
 
@@ -151,13 +151,15 @@
 
 			<li><b>Topic 9:</b> Better Memory Management (part 3)  - Applying smart pointers to the engine</li>
 			Based on what we did last week, let's use the following code definition:
-			<br />
+			<p>
 			<textarea class="code" spellcheck="false" rows=4>
 
-			template<typename T=T>
-			using Ref = std::shared_ptr<T>;
-			</T></typename></textarea>
-			<br />
+				template<typename T>
+				using Ref = std::shared_ptr<T>;
+
+			</textarea>
+			</p>
+			
 
 			The best place to put is, probably, near the top of Component.h. What do you think?
 			<br />
