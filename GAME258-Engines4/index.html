@@ -31,7 +31,7 @@
 		<a href="CameraActor.cpp">CameraActor.cpp</a><br />
 		<a href="CameraActor.h">CameraActor.h</a><br />
 		<a href="MeshComponent.h">MeshComponent.h</a><br />
-		<a href="SharedPointers.7z" download>SharedPointers.zip</a><br />
+		<a href="SharedPointers.7z" download=download>SharedPointers.zip</a><br />
 
 		<a href="Texture.cpp">Texture.cpp</a><br />
 		<a href="UBO_Padding.h">UBO_Padding.h</a><br />
@@ -61,6 +61,10 @@
 		<a class="nav" href="blackCheckerPiece.png">blackCheckerPiece.png</a><br />
 		<a class="nav" href="whiteCheckerPiece.png">whiteCheckerPiece.png</a><br />
 		<a class="nav" href="8x8_checkered_board.png">8x8_checkered_board.png</a><br />
+		<a class="nav" href="ChessPieces.zip">ChessPieces.zip</a><br />
+		<a class="nav" href="colorPickingVert.glsl">colorPickingVert.glsl</a><br />
+		<a class="nav" href="colorPickingFrag.glsl">colorPickingFrag.glsl</a><br />
+		<a class="nav" href="ChessPieces.zip">ChessPieces.zip</a><br />
 		<a class="nav" href="ChessPieces.zip">ChessPieces.zip</a><br />
 		<hr />
 		<a class="nav" href="XMLProject.zip">XMLProject.zip</a><br />
@@ -115,47 +119,48 @@
 		<li><b>Topic 5:</b> Parenting objects </li>
 		<p>
 		</p>
-		
+
 		<li>
-			<b> Assignment 1:</b>
-				<p>
-				<a href="Assignment1.html">Making a Checkerboard with Checkers </a>
-			</li></a>
-			<br />
-			<br />
-
-
-			<li><b>Topic 7:</b> Better Memory Management - Smart Pointers</li>
-			In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful.
-			<br />
-			<br />
-
-
-			In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.
-			<br />
-			<br />
-
-			<li><b>Topic 8:</b> Better Memory Management - Applying smart pointers to the engine</li>
-			Based on what we did last week, let's use the following code definition:
+			<b> Assignment 1: Already due</b>
 			<p>
+				<a href="Assignment1.html">Making a Checkerboard with Checkers </a>
+			</p>
+		</li></a>
+		<br />
+		<br />
+
+
+		<li><b>Topic 7:</b> Better Memory Management - Smart Pointers</li>
+		In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful.
+		<br />
+		<br />
+
+
+		In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.
+		<br />
+		<br />
+
+		<li><b>Topic 8:</b> Better Memory Management - Applying smart pointers to the engine</li>
+		Based on what we did last week, let's use the following code definition:
+		<p>
 			<textarea class="code" spellcheck="false" rows=4>
 
-				template<typename T>
+				template<typename T=T>
 				using Ref = std::shared_ptr<T>;
 
-			</textarea>
-			</p>
-			
+			</T></typename></textarea>
+		</p>
 
-			The best place to put is, probably, near the top of Component.h. What do you think?
-			<br />
-			<br />
 
-			Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
-			I can use the std::make_shared idea plus simplify the existing code to look like this:
-			<br />
+		The best place to put this declaration is, near the top of Component.h. What do you think?
+		<br />
+		<br />
 
-			<textarea class="code" spellcheck="false" rows=15>
+		Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
+		I can use the std::make_shared idea plus simplify the existing code to look like this:
+		<br />
+
+		<textarea class="code" spellcheck="false" rows=15>
 
 			template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
 			void AddComponent(Args&& ... args_) {
@@ -171,14 +176,14 @@
 			components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
 			}
 			</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
-			<br />
-			<br />
-			Add this to your project.
-			<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
-			of the asset manager. This overload will look very much like the one listed above. The easiest approch is just to copy the original and make a simple modification.
-			<br />
+		<br />
+		<br />
+		Add this to your project.
+		<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
+		of the asset manager. This overload will look very much like the one listed above. The easiest approch is just to copy the original and make a simple modification.
+		<br />
 
-			<textarea class="code" spellcheck="false" rows=13>
+		<textarea class="code" spellcheck="false" rows=13>
 
 			template<typename ComponentTemplate=ComponentTemplate>
 			void AddComponent(Ref<ComponentTemplate> component_) {
@@ -191,24 +196,56 @@
 			components.push_back(component_);
 			}
 
-	</ComponentTemplate></ComponentTemplate></typename></textarea>
-			<br />
-			<br />
-			By demand, here's the code for Actor:
-			<br />
-			<a href="Actor.h" >Actor.h</a>
-			<br />
-			<a href="Actor.cpp" >Actor.cpp</a>
-			<br />
+	
+			</ComponentTemplate></ComponentTemplate></typename></textarea>
+		<br />
+		<br />
+		By demand, here's the code for Actor:
+		<br />
+		<a href="Actor.h">Actor.h</a>
+		<a href="Actor.cpp">Actor.cpp</a>
+		<br />
+		<br />
+		<li>
+			<b> Assignment 2:</b>
+			<a href="Assignment2.html">Modify the Scene class to store Actors</a>
+		</li>
 
-			<br />
-			<br />
-			<li>
-				<b> Assignment 2:</b>
-				<a href="Assignment2.html" >Modify the Scene class to store Actors</a>
-			</li></a>
-			<br />
-			<br />
-		</ul>
-		</li></ul></body>
+		<li>
+			<b>Topic 9: Picking Objects in 3D Perspctive Space</b>
+			We are going to use a technique called color picking. In order to start this project I need you to make a quick
+			modification to the Scene.h file. Please add the following structure to Scene.h. Just above the class Scene { ...
+			declaration<br />
+			<textarea class="code" spellcheck="false" rows=17>
+			struct ViewPort {
+				int x;
+				int y;
+				int width;
+				int height;
+
+				inline float GetAspectRatio() {
+					return static_cast<float>(width) / static_cast<float>(height);
+				}
+				inline operator const int* () const {
+					return static_cast<const int*=int*>(&x);
+				}
+				inline operator int* () {
+					return static_cast<int*>(&x);
+				};
+				class Scene {
+				protected:
+				std::vector< Ref<Actor>> actors; /// Assignment 2 stuff
+					ViewPort viewport; /// ADD THIS AS WELL
+					public: ...
+			</textarea><br />
+			In constuctor of each scene add the following line:<br />
+			<textarea class="code" spellcheck="false" rows=2>
+				glGetIntegerv(GL_VIEWPORT, viewport);
+			</textarea>
+		</li>
+		<br />
+		<br />
+
+	</ul>
+		</body>
 	</HTML>
