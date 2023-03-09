@@ -64,8 +64,7 @@
 		<a class="nav" href="ChessPieces.zip">ChessPieces.zip</a><br />
 		<a class="nav" href="colorPickingVert.glsl">colorPickingVert.glsl</a><br />
 		<a class="nav" href="colorPickingFrag.glsl">colorPickingFrag.glsl</a><br />
-		<a class="nav" href="ChessPieces.zip">ChessPieces.zip</a><br />
-		<a class="nav" href="ChessPieces.zip">ChessPieces.zip</a><br />
+		
 		<hr />
 		<a class="nav" href="XMLProject.zip">XMLProject.zip</a><br />
 	</div>
@@ -180,7 +179,8 @@
 		<br />
 		Add this to your project.
 		<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
-		of the asset manager. This overload will look very much like the one listed above. The easiest approch is just to copy the original and make a simple modification.
+		of the asset manager. This overload will look very much like the one listed above. The easiest approch 
+		is just to copy the original and make a simple modification.
 		<br />
 
 		<textarea class="code" spellcheck="false" rows=13>
@@ -197,26 +197,26 @@
 			}
 
 	
-			</ComponentTemplate></ComponentTemplate></typename></textarea>
-		<br />
-		<br />
-		By demand, here's the code for Actor:
+		</textarea>
+		<p>
+		By demand, here's the modified code for Actor:
 		<br />
 		<a href="Actor.h">Actor.h</a>
 		<a href="Actor.cpp">Actor.cpp</a>
-		<br />
-		<br />
+		</p>
+		
 		<li>
 			<b> Assignment 2:</b>
 			<a href="Assignment2.html">Modify the Scene class to store Actors</a>
 		</li>
 
 		<li>
+			<p>
 			<b>Topic 9: Picking Objects in 3D Perspctive Space</b>
 			We are going to use a technique called color picking. In order to start this project I need you to make a quick
 			modification to the Scene.h file. Please add the following structure to Scene.h. Just above the class Scene { ...
 			declaration<br />
-			<textarea class="code" spellcheck="false" rows=17>
+			<textarea class="code" spellcheck="false" rows=20>
 			struct ViewPort {
 				int x;
 				int y;
@@ -227,7 +227,7 @@
 					return static_cast<float>(width) / static_cast<float>(height);
 				}
 				inline operator const int* () const {
-					return static_cast<const int*=int*>(&x);
+					return static_cast<const int*>(&x);
 				}
 				inline operator int* () {
 					return static_cast<int*>(&x);
@@ -242,8 +242,8 @@
 			<textarea class="code" spellcheck="false" rows=2>
 				glGetIntegerv(GL_VIEWPORT, viewport);
 			</textarea>
+			</p>
 		</li>
-		<br />
 		<br />
 
 	</ul>
