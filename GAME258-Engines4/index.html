@@ -179,7 +179,7 @@
 		<br />
 		Add this to your project.
 		<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
-		of the asset manager. This overload will look very much like the one listed above. The easiest approch 
+		of the asset manager. This overload will look very much like the one listed above. The easiest approch
 		is just to copy the original and make a simple modification.
 		<br />
 
@@ -197,14 +197,14 @@
 			}
 
 	
-		</textarea>
+		</ComponentTemplate></ComponentTemplate></typename></textarea>
 		<p>
-		By demand, here's the modified code for Actor:
-		<br />
-		<a href="Actor.h">Actor.h</a>
-		<a href="Actor.cpp">Actor.cpp</a>
+			By demand, here's the modified code for Actor:
+			<br />
+			<a href="Actor.h">Actor.h</a>
+			<a href="Actor.cpp">Actor.cpp</a>
 		</p>
-		
+
 		<li>
 			<b> Assignment 2:</b>
 			<a href="Assignment2.html">Modify the Scene class to store Actors</a>
@@ -265,18 +265,21 @@ int Scene2::Pick(int x, int y) {
 	else return colorIndex;
 }
 
-			</textarea>
+</textarea>
 			</p>
 		</li>
 		<li>
-<b>Topic 10: Assignment 3 - The asset manager </b></br>
-Let me sound like the boss of a company (I really was one, several times). I'll write the TV script for you. </br>
-INT. GAME PRODUCTIION HEADQUARTERS<br/>
-		<center>SCOTT</center><br/>
-I have provided you with the header file of what I call the "AssetManager." What I need from you 
-is create to body of the code. The end goal it to create a library of all the components we
-have created so far. The idea is that as you create Actors for you various Scenes, you can grab the components you need
-from the AssetManager. </br>
+			<b>Topic 10: Assignment 3 - The Asset Manager </b></br>
+			Let me sound like the boss of a company (I really was one, several times). I'll write the TV script for you: </br>
+			<p>
+				INT. SCOTT'S GAME PRODUCTION HEADQUARTERS<br />
+				<center>SCOTT (BOSS)</center><br />
+				I have provided you with the header file of what I call the "AssetManager." <br />
+				What I need from you is create to body of the code. The end goal it to create a library of all the components we<br />
+				have created so far. The idea is that as you create Actors for your various Scenes, you can grab the components <br />
+				you need from the AssetManager.
+			</p>
+
 <textarea class="code" spellcheck="false" rows=32>
 class AssetManager {
 private:
@@ -290,13 +293,13 @@ public:
 	void RemoveAllComponents();
 	void ListAllComponents() const;
 
-	template<typename ComponentTemplate, typename ... Args>
+	template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
 	void AddComponent(const char* name, Args&& ... args_) {
 		Ref<ComponentTemplate> t = std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...);
 		componentCatalog[name] = t;
 	}
 
-	template<typename ComponentTemplate>
+	template<typename ComponentTemplate=ComponentTemplate>
 	Ref<ComponentTemplate> GetComponent(const char* name) const {
 		auto id = componentCatalog.find(name);
 #ifdef _DEBUG
@@ -309,8 +312,27 @@ public:
 	}
 
 };
-</textarea>
+</ComponentTemplate></ComponentTemplate></ComponentTemplate></typename></Args></ComponentTemplate></ComponentTemplate></typename></Component></textarea>
 
-</li></ul>
+		</li>
+		<li>
+			<b>Topic 11: XML </b></br>
+			XML is a markup language used for structuring and storing data in a readable format for both humans and machines.<br />
+			It uses tags, elements, and attributes to define the structure of the data, and is commonly used for data exchange<br />
+			between different computer systems and applications.<br />
+			Here is some sample code using XML with  <a href="XMLProject.zip">XMLProject.zip</a>
+		</li>
+
+		<b>Topic 12: Assignment 4 </b></br>
+		I showed you some sample code for reading an XML file. In this final project, let's bring it all together in the engine.<br />
+		Teach the AssetManager to open an XML file and build all the requested components to build the checkboard. This is going to require you invent your own XML layout. I can help
+		but have fun and do as you see fit.
+		<br />
+		For an addtional many points, teach the AssetManager to deliver fully constructed Actors with all their Components attached. The instructions to build the Actor will, of course,
+		be found in the XML file you create
+		<li>
+
+		</li>
+	</ul>
 </body>
 </HTML>
