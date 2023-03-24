@@ -269,10 +269,15 @@ int Scene2::Pick(int x, int y) {
 			</p>
 		</li>
 		<li>
-			<b>Topic 10: The start of Assignment 3 - The asset manager </b></br>
-			Let me sound like the boss of a company (I really was one). </br>
-			"Here's the header file of what I want to call an "AssetManager. Can you plese impliment what I have layed out for you? Please" </br>
-			<textarea class="code" spellcheck="false" rows=32>
+<b>Topic 10: Assignment 3 - The asset manager </b></br>
+Let me sound like the boss of a company (I really was one, several times). I'll write the TV script for you. </br>
+INT. GAME PRODUCTIION HEADQUARTERS<br/>
+		<center>SCOTT</center><br/>
+I have provided you with the header file of what I call the "AssetManager." What I need from you 
+is create to body of the code. The end goal it to create a library of all the components we
+have created so far. The idea is that as you create Actors for you various Scenes, you can grab the components you need
+from the AssetManager. </br>
+<textarea class="code" spellcheck="false" rows=32>
 class AssetManager {
 private:
 	std::unordered_map< const char*, Ref<Component> > componentCatalog;
@@ -306,6 +311,6 @@ public:
 };
 </textarea>
 
-		</li></ul>
-		</body>
-	</HTML>
+</li></ul>
+</body>
+</HTML>
