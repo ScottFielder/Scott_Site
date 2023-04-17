@@ -13,25 +13,26 @@
 <li class="nav"><a class="nav" href="http://apollo.humber.ca/~fielder/ETC/index.html"> /etc </a><br/></li>
 </ul>
 <H2>&nbsp;</H2>
-<H1> Assignment 5 </h1>
+<H1> Assignment 5 due April 21 - end of classes</h1>
 
 
 <div id="rightsidebar">
-<h3> Helpful tools</h3>
-<a class="nav" href="Noise.h">Noise.h</a><br/>
-<a class="nav" href="Noise.cpp">Noise.cpp</a><br/>
-
-
+	<h3> Helpful tools</h3>
+	<a class="nav" href="Underwater.zip">Underwater.zip</a><br />
+	<a class="nav" href="Noise.h">Noise.h</a><br />
+	<a class="nav" href="Noise.cpp">Noise.cpp</a><br />
 </div>
 
 
 
 <p  class="mainbody"> 
-In this project I want you to bring in a sense of time into the shader. <br/>
-In Scene 5, deltaTime is provided by the update() function. The total time (or a function of it) can be created by sum of the deltaTime.
+In this last project bring together assignment 4 with just refraction turned on and Umer's last physics assignment, the jellyfish, into one <br/>
+	underwater scene. The Underwater skybox can be found on the first page of the course and on the right hand side of this page to prevent confusion.<br/><br/>
 
 
-Using the noise code provided to the right create a sampler3D and pass it to the vertex shader.<br/>
+
+Extra: 
+Using the noise code provided to the right you could create a sampler3D and pass it to the vertex shader.<br/>
 In here you can modify the sphere's shape with something like this:<br/>
 <textarea class="code" spellcheck="false" rows=9>
 
@@ -43,37 +44,10 @@ void main() {
 </textarea><br/> 
 You could also bring the noise in to the fragment shader.<br/>
 I used this system "art" math here to generate a mixing function on the surface to simulate turbulence.<br/>
-This is just a code sample I got from an old out of date, early book on shaders. Google "Orange_Book_-_OpenGL_Shading_Language_2nd_Edition.pdf"<br/>
-There are endless things you can create. The section on turbulence is fun - remember, it is way out of date. <br/>
-<textarea class="code" spellcheck="false" rows=20>
-in vec3  currentVertex;
-uniform sampler3D noiseTexture;
-uniform vec3 offset;
 
-void main(void) {
-	
-	vec4 noiseVec = texture3D(noiseTexture, (currentVertex * 1.25) + Offset);
-    	vec4 color1 = vec4(0.8, 0.7, 0.0,0.0);
-	vec4 color2 = vec4(0.6, 0.1, 0.0,0.0);
-	float intensity = abs(noiseVec[0] - 0.25) +
-			     abs(noiseVec[1] - 0.125) + 
-			     abs(noiseVec[2] - 0.0625) + 
-			     abs(noiseVec[3] - 0.03125);
-	
-	intensity = clamp(intensity * 4.0, 0.0, 1.0);
-	gl_FragColor = mix(color1, color2, intensity) * lightIntensity;
-}
-</textarea><br/> 
 </p>
 
- 
-<p  class="mainbody">
-Your Scene will soon look something like this, the surface of the sun, or any thing else that looks cool<br/> 
-<video width="768" height="432" controls>
-  <source src="assignment5.mp4" type="video/mp4">
-   Your browser does not support the video tag.
-</video>
-</p>
+ Have a good summer<br/>
 
 
 
