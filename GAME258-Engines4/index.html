@@ -75,8 +75,8 @@
 	<ul>
 		<li><b>Topic 0:</b> Templates in C++ and other tools<br /></li>
 		<p>
-			We'll do some experiments with C++ templates in this first demo. <br />
-			<a href="TemplateDemo.zip">TemplateDemo.zip</a>
+			We'll do some experiments with C++ templates in this second demo. <br />
+			<a href="../CodeDepot/TemplateDemo.zip">TemplateDemo.zip</a>
 			<br />
 		</p>
 
@@ -144,7 +144,7 @@
 		<p>
 			<textarea class="code" spellcheck="false" rows=4>
 
-				template<typename T=T>
+				template<typename T>
 				using Ref = std::shared_ptr<T>;
 
 			</T></typename></textarea>
@@ -185,7 +185,7 @@
 
 		<textarea class="code" spellcheck="false" rows=13>
 
-			template<typename ComponentTemplate=ComponentTemplate>
+			template<typename ComponentTemplate>
 			void AddComponent(Ref<ComponentTemplate> component_) {
 			if (GetComponent<ComponentTemplate>().get() != nullptr) {
 			#ifdef _DEBUG
