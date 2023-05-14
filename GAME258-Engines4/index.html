@@ -99,242 +99,242 @@
 		<br />
 		<br />
 
-<!--
+
 		<li><b>Topic 3:</b> Using the Components</li>
 		In this part we'll get and set data in and out of the added components.
 		<br />
 		<br />
-
-		<li><b>Topic 4:</b> Using Components to render an Actor in 3D. <i> (Finally some graphics)</i></li>
-		<p>
-
-			To accomplish this you will need Shader, Material, Light, Transform, Mesh components and
-			a "Camera".
-			Here's where we should have been at the end of last week, Week 4.<br />
-			Sorry about last week. This has been the worst start up I remember.<br />
-			<a href="ComponentFramework23.0.4.zip"> ComponentFramework23.0.4</a>
-		</p>
-
-		<li><b>Topic 5:</b> Parenting objects </li>
-		<p>
-		</p>
-
-		<li>
-			<b> Assignment 1: Already due</b>
+		<!--
+			<li><b>Topic 4:</b> Using Components to render an Actor in 3D. <i> (Finally some graphics)</i></li>
 			<p>
-				<a href="Assignment1.html">Making a Checkerboard with Checkers </a>
+
+				To accomplish this you will need Shader, Material, Light, Transform, Mesh components and
+				a "Camera".
+				Here's where we should have been at the end of last week, Week 4.<br />
+				Sorry about last week. This has been the worst start up I remember.<br />
+				<a href="ComponentFramework23.0.4.zip"> ComponentFramework23.0.4</a>
 			</p>
-		</li></a>
-		<br />
-		<br />
 
+			<li><b>Topic 5:</b> Parenting objects </li>
+			<p>
+			</p>
 
-		<li><b>Topic 7:</b> Better Memory Management - Smart Pointers</li>
-		In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful.
-		<br />
-		<br />
-
-
-		In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.
-		<br />
-		<br />
-
-		<li><b>Topic 8:</b> Better Memory Management - Applying smart pointers to the engine</li>
-		Based on what we did last week, let's use the following code definition:
-		<p>
-			<textarea class="code" spellcheck="false" rows=4>
-
-				template<typename T>
-				using Ref = std::shared_ptr<T>;
-
-			</T></typename></textarea>
-		</p>
-
-
-		The best place to put this declaration is, near the top of Component.h. What do you think?
-		<br />
-		<br />
-
-		Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
-		I can use the std::make_shared idea plus simplify the existing code to look like this:
-		<br />
-
-		<textarea class="code" spellcheck="false" rows=15>
-
-			template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
-			void AddComponent(Args&& ... args_) {
-			/// before you add the component, ask if you have the component in the list already,
-			/// if so - don't add a second one.
-			if (GetComponent<ComponentTemplate>().get() != nullptr) {
-			#ifdef _DEBUG
-				std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
-			#endif
-				return;
-			}
-			/// Using std::make_shared to do the work. This is the new idea!,
-			components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
-			}
-			</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
-		<br />
-		<br />
-		Add this to your project.
-		<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
-		of the asset manager. This overload will look very much like the one listed above. The easiest approch
-		is just to copy the original and make a simple modification.
-		<br />
-
-		<textarea class="code" spellcheck="false" rows=13>
-
-			template<typename ComponentTemplate>
-			void AddComponent(Ref<ComponentTemplate> component_) {
-			if (GetComponent<ComponentTemplate>().get() != nullptr) {
-			#ifdef _DEBUG
-				std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
-			#endif
-				return;
-			}
-			components.push_back(component_);
-			}
-
-	
-		</ComponentTemplate></ComponentTemplate></typename></textarea>
-		<p>
-			By demand, here's the modified code for Actor:
+			<li>
+				<b> Assignment 1: Already due</b>
+				<p>
+					<a href="Assignment1.html">Making a Checkerboard with Checkers </a>
+				</p>
+			</li></a>
 			<br />
-			<a href="Actor.h">Actor.h</a>
-			<a href="Actor.cpp">Actor.cpp</a>
-		</p>
+			<br />
 
-		<li>
-			<b> Assignment 2:</b>
-			<a href="Assignment2.html">Modify the Scene class to store Actors</a>
-		</li>
 
-		<li>
-			<b>Topic 9: Picking Objects in 3D Perspctive Space - not graded</b>
+			<li><b>Topic 7:</b> Better Memory Management - Smart Pointers</li>
+			In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful.
+			<br />
+			<br />
+
+
+			In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.
+			<br />
+			<br />
+
+			<li><b>Topic 8:</b> Better Memory Management - Applying smart pointers to the engine</li>
+			Based on what we did last week, let's use the following code definition:
 			<p>
-				We are going to use a technique called color picking. In order to start this project I need you to make a quick
-				modification to the Scene.h file. Please add the following structure to Scene.h. Just above the class Scene { ...
-				declaration<br />
-				<textarea class="code" spellcheck="false" rows=20>
-			struct ViewPort {
-				int x;
-				int y;
-				int width;
-				int height;
+				<textarea class="code" spellcheck="false" rows=4>
 
-				inline float GetAspectRatio() {
-					return static_cast<float>(width) / static_cast<float>(height);
+					template<typename T>
+					using Ref = std::shared_ptr<T>;
+
+				</T></typename></textarea>
+			</p>
+
+
+			The best place to put this declaration is, near the top of Component.h. What do you think?
+			<br />
+			<br />
+
+			Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
+			I can use the std::make_shared idea plus simplify the existing code to look like this:
+			<br />
+
+			<textarea class="code" spellcheck="false" rows=15>
+
+				template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
+				void AddComponent(Args&& ... args_) {
+				/// before you add the component, ask if you have the component in the list already,
+				/// if so - don't add a second one.
+				if (GetComponent<ComponentTemplate>().get() != nullptr) {
+				#ifdef _DEBUG
+					std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+				#endif
+					return;
 				}
-				inline operator const int* () const {
-					return static_cast<const int*=int*>(&x);
+				/// Using std::make_shared to do the work. This is the new idea!,
+				components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
 				}
-				inline operator int* () {
-					return static_cast<int*>(&x);
-				};
-				class Scene {
-				protected:
-				std::vector< Ref<Actor>> actors; /// Assignment 2 stuff
-					ViewPort viewport; /// ADD THIS AS WELL
-					public: ...
-			</Actor></int*></const></float></float></textarea><br />
-				In constuctor of each scene add the following line:<br />
-				<textarea class="code" spellcheck="false" rows=2>
-				glGetIntegerv(GL_VIEWPORT, viewport);
-			</textarea>
-			</p>
+				</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
+			<br />
+			<br />
+			Add this to your project.
+			<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
+			of the asset manager. This overload will look very much like the one listed above. The easiest approch
+			is just to copy the original and make a simple modification.
+			<br />
+
+			<textarea class="code" spellcheck="false" rows=13>
+
+				template<typename ComponentTemplate>
+				void AddComponent(Ref<ComponentTemplate> component_) {
+				if (GetComponent<ComponentTemplate>().get() != nullptr) {
+				#ifdef _DEBUG
+					std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+				#endif
+					return;
+				}
+				components.push_back(component_);
+				}
+
+
+			</ComponentTemplate></ComponentTemplate></typename></textarea>
 			<p>
-				Next build a method called some like int Pick(int x int y)</br>
-				The idea is that you draw the Scene painting each object it's own color when you get a mouse click in HandelEvents. Use the
-				colorPicking shaders I made for you on the website. Code should look something like this - did it in class last week</br>
-				<textarea class="code" spellcheck="false" rows=18>
-int Scene2::Pick(int x, int y) {
-	glDisable(GL_DEPTH_TEST);
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); /// Paint the backgound white which is 0x00FFFFFF
-	glClear(GL_COLOR_BUFFER_BIT);
-	glBindBuffer(GL_UNIFORM_BUFFER, cameraRef->GetMatriciesID());
-	glUseProgram(pickShaderRef->GetProgram());
-	/// Draw your stuff here
-	glUseProgram(0);
-
-	GLuint colorIndex;
-	glReadPixels(x, viewport.height-y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &colorIndex);
-	colorIndex &= 0x00FFFFFF; /// This zeros out the alpha component
-
-	if (colorIndex == 0x00FFFFFF) return -1; /// Picked nothing
-	else return colorIndex;
-}
-
-</textarea>
-			</p>
-		</li>
-		<li>
-			<b>Topic 10: Assignment 3 - The Asset Manager </b></br>
-			Let me sound like the boss of a company (I really was one, several times). I'll write the TV script for you: </br>
-			<p>
-				INT. SCOTT'S GAME PRODUCTION HEADQUARTERS<br />
-				<center>SCOTT (BOSS)</center><br />
-				I have provided you with the header file of what I call the "AssetManager." <br />
-				What I need from you is create to body of the code. The end goal it to create a library of all the components we<br />
-				have created so far. The idea is that as you create Actors for your various Scenes, you can grab the components <br />
-				you need from the AssetManager.
+				By demand, here's the modified code for Actor:
+				<br />
+				<a href="Actor.h">Actor.h</a>
+				<a href="Actor.cpp">Actor.cpp</a>
 			</p>
 
-<textarea class="code" spellcheck="false" rows=32>
-class AssetManager {
-private:
-	std::unordered_map< const char*, Ref<Component> > componentCatalog;
+			<li>
+				<b> Assignment 2:</b>
+				<a href="Assignment2.html">Modify the Scene class to store Actors</a>
+			</li>
 
-public:
-	AssetManager();
-	~AssetManager();
-	bool OnCreate();
+			<li>
+				<b>Topic 9: Picking Objects in 3D Perspctive Space - not graded</b>
+				<p>
+					We are going to use a technique called color picking. In order to start this project I need you to make a quick
+					modification to the Scene.h file. Please add the following structure to Scene.h. Just above the class Scene { ...
+					declaration<br />
+					<textarea class="code" spellcheck="false" rows=20>
+				struct ViewPort {
+					int x;
+					int y;
+					int width;
+					int height;
 
-	void RemoveAllComponents();
-	void ListAllComponents() const;
+					inline float GetAspectRatio() {
+						return static_cast<float>(width) / static_cast<float>(height);
+					}
+					inline operator const int* () const {
+						return static_cast<const int*=int*>(&x);
+					}
+					inline operator int* () {
+						return static_cast<int*>(&x);
+					};
+					class Scene {
+					protected:
+					std::vector< Ref<Actor>> actors; /// Assignment 2 stuff
+						ViewPort viewport; /// ADD THIS AS WELL
+						public: ...
+				</Actor></int*></const></float></float></textarea><br />
+					In constuctor of each scene add the following line:<br />
+					<textarea class="code" spellcheck="false" rows=2>
+					glGetIntegerv(GL_VIEWPORT, viewport);
+				</textarea>
+				</p>
+				<p>
+					Next build a method called some like int Pick(int x int y)</br>
+					The idea is that you draw the Scene painting each object it's own color when you get a mouse click in HandelEvents. Use the
+					colorPicking shaders I made for you on the website. Code should look something like this - did it in class last week</br>
+					<textarea class="code" spellcheck="false" rows=18>
+	int Scene2::Pick(int x, int y) {
+		glDisable(GL_DEPTH_TEST);
+		glClearColor(1.0f, 1.0f, 1.0f, 0.0f); /// Paint the backgound white which is 0x00FFFFFF
+		glClear(GL_COLOR_BUFFER_BIT);
+		glBindBuffer(GL_UNIFORM_BUFFER, cameraRef->GetMatriciesID());
+		glUseProgram(pickShaderRef->GetProgram());
+		/// Draw your stuff here
+		glUseProgram(0);
 
-	template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
-	void AddComponent(const char* name, Args&& ... args_) {
-		Ref<ComponentTemplate> t = std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...);
-		componentCatalog[name] = t;
+		GLuint colorIndex;
+		glReadPixels(x, viewport.height-y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &colorIndex);
+		colorIndex &= 0x00FFFFFF; /// This zeros out the alpha component
+
+		if (colorIndex == 0x00FFFFFF) return -1; /// Picked nothing
+		else return colorIndex;
 	}
 
-	template<typename ComponentTemplate=ComponentTemplate>
-	Ref<ComponentTemplate> GetComponent(const char* name) const {
-		auto id = componentCatalog.find(name);
-#ifdef _DEBUG
-		if (id == componentCatalog.end()) {
-			Debug::Error("Can't fint requested component", __FILE__, __LINE__);
-			return Ref<ComponentTemplate>(nullptr);
+	</textarea>
+				</p>
+			</li>
+			<li>
+				<b>Topic 10: Assignment 3 - The Asset Manager </b></br>
+				Let me sound like the boss of a company (I really was one, several times). I'll write the TV script for you: </br>
+				<p>
+					INT. SCOTT'S GAME PRODUCTION HEADQUARTERS<br />
+					<center>SCOTT (BOSS)</center><br />
+					I have provided you with the header file of what I call the "AssetManager." <br />
+					What I need from you is create to body of the code. The end goal it to create a library of all the components we<br />
+					have created so far. The idea is that as you create Actors for your various Scenes, you can grab the components <br />
+					you need from the AssetManager.
+				</p>
+
+	<textarea class="code" spellcheck="false" rows=32>
+	class AssetManager {
+	private:
+		std::unordered_map< const char*, Ref<Component> > componentCatalog;
+
+	public:
+		AssetManager();
+		~AssetManager();
+		bool OnCreate();
+
+		void RemoveAllComponents();
+		void ListAllComponents() const;
+
+		template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
+		void AddComponent(const char* name, Args&& ... args_) {
+			Ref<ComponentTemplate> t = std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...);
+			componentCatalog[name] = t;
 		}
-#endif
-		return std::dynamic_pointer_cast<ComponentTemplate>(id->second);
-	}
 
-};
-</ComponentTemplate></ComponentTemplate></ComponentTemplate></typename></Args></ComponentTemplate></ComponentTemplate></typename></Component></textarea>
+		template<typename ComponentTemplate=ComponentTemplate>
+		Ref<ComponentTemplate> GetComponent(const char* name) const {
+			auto id = componentCatalog.find(name);
+	#ifdef _DEBUG
+			if (id == componentCatalog.end()) {
+				Debug::Error("Can't fint requested component", __FILE__, __LINE__);
+				return Ref<ComponentTemplate>(nullptr);
+			}
+	#endif
+			return std::dynamic_pointer_cast<ComponentTemplate>(id->second);
+		}
 
-		</li>
-		<li>
-			<b>Topic 11: XML </b></br>
-			XML is a markup language used for structuring and storing data in a readable format for both humans and machines.<br />
-			It uses tags, elements, and attributes to define the structure of the data, and is commonly used for data exchange<br />
-			between different computer systems and applications.<br />
-			Here is some sample code using XML with  <a href="XMLProject.zip">XMLProject.zip</a>
-		</li>
+	};
+	</ComponentTemplate></ComponentTemplate></ComponentTemplate></typename></Args></ComponentTemplate></ComponentTemplate></typename></Component></textarea>
 
-		<b>Topic 12: Assignment 4 </b></br>
-		I showed you some sample code for reading an XML file. In this final project, let's bring it all together in the engine.<br />
-		Teach the AssetManager to open an XML file and build all the requested components to build the checkboard. This is going<br/>
-		to require you invent your own XML layout. I can help
-		but have fun and do as you see fit.<br/>
+			</li>
+			<li>
+				<b>Topic 11: XML </b></br>
+				XML is a markup language used for structuring and storing data in a readable format for both humans and machines.<br />
+				It uses tags, elements, and attributes to define the structure of the data, and is commonly used for data exchange<br />
+				between different computer systems and applications.<br />
+				Here is some sample code using XML with  <a href="XMLProject.zip">XMLProject.zip</a>
+			</li>
 
-		For an addtional several points, teach the AssetManager to deliver fully constructed Actors with all their Components attached. <br/>The instructions to build the Actor will, of course,
-		be found in the XML file you create
-		<li>
+			<b>Topic 12: Assignment 4 </b></br>
+			I showed you some sample code for reading an XML file. In this final project, let's bring it all together in the engine.<br />
+			Teach the AssetManager to open an XML file and build all the requested components to build the checkboard. This is going<br/>
+			to require you invent your own XML layout. I can help
+			but have fun and do as you see fit.<br/>
 
-		</li>
-	-->
+			For an addtional several points, teach the AssetManager to deliver fully constructed Actors with all their Components attached. <br/>The instructions to build the Actor will, of course,
+			be found in the XML file you create
+			<li>
+
+			</li>
+		-->
 	</ul>
 </body>
 </HTML>
