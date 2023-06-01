@@ -28,7 +28,7 @@
     </p>
     <p>
         The code in this library has been tested against GLM and is known to function correctly. However, it should be
-        acknowledged that GLM may offer better performance in certain cases, but its source code can be challanging 
+        acknowledged that GLM may offer better performance in certain cases, but its source code can be challanging
         to comprehend without a specialized background in mathematics and advanced C++ templates.
     </p>
     <p>
@@ -38,33 +38,35 @@
         providing ease of use and flexibility.
     </p>
     <p>
-        Additionally, header-only libraries are highly portable, as they do not depend on pre-built binaries or 
+        Additionally, header-only libraries are highly portable, as they do not depend on pre-built binaries or
         object files. This allows the library to be used on any platform without the need for separate builds or
         special configurations, and also eliminates potential runtime issues caused by differences between the
         library's build environment and the application's runtime environment.
-     </p>
+    </p>
     <p>
         However, one of the downsides of header-only libraries is that they may increase compilation time.
         The functions and classes are defined within the header files, which means that the compiler will process
         them every time the header is included, resulting in longer build times. Additionally, the increased size
         of the source files can cause memory issues when working with very large projects.
     </p>
-        <H3><a href="https://github.com/ScottFielder/MathLibrary/tree/master/MathLibrary">Scott's Math Library</a></H3>
+    <H3><a href="https://github.com/ScottFielder/MathLibrary/tree/master/MathLibrary">Scott's Math Library</a></H3>
+    <H3><a href="https://github.com/ScottFielder/MathLibraryEx2/tree/main/MathLibraryEx">New stuff bing developed by Umer and I </a></H3>
 
-    <p>Inlining, as a feature of C/C++, is used often in this library. One of the main advantages is that it reduces
-    the overhead of function calls. When a function is called, the program must perform a number of operations such
-    as pushing arguments onto the stack, performing a jump to the function's address, and then cleaning up the stack
-    after the function returns. When a function is inlined, the code of the function is replaced by the code of the
-    function at the point where the function is called, thus eliminating the need for these operations and reducing
-    the overhead.
+    <p>
+        Inlining, as a feature of C/C++, is used often in this library. One of the main advantages is that it reduces
+        the overhead of function calls. When a function is called, the program must perform a number of operations such
+        as pushing arguments onto the stack, performing a jump to the function's address, and then cleaning up the stack
+        after the function returns. When a function is inlined, the code of the function is replaced by the code of the
+        function at the point where the function is called, thus eliminating the need for these operations and reducing
+        the overhead.
     </p>
     <p>
         Another advantage of inlining is that it can improve the performance of the program by increasing the opportunities
-        for the compiler to perform optimizations. When the code of a function is visible to the compiler, it can 
+        for the compiler to perform optimizations. When the code of a function is visible to the compiler, it can
         perform more accurate and extensive analysis and optimization of the code, which can lead to better performance.
     </p>
     <p>
-        Furthermore, inlining can also be beneficial for readability and maintainability of the code. By inlining small, 
+        Furthermore, inlining can also be beneficial for readability and maintainability of the code. By inlining small,
         simple functions, the code becomes more self-explanatory and can be more easily understood by developers.
     </p>
     <p>
