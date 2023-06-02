@@ -143,10 +143,10 @@
 		<p>
 			<textarea class="code" spellcheck="false" rows=4>
 
-					template<typename T=T>
+					template<typename T>
 					using Ref = std::shared_ptr<T>;
 
-				</T></typename></textarea>
+			</textarea>
 		</p>
 
 
@@ -160,20 +160,23 @@
 
 		<textarea class="code" spellcheck="false" rows=15>
 
-				template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
-				void AddComponent(Args&& ... args_) {
-				/// before you add the component, ask if you have the component in the list already,
-				/// if so - don't add a second one.
-				if (GetComponent<ComponentTemplate>().get() != nullptr) {
-				#ifdef _DEBUG
-					std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
-				#endif
-					return;
-				}
-				/// Using std::make_shared to do the work. This is the new idea!,
-				components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
-				}
-				</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
+    template<typename ComponentTemplate, typename ... Args>
+	void AddComponent(Args&& ... args_) {
+		/// before you add the component ask if you have the component in the list already,
+		/// if so - don't add a second one. 
+		if (GetComponent<ComponentTemplate>().get() != nullptr) {
+#ifdef _DEBUG
+			std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+#endif		
+			return;
+		}
+		/// If nothing else is messed up, finish building the component and
+		/// add the component to the list
+		/// Create the new object based on the template type and the argument list
+		components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
+	}
+
+		</textarea>
 		<br />
 		<br />
 		Add this to your project.
@@ -183,26 +186,19 @@
 		<br />
 
 		<textarea class="code" spellcheck="false" rows=13>
+template<typename ComponentTemplate>
+	void AddComponent(Ref<ComponentTemplate> component_) {
+		if (GetComponent<ComponentTemplate>().get() != nullptr) {
+#ifdef _DEBUG
+			std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
+#endif
+			return;
+		}
+		components.push_back(component_);
+	}
 
-				template<typename ComponentTemplate=ComponentTemplate>
-				void AddComponent(Ref<ComponentTemplate> component_) {
-				if (GetComponent<ComponentTemplate>().get() != nullptr) {
-				#ifdef _DEBUG
-					std::cerr << "WARNING: Trying to add a component type that is already added - ignored\n";
-				#endif
-					return;
-				}
-				components.push_back(component_);
-				}
-
-
-			</ComponentTemplate></ComponentTemplate></typename></textarea>
-		<p>
-			By demand, here's the modified code for Actor:
-			<br />
-			<a href="Actor.h">Actor.h</a>
-			<a href="Actor.cpp">Actor.cpp</a>
-		</p>
+		</textarea>
+		
 		<!--
 			<li>
 				<b> Assignment 2:</b>
