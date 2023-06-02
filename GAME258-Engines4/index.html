@@ -109,10 +109,10 @@
 		<p>
 
 			To accomplish this you will need Shader, Material, Light, Transform, Mesh components and
-			a "Camera".	
+			a "Camera".
 		</p>
 
-		
+
 		<li><b>Topic 5:</b> Parenting objects </li>
 		<a href="CodeDepot/ComponentFramework23.258.day6"> ComponentFramework23.258.day6</a>
 		<p>
@@ -127,38 +127,38 @@
 		<br />
 		<br />
 
-		<!--
-			<li><b>Topic 7:</b> Better Memory Management - Smart Pointers</li>
-			In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful.
-			<br />
-			<br />
+
+		<li><b>Topic 7:</b> Better Memory Management - Smart Pointers</li>
+		In this next section, I'll show you how smart pointers work, and in our current application, how shared_ptr can be helpful.
+		<br />
+		<br />
 
 
-			In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.
-			<br />
-			<br />
+		In this next section, we'll look at unique_ptr,  weak_ptr, and why everything should at least be a shared_ptr.
+		<br />
+		<br />
 
-			<li><b>Topic 8:</b> Better Memory Management - Applying smart pointers to the engine</li>
-			Based on what we did last week, let's use the following code definition:
-			<p>
-				<textarea class="code" spellcheck="false" rows=4>
+		<li><b>Topic 8:</b> Better Memory Management - Applying smart pointers to the engine</li>
+		Based on what we did last week, let's use the following code definition:
+		<p>
+			<textarea class="code" spellcheck="false" rows=4>
 
-					template<typename T>
+					template<typename T=T>
 					using Ref = std::shared_ptr<T>;
 
 				</T></typename></textarea>
-			</p>
+		</p>
 
 
-			The best place to put this declaration is, near the top of Component.h. What do you think?
-			<br />
-			<br />
+		The best place to put this declaration is, near the top of Component.h. What do you think?
+		<br />
+		<br />
 
-			Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
-			I can use the std::make_shared idea plus simplify the existing code to look like this:
-			<br />
+		Next, we'll need to modifly the Actor.h file a bit to handle this new Ref() definition.
+		I can use the std::make_shared idea plus simplify the existing code to look like this:
+		<br />
 
-			<textarea class="code" spellcheck="false" rows=15>
+		<textarea class="code" spellcheck="false" rows=15>
 
 				template<typename ComponentTemplate,=ComponentTemplate, typename=typename ...=... Args=Args>
 				void AddComponent(Args&& ... args_) {
@@ -174,17 +174,17 @@
 				components.push_back(std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...));
 				}
 				</Args></ComponentTemplate></ComponentTemplate></typename></textarea>
-			<br />
-			<br />
-			Add this to your project.
-			<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
-			of the asset manager. This overload will look very much like the one listed above. The easiest approch
-			is just to copy the original and make a simple modification.
-			<br />
+		<br />
+		<br />
+		Add this to your project.
+		<br />We will also need to write a overload the AddComponent() method to accept an already existing component. This will be necessary for the implimentation
+		of the asset manager. This overload will look very much like the one listed above. The easiest approch
+		is just to copy the original and make a simple modification.
+		<br />
 
-			<textarea class="code" spellcheck="false" rows=13>
+		<textarea class="code" spellcheck="false" rows=13>
 
-				template<typename ComponentTemplate>
+				template<typename ComponentTemplate=ComponentTemplate>
 				void AddComponent(Ref<ComponentTemplate> component_) {
 				if (GetComponent<ComponentTemplate>().get() != nullptr) {
 				#ifdef _DEBUG
@@ -197,13 +197,13 @@
 
 
 			</ComponentTemplate></ComponentTemplate></typename></textarea>
-			<p>
-				By demand, here's the modified code for Actor:
-				<br />
-				<a href="Actor.h">Actor.h</a>
-				<a href="Actor.cpp">Actor.cpp</a>
-			</p>
-
+		<p>
+			By demand, here's the modified code for Actor:
+			<br />
+			<a href="Actor.h">Actor.h</a>
+			<a href="Actor.cpp">Actor.cpp</a>
+		</p>
+		<!--
 			<li>
 				<b> Assignment 2:</b>
 				<a href="Assignment2.html">Modify the Scene class to store Actors</a>
