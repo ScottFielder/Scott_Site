@@ -198,7 +198,20 @@ template<typename ComponentTemplate>
 	}
 
 		</textarea>
-		
+		<textarea class="code" spellcheck="false" rows=13>
+		template<typename ComponentTemplate>
+		Ref<ComponentTemplate> GetComponent() const {
+		for (auto component : components) {
+			if (dynamic_cast<ComponentTemplate*>(component.get()) != nullptr) {
+				/// This is a dynamic cast designed for shared_ptr's
+				/// https://en.cppreference.com/w/cpp/memory/shared_ptr/pointer_cast
+				return std::dynamic_pointer_cast<ComponentTemplate>(component);
+			}
+		}
+		return Ref<ComponentTemplate>(nullptr);
+	}
+			
+		</textarea>	
 		<!--
 			<li>
 				<b> Assignment 2:</b>
