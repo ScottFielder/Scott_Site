@@ -27,23 +27,10 @@
 
 <p  class="mainbody"> 
 In this last project bring together assignment 4 with just refraction turned on and Umer's last physics assignment, the jellyfish, into one <br/>
-	underwater scene. The Underwater skybox can be found on the first page of the course and on the right hand side of this page to prevent confusion.<br/><br/>
+underwater scene. The Underwater skybox can be found on the first page of the course and on the right hand side of this page to prevent confusion.<br/><br/>
+The index of refraction of water is 1.33, the index of refraction of a jelly fish is 1.55 make the scene look underwater
+Extra: I will explain in class - be sure to show up
 
-
-
-Extra: 
-Using the noise code provided to the right you could create a sampler3D and pass it to the vertex shader.<br/>
-In here you can modify the sphere's shape with something like this:<br/>
-<textarea class="code" spellcheck="false" rows=9>
-
-void main() {
-	vertex = vec3(vVertex);
-	noiseVec = texture(noiseTexture, (vertex * 0.2) + (0.25* offset) );
-	gl_Position =  projectionMatrix * viewMatrix * modelMatrix * (vVertex + noiseVec) ; 
-}
-</textarea><br/> 
-You could also bring the noise in to the fragment shader.<br/>
-I used this system "art" math here to generate a mixing function on the surface to simulate turbulence.<br/>
 
 </p>
 
