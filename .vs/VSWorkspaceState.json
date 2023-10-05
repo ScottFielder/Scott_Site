@@ -1,13 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\CodeDepot",
     "\\GAME100-Concepts",
+    "\\GAME309-Engines5",
     "\\GameDev"
   ],
-<<<<<<< HEAD
-  "SelectedNode": "\\GAME309-Engines5\\index23.html",
-=======
-  "SelectedNode": "\\GAME100-Concepts\\index.html",
->>>>>>> dfb61911d4bdea3e51164a913d3e3b25c58d2805
+  "SelectedNode": "\\CodeDepot",
   "PreviewInSolutionExplorer": false
 }
