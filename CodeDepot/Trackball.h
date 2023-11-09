@@ -3,16 +3,16 @@
 #include "MMath.h"
 union SDL_Event;
 
-
 	using namespace MATH;	
 
 	class Trackball {
 	private:
 		bool mouseDown;
-		Matrix4 mouseRotationMatrix;	/// This the final rotation matrix
+		Quaternion mouseRotationQuat;
+		// UN - keep track of the orientation before we start rotating things
+		Quaternion prevQuat;
 		Matrix4 invNDC;			/// the inverse of the viewportNDC matrix
 		Vec3 beginV, endV;		/// Begin and end points after being transformed by invNDC
-
 	public:
 		Trackball(); 
 		~Trackball();
@@ -21,11 +21,7 @@ union SDL_Event;
 		Trackball& operator=(const Trackball&) = delete;
 		Trackball& operator=(Trackball&&) = delete;
 
-		/// Return the 4x4 rotational matrix
-		const Matrix4 getMatrix4() const { return mouseRotationMatrix; }
-
-		/// Return the 3x3 rotational matrix, after all a rotational matrix is a 3x3!
-		const Matrix3 getMatrix3() const { return Matrix3(mouseRotationMatrix); }
+		const Quaternion getQuat() const { return mouseRotationQuat; }
 		void HandleEvents(const SDL_Event &sdlEvent);
 	private:
 		/// Just some functions for internal use only thus private
@@ -37,7 +33,6 @@ union SDL_Event;
 		void onLeftMouseUp(int x, int y);
 		void onMouseMove(int x, int y);
 	};
-
 
 #endif
 
