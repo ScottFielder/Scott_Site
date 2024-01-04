@@ -19,7 +19,7 @@
         <a class="nav" href="../Rubrics/programmingRubric.html">General Programming Rubric</a><br />
         <a class="nav" href="https://vulkan-tutorial.com/Introduction">Vulkan Tutorial</a><br />
         <a class="nav" href="https://drive.google.com/file/d/1jL9kQWZ4oxqJvgEwLSTd3wbzSTaT8NF8/view?usp=sharing">GameDev</a><br />
-        <a class="nav" href="../CodeDepot/ComponentFramework24.0.0 Vulkan.zip">ComponentFramework23.0.0 Vulkan.zip</a><br />
+        <a class="nav" href="../CodeDepot/ComponentFramework24.0.0 Vulkan.zip">ComponentFramework24.0.0 Vulkan.zip</a><br />
         <a class="nav" href="compileShaders.bat">compileShaders.bat</a><br />
         <a class="nav" href="simplePhong.vert"> simplePhong.vert</a><br />
         <a class="nav" href="simplePhong.frag"> simplePhong.frag</a><br />
@@ -49,84 +49,12 @@
 
         <H2>Assignment 0:(not graded)<br /> </H2>
         <p>
-            Sorry about Moday's rough start.<br />
             You really need to download the latest copy of GameDev (I had to move it to a GoogleDrive - is too big).<br />
             Be sure you have installed Vulkan on your machine. I currntly using 1.2.189.2.<br />
             Download ComponentFramework23.0.0 Vulkan and get it to run.<br />
             <a class="nav" href="../CodeDepot/ComponentFramework23.0.0 Vulkan.zip">ComponentFramework23.0.0 Vulkan.zip</a><br />
             <br /><br />
         </p>
-
-        <H2>Assignment 1:(15/20)<br /> </H2>
-        <p>
-            Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify
-            the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
-            Here's where we should be after Thanksgiving:<a class="nav" href="../CodeDepot/ComponentFramework23.0.3 Vulkan.zip">ComponentFramework23.0.3 Vulkan.zip</a><br />
-            Extra: Create ambient, difffuse[], and spectular[] colour for the new light system.<br />
-            Extra: Create more that two lights.<br />
-        </p>
-
-       
-        <H2>Assignment 2:(16/20)<br /> </H2>
-        <p>
-            In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader).<br />
-            Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. But, they do have a drawback, they are restricted
-            to a maximum of 128 bytes of memory. Can you do a projection, view, and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.
-            <br /><br />
-            Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). What? Calculate the normal matrix
-            for every vertex in the model that's madness. Calculate the normal matrix (as a 4x4) on the CPU side and pass it in via the push constant, along with the normal matrix.<br /><br />
-
-            Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment rules need to be enforced.
-            See std430 and std120 for details. It's just for you to show off. <br /><br />
-        </p>
- 
-            <H2>Assignment 3:(16/20)<br /> </H2>
-        <p>
-            Create a two different objects on the screen in the GPU and draw them.
-            This means storing the data in separate vertex and index buffers. Look how we did the one.<br />
-            Do you need to  create multiple pipelines?  Don't forget the descriptor sets <br />
-            You'll need to update the push constant for each model since that is it's model matrix. That just means you'll
-            need to write those changes into the command buffer. <br />
-            Extra: Go ahead and draw multiple (more than two) objects<br /><br />
-        </p>
-    
-            <H2>Assignment 4:(16/20)<br /> </H2>
-        <p>
-            The task is to visualize the normals on the surface of a 3D object. They should look like little hairs extending off the surface.
-            I'll demo it in class. <br />
-            The geometry shader exists between the vertex shader and the fragment shader. In OpenGL class we never had time to investigate it. Now in Vulkan
-            let's give it a look. <br />
-            The website I showed you in OpenGL <a class="nav" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader"> learnopengl.com </a> is a fair starting point.
-            As I mentioned in class a year ago, the writing and explanations are great the coding examples suck. <br />
-            I'll help:<br />
-
-            <a class="nav" href="drawNormals.vert">drawNormals.vert</a><br />
-            <a class="nav" href="drawNormals.geom">drawNormals.geom</a><br />
-            <a class="nav" href="drawNormals.frag">drawNormals.frag</a><br /><br />
-
-            Extra: Can you control the color of the normals from the CPU side? (Pass the color in). <br />
-            Extra: Can you control the length of the normals from the CPU side? <br />
-        </p>
-                       
-
-            <H2>Assignment 5:(16/20)<br /> </H2>
-        <p>
-            The only thing left to do is to create more than one texture.
-            After all we have done this term, I hope this one will seem easy and, of course,
-            I'll walk you through it.<br />
-            Go look at <i>void CreateTextureImage()</i>
-
-            Extra: Make a std::array, std::vector or a std::unordered_map of textures. <br />
-            Extra: Can you change textures while the program is running? <br />
-        <p/>
-        </div>
-
-
-         
-
-
-
-
 
     </div>
 </body>
