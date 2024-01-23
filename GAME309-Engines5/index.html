@@ -65,12 +65,31 @@ a program.
         <li>
             <p>
                 Topic 2 (max 10%): Memory Management<br />
+                Memory management in game programming is the process of allocating, freeing and managing memory efficiently to ensure the
+                proper execution of a game. This includes handling memory allocation for game assets such as textures, audio files,
+                and models, as well as managing memory used by the game engine and game objects. Effective memory management is crucial
+                for achieving optimal performance, avoiding crashes in large game productions. Common techniques used in game memory management
+                include pooling, garbage collection, distinct memory block allocations.
+                <a class="nav" href="MemoryMonitor.zip"> Example code improved: MemoryManager </a><br />
+                To get full credit for this topic, put the memory management tecgniques discussed in class into an existing program
+                and demonstrate that you can control the use of memory over just using the OS.
             </p>
         </li>
         <li>
             <p>
                 Topic 3 (max 10%): C++ Concurrency <i>(multi-threading)</i><br />
+                <a class="nav" href="../CodeDepot/ThreadDemo1.zip"> Example code: ThreadDemo1 </a>
+                For full credit, the secondary threads must perform a meaningful task.
+                If the threads share objects in memory, the use of <code>mutexes</code>
+                (a synchronization object) should be considered to prevent race conditions.
+                Here are some ideas for tasks that the secondary threads could perform:
             </p>
+            <ul>
+                <li>Loading assets for a graphical game</li>
+                <li>Monitoring XInput for a gaming application</li>
+                <li>Running a GUI interface</li>
+                <li>Monitoring UDP network data</li>
+            </ul>
         </li>
         <li>
             <p>
