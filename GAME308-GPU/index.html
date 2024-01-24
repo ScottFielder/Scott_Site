@@ -55,7 +55,7 @@
             <a class="nav" href="../CodeDepot/ComponentFramework24.0.2 Vulkan.zip">ComponentFramework24.0.2 Vulkan.zip</a><br />
             <br /><br />
         </p>
-        <H2>Assignment 1:(16/20)<br /> </H2>
+        <H2>Assignment 1:(15/20)<br /> </H2>
         <p>
             In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader).<br />
             Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. 
@@ -89,10 +89,10 @@
             5) Break createCommandBuffer() in two, call the second on recordCommandBuffer().
             Add recordCommandBuffer() just below createCommandBuffer();
             At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); its a stupid way to do it. 
-            The correct way is too complex for beginning Vulkan - sorry. 
+            The correct way is too complex for beginning Vulkan - sorry. <br/>
 
             6) Now, on to the shaders. Add the following code to the shader modual:
-             <textarea class="code" cols=127 rows=3 spellcheck="false">
+             <textarea class="code" cols=127 rows=5 spellcheck="false">
                 layout(push_constant) uniform Push {
 	                mat4 modelMatrix;
 	                mat4 normalMatrix;
