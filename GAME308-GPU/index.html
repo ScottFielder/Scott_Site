@@ -55,7 +55,58 @@
             <a class="nav" href="../CodeDepot/ComponentFramework24.0.2 Vulkan.zip">ComponentFramework24.0.2 Vulkan.zip</a><br />
             <br /><br />
         </p>
+        <H2>Assignment 1:(16/20)<br /> </H2>
+        <p>
+            In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader).<br />
+            Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. 
+            But, they do have a drawback, they are restricted to a maximum of 128 bytes of memory. Can you do a projection, view,
+            and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.<br />
+            Since this is the first assignment, I'll walk you through it:
+            1) Create a new struct something like this<br/>
+            <textarea class="code" cols=127 rows=5 spellcheck="false">
+                struct ModelMatrixPushConst {
+                    Matrix4 modelMatrix;
+                    Matrix4 normalMatrix;
+                };
+             </textarea><br/>
 
+            2) Create a member variable in the VulkanRender of type ModelMatrixPushConst <br/>
+
+            3) Create a new structure in the CreateGraphicsPipeline() <br/>
+            <textarea class="code" cols=127 rows=5 spellcheck="false">
+                VkPushConstantRange pushConstant{};
+                pushConstant.offset = 0;
+                pushConstant.size = sizeof(ModelMatrixPushConst);
+                pushConstant.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
+             </textarea><br/>
+
+            4) Add the following lines to the VkPipelineLayoutCreateInfo structure:<br/>
+            <textarea class="code" cols=127 rows=3 spellcheck="false">
+                pipelineLayoutInfo.pPushConstantRanges = &pushConstant;
+                pipelineLayoutInfo.pushConstantRangeCount = 1;
+            </textarea><br/>
+
+            5) Break createCommandBuffer() in two, call the second on recordCommandBuffer().
+            Add recordCommandBuffer() just below createCommandBuffer();
+            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); its a stupid way to do it. 
+            The correct way is too complex for beginning Vulkan - sorry. 
+
+            6) Now, on to the shaders. Add the following code to the shader modual:
+             <textarea class="code" cols=127 rows=3 spellcheck="false">
+                layout(push_constant) uniform Push {
+	                mat4 modelMatrix;
+	                mat4 normalMatrix;
+                } push;
+              </textarea><br/>
+            Don't forget to recompile the shaders and remove the model matrix from the Camera UBO 
+
+            <br /><br />
+            Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). 
+            What, calculate the normal matrix for every vertex in the model?  That's madness. Find a better way. I'll hint in class.  <br /><br />
+
+            Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment 
+            rules need to be enforced. See std430 or std120 for detail and see my header file UBO_Padding.h.  It's just for you to show off. <br /><br />
+        </p>
     </div>
 </body>
 </html>
