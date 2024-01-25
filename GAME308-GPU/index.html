@@ -61,7 +61,7 @@
             Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. 
             But, they do have a drawback, they are restricted to a maximum of 128 bytes of memory. Can you do a projection, view,
             and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.<br />
-            Since this is the first assignment, I'll walk you through it:
+            Since this is the first assignment, I'll walk you through it:<br/>
             1) Create a new struct something like this<br/>
             <textarea class="code" cols=127 rows=5 spellcheck="false">
                 struct ModelMatrixPushConst {
@@ -88,17 +88,17 @@
 
             5) Break createCommandBuffer() in two, call the second on recordCommandBuffer().
             Add recordCommandBuffer() just below createCommandBuffer();
-            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); its a stupid way to do it. 
-            The correct way is too complex for beginning Vulkan - sorry. <br/>
+            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); it is not the best way to do it. 
+            The correct way is to use semaphores - sorry. <br/>
 
-            6) Now, on to the shaders. Add the following code to the shader modual:
+            6) Now, on to the shaders. Add the following code to the vertex shader module:
              <textarea class="code" cols=127 rows=5 spellcheck="false">
                 layout(push_constant) uniform Push {
 	                mat4 modelMatrix;
 	                mat4 normalMatrix;
                 } push;
               </textarea><br/>
-            Don't forget  remove the model matrix from the Camera UBO to recompile the shaders. 
+            Don't forget to remove the model matrix from the Camera UBO and to recompile the shaders. 
 
             <br /><br />
             Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). 
