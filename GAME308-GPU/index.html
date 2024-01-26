@@ -88,8 +88,34 @@
 
             5) Break createCommandBuffer() in two, call the second on recordCommandBuffer().
             Add recordCommandBuffer() just below createCommandBuffer();
-            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); it is not the best way to do it. 
-            The correct way is to use semaphores - sorry. <br/>
+            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); 
+            The correct way is to use semaphores - sorry, we don't have time. <br/>
+            The createCommandBuffers should now look like this:<br/>
+             <textarea class="code" cols=127 rows=14 spellcheck="false">
+                void VulkanRenderer::createCommandBuffers() {
+                    commandBuffers.resize(swapChainFramebuffers.size());
+
+                    VkCommandBufferAllocateInfo allocInfo{};
+                    allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+                    allocInfo.commandPool = commandPool;
+                    allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+                    allocInfo.commandBufferCount = (uint32_t)commandBuffers.size();
+
+                    if (vkAllocateCommandBuffers(device, &allocInfo, commandBuffers.data()) != VK_SUCCESS) {
+                        throw std::runtime_error("failed to allocate command buffers!");
+                    }
+                }
+             </textarea><br/>
+            The rest of the code should be in recordCommandBuffer()<br/>
+
+
+            5.1) Since you cannot take a hint, add the following to the recordCommandBuffer(), just above vkCmdDrawIndexed().
+             <textarea class="code" cols=127 rows=2 spellcheck="false">
+             vkCmdPushConstants(commandBuffers[i], pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(ModelMatrixPushConst), &"whatEverThePushIsCalled");
+            </textarea><br/>
+
+            5.2) In order to put data into "whatEverThePushIsCalled , you'll need to write something like: void SetModelMatrix(const Matrix4& modelMatrix); <br/>
+
 
             6) Now, on to the shaders. Add the following code to the vertex shader module:
              <textarea class="code" cols=127 rows=5 spellcheck="false">
