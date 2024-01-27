@@ -111,10 +111,12 @@
 
             5.1) Since you cannot take a hint, add the following to the recordCommandBuffer(), just above vkCmdDrawIndexed().
              <textarea class="code" cols=127 rows=2 spellcheck="false">
-             vkCmdPushConstants(commandBuffers[i], pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(ModelMatrixPushConst), &"whatEverThePushIsCalled");
+             vkCmdPushConstants(commandBuffers[i], pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
+                sizeof(ModelMatrixPushConst),&"whatEverThePushIsCalled");
             </textarea><br/>
 
-            5.2) In order to put data into "whatEverThePushIsCalled , you'll need to write something like: void SetModelMatrix(const Matrix4& modelMatrix); <br/>
+            5.2) In order to put data into "whatEverThePushIsCalled , you'll need to write something like:<br/>
+            void SetModelMatrix(const Matrix4& modelMatrix); <br/>
 
 
             6) Now, on to the shaders. Add the following code to the vertex shader module:
