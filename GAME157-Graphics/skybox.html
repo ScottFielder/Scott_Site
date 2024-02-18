@@ -85,7 +85,7 @@
 	in the Camera.cpp file. <br />
 	All that is left to do is bind the textures and draw.<br />
 
-<textarea class="code" cols=127 rows=5 spellcheck="false">
+<textarea class="code" cols=127 rows=6 spellcheck="false">
 	void SkyBox::Render() const {
 		glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 		cubeMesh->Render();
@@ -93,7 +93,8 @@
 	}
 	</textarea><br/>
 	I bet you can do it from here. Use the underwater data or the CN_Tower data to make sure your images 
-	are loaded in the right sequence. I also gave you submarine and its texture just for fun.
+	are loaded in the right sequence.<br/>
+	I also gave you a submarine and its texture just for fun.
 
 </p>
 
