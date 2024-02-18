@@ -19,41 +19,54 @@
 
 <div id="rightsidebar">
 <h3> Helpful tools</h3>
-
-
+	<a class="nav" href="Sub.obj">Sub.obj</a><br />
+	<a class="nav" href="subTexture.jpg">subTexture.jpg</a><br />
+	<a class="nav" href="Underwater.zip">Underwater.zip</a><br />
+	<a class="nav" href="CN_Tower.zip">CN_Tower.zip</a><br />
 </div>
 
 
 
 <p class="mainbody">
-    Our next task is to build a Skybox sometimes refered to as an evironment map or a cub map.<br />
+	Our next task is to build a Skybox sometimes refered to as an evironment map or a cub map.<br />
 
-    The idea is that a cube could be created where all six faces had a texture assigned to it. <br />
-    The camera, or eye, is still at the origin looking down the negative z-axis, if the cube is a 1x1x1, centered at the origin, <br />
+	The idea is that a cube could be created where all six faces had a texture assigned to it. <br />
+	The camera, or eye, is still at the origin looking down the negative z-axis, if the cube is a 1x1x1, centered at the origin, <br />
 
-    Wait! A better plan is to check out at this web page <a href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">skybox</a><br />
-    The code won't work for us, but the basics are mostly all there.  <br />
-    In class we started to build a new class called SkyBox and passed in the six const char* filenames
-    for each of the six faces. Next, I looked at the code we built in GAME157 class and lifted some it. <br />
-    It looked something like this:<br />
-    <textarea class="code" cols=127 rows=17 spellcheck="false">
-    bool SkyBox::LoadImages() {
-	SDL_Surface* textureSurface;
-	int mode;
+	Wait! A better plan is to check out at this web page <a href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">skybox</a><br />
+	The code won't work for us, but the basics are mostly all there.  <br />
+	In class we started to build a new class called SkyBox and passed in the six const char* filenames
+	for each of the six faces. Next, I looked at the code we built in GAME157 class and lifted some it. <br />
+	It looked something like this:<br />
+	<textarea class="code" cols=127 rows=17 spellcheck="false">
+	bool SkyBox::LoadImages() {
+		SDL_Surface* textureSurface;
+		int mode;
 
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+		glGenTextures(1, &textureID);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 	
-	textureSurface = IMG_Load(posx);
-	if (textureSurface == nullptr) {
-		return false;
-	}
-	mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, mode, textureSurface->w, textureSurface->h, 0, mode, GL_UNSIGNED_BYTE, textureSurface->pixels);
-	SDL_FreeSurface(textureSurface);
-	/// do the next 5 faces
+		textureSurface = IMG_Load(posx);
+		if (textureSurface == nullptr) {
+			return false;
+		}
+		mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, mode, textureSurface->w, textureSurface->h, 0, mode, GL_UNSIGNED_BYTE, textureSurface->pixels);
+		SDL_FreeSurface(textureSurface);
+		/// now do the next 5 faces
 	</textarea>
- 
+
+	Finish this function by adding the filters:<br />
+
+	<textarea class="code" cols=127 rows=8 spellcheck="false">
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+	return true;
+	</textarea>
  
 <br /> <br />
 </textarea>
