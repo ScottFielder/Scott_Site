@@ -19,10 +19,12 @@
 
 <div id="rightsidebar">
 <h3> Helpful tools</h3>
-	<a class="nav" href="Sub.obj">Sub.obj</a><br />
-	<a class="nav" href="subTexture.jpg">subTexture.jpg</a><br />
-	<a class="nav" href="Underwater.zip">Underwater.zip</a><br />
-	<a class="nav" href="CN_Tower.zip">CN_Tower.zip</a><br />
+<a class="nav" href="Sub.obj">Sub.obj</a><br />
+<a class="nav" href="subTexture.jpg">subTexture.jpg</a><br />
+<a class="nav" href="Underwater.zip">Underwater.zip</a><br />
+<a class="nav" href="CN_Tower.zip">CN_Tower.zip</a><br />
+<a class="nav" href="Camera.h">Camera.h</a><br />
+<a class="nav" href="Camera.cpp">Camera.cpp</a><br />
 </div>
 
 
@@ -54,34 +56,47 @@
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, mode, textureSurface->w, textureSurface->h, 0, mode, GL_UNSIGNED_BYTE, textureSurface->pixels);
 		SDL_FreeSurface(textureSurface);
 		/// now do the next 5 faces
-	</textarea>
+	</textarea><br/>
 
 	Finish this function by adding the filters:<br />
 
 	<textarea class="code" cols=127 rows=8 spellcheck="false">
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-	return true;
-	</textarea>
- 
-<br /> <br />
-</textarea>
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+		return true;
+	</textarea><br /> 
+
+	The shaders are just too easy. We build them in class, or figure them out by looking
+	at the learnOpenGL website.  Don't just copy his shaders, you'll need to modernize them but
+	the idea is still there.<br />
+	</p>
+<p>
+	The next problem is where to put all this code. I argued that the skybox is just the backdrop
+	to the camera. No one made any other suggestion so I put the SkyBox code in the Camera class.<br />
+	I gave you the code we (almost) finished in class in the Helpful tools box. Now this has solved and
+	created some issues. <br />
+	I put a trackball in the Camera class (go ahead and remove the other one from the Scene) this
+	this will generate a rotation quaternion used to set the camera's orientation. I can build a standard
+	viewMatrix with<i> "return  MMath::toMatrix4(orientation) * MMath::translate(position);"</i> For the skybox,
+	I don't want the translation so I created another getter for just the orientation. See my comments
+	in the Camera.cpp file. <br />
+	All that is left to do is bind the textures and draw.<br />
+
+	<textarea class="code" cols=127 rows=8 spellcheck="false">
+		void SkyBox::Render() const {
+			glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+			cubeMesh->Render();
+			glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
+		}
+	</textarea><br/>
+	I bet you can do it from here. Use the underwater data or the CN_Tower data to make sure your images 
+	are loaded in the right sequence. I also gave you submarine and its texture just for fun.
+
 </p>
-
-
-<p  class="mainbody">
-Your Scene should look something like this, the jet is optional<br/> 
-<video width="768" height="432" controls>
-  <source src="./assignment3.mp4" type="video/mp4">
-   Your browser does not support the video tag.
-</video>
-</p>
-
-
 
 </body>
 </HTML>
