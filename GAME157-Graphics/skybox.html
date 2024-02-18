@@ -2,175 +2,74 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>GAME 303</title>
+<title>GAME 157</title>
 <link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
-</head>
-
 <body>
-<div id="header"> <b>GAME 303 Graphics </b><br />
-Shaders</div>
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
+<div id="header"> <b>GAME 157 Graphics </b><br />Programmable Pipeline</div>
 <ul class="nav">
-<li class="nav"><a class="nav" href="http://munro.humber.ca/~fielder/index.html"> Home </a><br /></li>
-<li class="nav"><a class="nav" href="http://munro.humber.ca/~fielder/MySchedule"> My schedule </a><br /></li>
-<li class="nav"><a class="nav" href="http://munro.humber.ca/~fielder/AboutMe"> About me </a><br /></li>
-<li class="nav"><a class="nav" href="http://munro.humber.ca/~fielder/ETC"> /etc </a><br /></li>
+<li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
+<li class="nav"><a class="nav" href="../MySchedule/index.html"> My schedule </a><br /></li>
+<li class="nav"><a class="nav" href="../AboutMe/index.html"> About me </a><br /></li>
+<li class="nav"><a class="nav" href="../ETC/index.html"> /etc </a><br/></li>
 </ul>
+<H2>&nbsp;</H2>
+<H1> Building a Slybox </h1>
+<h3> This a tough as it gets this semester, hang in there</h3><br/>
 
 
-<H2>Lab2: Produce an environmental map (a skybox). </H2>
+<div id="rightsidebar">
+<h3> Helpful tools</h3>
 
 
-<p>This lesson extends what we did last week with textures.  Your first job is to place the camera in a cube and use a skybox (6 images) to surround yourself by those images. GLSL provides for a 
-"samplerCube" for this very purpose. I have a nice set of skybox images near the CN tower that should be fun to look at. We'll then look at how to create an object (a sphere is fine) 
-that is a mirror and a lens. <br/>
-<p>
-
-</p>
-<ul>
-<li> Create a function that will load all six image into a cube map texture - Here's what a header should look something like<br/>
-<textarea class="code" spellcheck="false" rows=37 width=100px>
-#include "Model.h"
-namespace GAME {
-	class SkyBox : public Model {
-	private:
-		const char * positive_x_image;
-		const char * negative_x_image;
-		const char * positive_y_image;
-		const char * negative_y_image;
-		const char * positive_z_image;
-		const char * negative_z_image;
-		class Shader *skyBoxShader;
-		GLuint textureID;
-		GLuint texture;
-		GLuint projectionMatrixID;
-		GLuint modelViewMatrixID;
-	public:
-		SkyBox(const char * positive_x_image,
-			   const char * negative_x_image,
-			   const char * positive_y_image,
-			   const char * negative_y_image,
-			   const char * positive_z_image,
-			   const char * negative_z_image);
-		virtual ~SkyBox();
+</div>
 
 
-		virtual bool OnCreate();
-		virtual void OnDestroy();
-		virtual void Update(const float time);
-		virtual void Render() const;
 
+<p class="mainbody">
+    Our next task is to build a Skybox sometimes refered to as an evironment map or a cub map.<br />
 
-	};
-}
+    The idea is that a cube could be created where all six faces had a texture assigned to it. <br />
+    The camera, or eye, is still at the origin looking down the negative z-axis, if the cube is a 1x1x1, centered at the origin, <br />
 
-</textarea></li>
-<br/>
-Now load a cube,  create a cubemap texture, load all six images, and finally, load the shader program<br/> 
-<textarea class="code" spellcheck="false" rows=37 width=100px>
-bool SkyBox::OnCreate() {
+    Wait! A better plan is to check out at this web page <a href="https://learnopengl.com/Advanced-OpenGL/Cubemaps">skybox</a><br />
+    The code won't work for us, but the basics are mostly all there.  <br />
+    In class we started to build a new class called SkyBox and passed in the six const char* filenames
+    for each of the six faces. Next, I looked at the code we built in GAME157 class and lifted some it. <br />
+    It looked something like this:<br />
+    <textarea class="code" cols=127 rows=17 spellcheck="false">
+    bool SkyBox::LoadImages() {
+	SDL_Surface* textureSurface;
+	int mode;
 
-	ObjLoader obj;
-	if (obj.loadOBJ("cube.obj") == false) {
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
+	
+	textureSurface = IMG_Load(posx);
+	if (textureSurface == nullptr) {
 		return false;
 	}
-	meshes.push_back(new Mesh(GL_TRIANGLES, obj.vertices, obj.normals, obj.uvCoords));
-
-
-	SDL_Surface *textureSurface;
-
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
-	/// Wrapping and filtering options
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-
-	textureSurface = IMG_Load(positive_x_image);
-	if (textureSurface == nullptr) return false;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, textureSurface->w, textureSurface->h, 
-				0, GL_RGB, GL_UNSIGNED_BYTE, textureSurface->pixels);
+	mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, mode, textureSurface->w, textureSurface->h, 0, mode, GL_UNSIGNED_BYTE, textureSurface->pixels);
 	SDL_FreeSurface(textureSurface);
-	textureSurface = nullptr;
-
-	textureSurface = IMG_Load(negative_x_image);
-	if (textureSurface == nullptr) return false;
-	///mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, textureSurface->w, textureSurface->h, 
-				0, GL_RGB, GL_UNSIGNED_BYTE, textureSurface->pixels);
-	SDL_FreeSurface(textureSurface);
-	textureSurface = nullptr;
-
-
-	textureSurface = IMG_Load(positive_y_image);
-	if (textureSurface == nullptr) return false;
-	///mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, textureSurface->w, textureSurface->h, 
-				0, GL_RGB, GL_UNSIGNED_BYTE, textureSurface->pixels);
-	SDL_FreeSurface(textureSurface);
-	textureSurface = nullptr;
-
-	textureSurface = IMG_Load(negative_y_image);
-	if (textureSurface == nullptr) return false;
-	///mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB, textureSurface->w, textureSurface->h, 
-				0, GL_RGB, GL_UNSIGNED_BYTE, textureSurface->pixels);
-	SDL_FreeSurface(textureSurface);
-	textureSurface = nullptr;
-
-
-	textureSurface = IMG_Load(positive_z_image);
-	if (textureSurface == nullptr) return false;
-	///mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB, textureSurface->w, textureSurface->h, 
-				0, GL_RGB, GL_UNSIGNED_BYTE, textureSurface->pixels);
-	SDL_FreeSurface(textureSurface);
-	textureSurface = nullptr;
-
-
-	textureSurface = IMG_Load(negative_z_image);
-	if (textureSurface == nullptr) return false;
-	///mode = (textureSurface->format->BytesPerPixel == 4) ? GL_RGBA : GL_RGB;
-	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, textureSurface->w, textureSurface->h, 
-				0, GL_RGB, GL_UNSIGNED_BYTE, textureSurface->pixels);
-	SDL_FreeSurface(textureSurface);
-	textureSurface = nullptr;
-	
-	
-
-	skyBoxShader = new Shader("skyboxVert.glsl", "skyboxFrag.glsl", 1, 0, "vVertex");
-	projectionMatrixID = glGetUniformLocation(skyBoxShader->getProgram(), "projectionMatrix");
-	/// You may prefer to send the view and model matrices separately 
-	modelViewMatrixID = glGetUniformLocation(skyBoxShader->getProgram(), "modelViewMatrix");
-	textureID = glGetUniformLocation(skyBoxShader->getProgram(), "cubeTexture");
-	return true;
-}
-
-</textarea></li>
-
-
-
-
-
-<li>My choice of filters:<br/>
-<textarea class="code" spellcheck="false" rows=5 width=100px>
-glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-</textarea></li>
-
-<li>Easy! </li>
-<p>    
-
+	/// do the next 5 faces
+	</textarea>
+ 
+ 
+<br /> <br />
+</textarea>
 </p>
-</ul>
+
+
+<p  class="mainbody">
+Your Scene should look something like this, the jet is optional<br/> 
+<video width="768" height="432" controls>
+  <source src="./assignment3.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+</video>
 </p>
+
+
+
 </body>
 </HTML>
 
