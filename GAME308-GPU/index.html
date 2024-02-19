@@ -58,40 +58,40 @@
         <H2>Assignment 1:(15/20)<br /> </H2>
         <p>
             In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader).<br />
-            Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. 
+            Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers.
             But, they do have a drawback, they are restricted to a maximum of 128 bytes of memory. Can you do a projection, view,
             and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.<br />
-            Since this is the first assignment, I'll walk you through it:<br/>
-            1) Create a new struct something like this<br/>
+            Since this is the first assignment, I'll walk you through it:<br />
+            1) Create a new struct something like this<br />
             <textarea class="code" cols=127 rows=5 spellcheck="false">
                 struct ModelMatrixPushConst {
                     Matrix4 modelMatrix;
                     Matrix4 normalMatrix;
                 };
-             </textarea><br/>
+             </textarea><br />
 
-            2) Create a member variable in the VulkanRender of type ModelMatrixPushConst <br/>
+            2) Create a member variable in the VulkanRender of type ModelMatrixPushConst <br />
 
-            3) Create a new structure in the CreateGraphicsPipeline() <br/>
+            3) Create a new structure in the CreateGraphicsPipeline() <br />
             <textarea class="code" cols=127 rows=5 spellcheck="false">
                 VkPushConstantRange pushConstant{};
                 pushConstant.offset = 0;
                 pushConstant.size = sizeof(ModelMatrixPushConst);
                 pushConstant.stageFlags = VK_SHADER_STAGE_VERTEX_BIT;
-             </textarea><br/>
+             </textarea><br />
 
-            4) Add the following lines to the VkPipelineLayoutCreateInfo structure:<br/>
+            4) Add the following lines to the VkPipelineLayoutCreateInfo structure:<br />
             <textarea class="code" cols=127 rows=3 spellcheck="false">
                 pipelineLayoutInfo.pPushConstantRanges = &pushConstant;
                 pipelineLayoutInfo.pushConstantRangeCount = 1;
-            </textarea><br/>
+            </textarea><br />
 
             5) Break createCommandBuffer() in two, call the second on recordCommandBuffer().
             Add recordCommandBuffer() just below createCommandBuffer();
-            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device); 
-            The correct way is to use semaphores - sorry, we don't have time. <br/>
-            The createCommandBuffers should now look like this:<br/>
-             <textarea class="code" cols=127 rows=14 spellcheck="false">
+            At the top of the recordCommandBuffer() add vkDeviceWaitIdle(device);
+            The correct way is to use semaphores - sorry, we don't have time. <br />
+            The createCommandBuffers should now look like this:<br />
+            <textarea class="code" cols=127 rows=14 spellcheck="false">
                 void VulkanRenderer::createCommandBuffers() {
                     commandBuffers.resize(swapChainFramebuffers.size());
 
@@ -105,53 +105,91 @@
                         throw std::runtime_error("failed to allocate command buffers!");
                     }
                 }
-             </textarea><br/>
-            The rest of the code should be in recordCommandBuffer()<br/>
+             </textarea><br />
+            The rest of the code should be in recordCommandBuffer()<br />
 
 
             5.1) Since you cannot take a hint, add the following to the recordCommandBuffer(), just above vkCmdDrawIndexed().
-             <textarea class="code" cols=127 rows=2 spellcheck="false">
+            <textarea class="code" cols=127 rows=2 spellcheck="false">
              vkCmdPushConstants(commandBuffers[i], pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0,
                 sizeof(ModelMatrixPushConst),&"whatEverThePushIsCalled");
-            </textarea><br/>
+            </textarea><br />
 
-            5.2) In order to put data into "whatEverThePushIsCalled , you'll need to write something like:<br/>
-            void SetModelMatrix(const Matrix4& modelMatrix); <br/>
+            5.2) In order to put data into "whatEverThePushIsCalled , you'll need to write something like:<br />
+            void SetModelMatrix(const Matrix4& modelMatrix); <br />
 
 
             6) Now, on to the shaders. Add the following code to the vertex shader module:
-             <textarea class="code" cols=127 rows=5 spellcheck="false">
+            <textarea class="code" cols=127 rows=5 spellcheck="false">
                 layout(push_constant) uniform Push {
 	                mat4 modelMatrix;
 	                mat4 normalMatrix;
                 } push;
-              </textarea><br/>
-            Don't forget to remove the model matrix from the Camera UBO and to recompile the shaders. 
+              </textarea><br />
+            Don't forget to remove the model matrix from the Camera UBO and to recompile the shaders.
 
             <br /><br />
-            Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). 
+            Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix).
             What, calculate the normal matrix for every vertex in the model?  That's madness. Find a better way. I'll hint in class.  <br /><br />
 
-            Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment 
+            Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment
             rules need to be enforced. See std430 or std140 for detail and see my header file UBO_Padding.h.  It's just for you to show off. <br /><br />
         </p>
-    <H2>Assignment 2:(15/20)<br /> </H2>
+        <H2>Assignment 2:(15/20)<br /> </H2>
         <p>
             Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify
             the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
-            Of course, I will help, if you come to class. To get things going create a new data structor like:<br/>
-           <textarea class="code" cols=127 rows=6 spellcheck="false">
+            Of course, I will help, if you come to class. To get things going create a new data structor like:<br />
+            <textarea class="code" cols=127 rows=7 spellcheck="false">
             #define MAX_LIGHTS 4
             struct LightsUBO { /// Another UniformBufferObject
                Vec4 position[MAX_LIGHTS];
                Vec4 diffuse[MAX_LIGHTS];
                uint32_t numberOfLights;
             };
-            </textarea>
-                                                                                                              <br />
+            </textarea><br />
+            and make an object of that type inside the VulkanRenderer class <br />
+        </p>
 
-            Extra: Create ambient, difffuse, and spectular colour for the new light system.<br />
-            Extra: Create more that two lights.<br />
+        <p>
+            I made a list if methods I think you will need to modify to deal with the new UBO:<br />
+            OnCreate()<br />
+            RecreatedSwapChain()<br />
+            Render()<br />
+            cleanupSwapChain()<br />
+            createDescriptorSets()<br />
+        </p>
+        <p>
+            Don't forget that the TOTAL_NUMBER_OF_DESCRIPTORS will now be three. Look at:<br />
+            createDescriptorPool()<br />
+            createDescriptorSetLayout()<br />
+            createDescriptorSets()<br />
+        </p>
+
+        <p>
+            Find a way to populate lightingUBO with some values and fix up the shaders with some
+            loops and done - easy.
+        </p>
+
+        <p class="mainbody">
+            Your Scene should look something like this:<br />
+            <video width="768" height="432" controls=controls>
+                <source src="./ThreeLights.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video><br/>
+            Yes, Im using three lights.
+        </p>
+
+
+
+
+
+
+
+        <br />
+
+        Extra: Create ambient, difffuse, and spectular colour for the new light system.<br />
+        Extra: Create more that two lights.<br />
         </textarea></p>
     </div>
 </body>
