@@ -135,8 +135,8 @@
             Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment
             rules need to be enforced. See std430 or std140 for detail and see my header file UBO_Padding.h.  It's just for you to show off. <br /><br />
         </p>
-        <H2>Assignment 2:(15/20)<br /> </H2>
-        <p>
+        <H2>Assignment 2:(15/20) due: after reading week<br /> </H2>
+        <p class="mainbody">
             Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify
             the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
             Of course, I will help, if you come to class. To get things going create a new data structor like:<br />
@@ -151,7 +151,7 @@
             and make an object of that type inside the VulkanRenderer class <br />
         </p>
 
-        <p>
+        <p class="mainbody">
             I made a list if methods I think you will need to modify to deal with the new UBO:<br />
             OnCreate()<br />
             RecreatedSwapChain()<br />
@@ -159,14 +159,14 @@
             cleanupSwapChain()<br />
             createDescriptorSets()<br />
         </p>
-        <p>
+        <p class="mainbody">
             Don't forget that the TOTAL_NUMBER_OF_DESCRIPTORS will now be three. Look at:<br />
             createDescriptorPool()<br />
             createDescriptorSetLayout()<br />
             createDescriptorSets()<br />
         </p>
 
-        <p>
+        <p class="mainbody">
             Find a way to populate lightingUBO with some values and fix up the shaders with some
             loops and done - easy.
         </p>
