@@ -139,10 +139,20 @@
         <p>
             Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify
             the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
-            Of course, I will help, if you come to class<br />
+            Of course, I will help, if you come to class. To get things going create a new data structor like:<br/>
+           <textarea class="code" cols=127 rows=6 spellcheck="false">
+            #define MAX_LIGHTS 4
+            struct LightsUBO { /// Another UniformBufferObject
+               Vec4 position[MAX_LIGHTS];
+               Vec4 diffuse[MAX_LIGHTS];
+               uint32_t numberOfLights;
+            };
+            </textarea>
+                                                                                                              <br />
+
             Extra: Create ambient, difffuse, and spectular colour for the new light system.<br />
             Extra: Create more that two lights.<br />
-        </p>
+        </textarea></p>
     </div>
 </body>
 </html>
