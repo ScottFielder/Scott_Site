@@ -27,7 +27,7 @@
 <p class="mainbody"> 
 In this project I hope to show you how to work the tesillation shaders, the tessillation controler and the tessillation evaluator.<br/>
 From the "Helpful tools panel, download and replace Shaders.h and Shaders.cpp files in your project with these new ones. <br/>
-We will build the tessillation shaders in class. <\p>
+We will build the tessillation shaders in class. </p>
 
 <p>
 Ok, I felt a little bad about just making you look at my tessilation shader code and you all panicing to try to copy it.
@@ -35,7 +35,8 @@ My intent was to show what was going in these two new added stages, not just to 
 In truth, the process of tessillation is rather rigid, there is very little modifications you can make. In that light, 
 let me go back over the four new shaders. 
 </p>
-    The vertex shader:<br/>
+
+ Tessillation frag:<br/>
 <textarea class="code" cols=127 rows=19 spellcheck="false">
 layout(location = 0) in vec4 vVertex;
 layout(location = 1) in vec3 vNormal;
@@ -55,7 +56,7 @@ void main() {
     gl_Position =  vVertex;
 }
 </textarea><br/><br/>
-tessillation control:<br/>
+Tessillation control:<br/>
 <textarea class="code" cols=127 rows=37 spellcheck="false">
 layout(vertices = 3) out;
 
@@ -94,7 +95,7 @@ void main() {
 }
 
 </textarea><br/><br/>
-tessillation evaluator:<br/>
+Tessillation evaluator:<br/>
 <textarea class="code" cols=127 rows=34 spellcheck="false">
 layout (triangles, equal_spacing, ccw) in;
 
@@ -131,7 +132,7 @@ void main() {
     gl_Position =  projectionMatrix * viewMatrix * modelMatrix * position ;
 }
 </textarea><br/><br/>
-tessillation frag:<br/>
+Tessillation frag:<br/>
 <textarea class="code" cols=127 rows=9 spellcheck="false">
 in vec2 uvCoordFromEval;
 in vec3 normalFromEval;
