@@ -178,7 +178,7 @@
 					template<typename T>
 					using Ref = std::shared_ptr<T>;
 
-			</textarea>
+			</textarea><br/>
 			You'll need to #include<memory> header file at the top.	
 		</p>
 
@@ -191,7 +191,7 @@
 		I can use the std::make_shared idea plus simplify the existing code to look like this:
 		<br />
 
-		<textarea class="code" spellcheck="false" rows=15>
+		<textarea class="code" spellcheck="false" rows=11>
 		template<typename ComponentTemplate>
 		void AddComponent(Ref<ComponentTemplate> component_) {
 			if (GetComponent<ComponentTemplate>().get() != nullptr) {
@@ -213,7 +213,7 @@
 		the one listed above. The easiest approch is just to copy the original and make this simple modification.
 		<br />
 
-		<textarea class="code" spellcheck="false" rows=13>
+		<textarea class="code" spellcheck="false" rows=14>
 	template<typename ComponentTemplate, typename ... Args>
 	void AddComponent(Args&& ... args_) {
 		/// before you add the component ask if you have the component in the list already,
@@ -244,7 +244,20 @@
 	}
 	return Ref<ComponentTemplate>(nullptr);
 }
-	</textarea>
+	</textarea><br/><br/>
+	Now on to Actor.cpp, replace RemoveAllComponents() with<br/>
+		<textarea class="code" spellcheck="false" rows=5>
+	template<typename ComponentTemplate>
+	void Actor::RemoveAllComponents() {
+		components.clear();
+	}
+	</textarea><br/><br/>
+	In GetModelMatrix() you will only need to change one line. This will be the first time you'll use 
+		a Ref to a component.<br/>
+		Ref<TransformComponent> transform  = GetComponent<TransformComponent>(); <br/>
+		Get it? <br/><br/>
+
+
 
 
 	</ul>
