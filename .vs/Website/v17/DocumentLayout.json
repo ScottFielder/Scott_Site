@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "G:\\git\\Website\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME157-Graphics\\assignment3.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME157-Graphics\\assignment3.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME157-Graphics\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME157-Graphics\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME157-Graphics\\assignment3.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME157-Graphics\\assignment3.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,28 +38,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "index.html",
               "DocumentMoniker": "G:\\git\\Website\\index.html",
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "G:\\git\\Website\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AQIAADIAAAAAAAAAAAAAAD0AAABBAAAA",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAAAD0AAABBAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2024-06-04T23:41:07.056Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "assignment3.html",
               "DocumentMoniker": "G:\\git\\Website\\GAME157-Graphics\\assignment3.html",
               "RelativeDocumentMoniker": "GAME157-Graphics\\assignment3.html",
               "ToolTip": "G:\\git\\Website\\GAME157-Graphics\\assignment3.html",
               "RelativeToolTip": "GAME157-Graphics\\assignment3.html",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABQAAAAGAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-31T01:39:31.9Z"
+              "WhenOpened": "2024-05-31T01:39:31.9Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -69,9 +70,10 @@
               "RelativeDocumentMoniker": "GAME157-Graphics\\index.html",
               "ToolTip": "G:\\git\\Website\\GAME157-Graphics\\index.html",
               "RelativeToolTip": "GAME157-Graphics\\index.html",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAAAHYAAAAEAAAA",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAAAIEAAABlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-05-31T01:33:55.797Z"
+              "WhenOpened": "2024-05-31T01:33:55.797Z",
+              "EditorCaption": ""
             }
           ]
         }
