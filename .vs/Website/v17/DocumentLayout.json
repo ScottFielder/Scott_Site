@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "G:\\git\\Website\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME157-Graphics\\assignment5.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME157-Graphics\\assignment5.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -18,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -35,19 +35,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "index.html",
+              "DocumentMoniker": "G:\\git\\Website\\index.html",
+              "RelativeDocumentMoniker": "index.html",
+              "ToolTip": "G:\\git\\Website\\index.html",
+              "RelativeToolTip": "index.html",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAACgAAABrAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-08-29T15:47:36.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "assignment5.html",
               "DocumentMoniker": "G:\\git\\Website\\GAME157-Graphics\\assignment5.html",
               "RelativeDocumentMoniker": "GAME157-Graphics\\assignment5.html",
               "ToolTip": "G:\\git\\Website\\GAME157-Graphics\\assignment5.html",
               "RelativeToolTip": "GAME157-Graphics\\assignment5.html",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAAwAAABMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2024-06-18T04:16:34.105Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "assignment4.html",
               "DocumentMoniker": "G:\\git\\Website\\GAME157-Graphics\\assignment4.html",
               "RelativeDocumentMoniker": "GAME157-Graphics\\assignment4.html",
@@ -55,8 +68,7 @@
               "RelativeToolTip": "GAME157-Graphics\\assignment4.html",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-06-18T04:10:52.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T04:10:52.057Z"
             }
           ]
         }
