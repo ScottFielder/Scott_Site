@@ -3,32 +3,12 @@
   "WorkspaceRootPath": "G:\\git\\Website\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME309-Engines5\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME309-Engines5\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME308-GPU\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME308-GPU\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME308-GPU\\index2023.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME308-GPU\\index2023.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\MySchedule\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MySchedule\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME157-Graphics\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME157-Graphics\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GameDev.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GameDev.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,88 +34,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "index.html",
-              "DocumentMoniker": "G:\\git\\Website\\GAME308-GPU\\index.html",
-              "RelativeDocumentMoniker": "GAME308-GPU\\index.html",
-              "ToolTip": "G:\\git\\Website\\GAME308-GPU\\index.html",
-              "RelativeToolTip": "GAME308-GPU\\index.html",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAACQAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-09-02T23:32:52.039Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "index2023.html",
-              "DocumentMoniker": "G:\\git\\Website\\GAME308-GPU\\index2023.html",
-              "RelativeDocumentMoniker": "GAME308-GPU\\index2023.html",
-              "ToolTip": "G:\\git\\Website\\GAME308-GPU\\index2023.html",
-              "RelativeToolTip": "GAME308-GPU\\index2023.html",
-              "ViewState": "AQIAABUAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-09-02T23:32:43.725Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "index.html",
-              "DocumentMoniker": "G:\\git\\Website\\GAME309-Engines5\\index.html",
-              "RelativeDocumentMoniker": "GAME309-Engines5\\index.html",
-              "ToolTip": "G:\\git\\Website\\GAME309-Engines5\\index.html",
-              "RelativeToolTip": "GAME309-Engines5\\index.html",
-              "ViewState": "AQIAAG8AAAAAAAAAAAAAADYAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-09-02T22:15:03.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "index.html",
-              "DocumentMoniker": "G:\\git\\Website\\MySchedule\\index.html",
-              "RelativeDocumentMoniker": "MySchedule\\index.html",
-              "ToolTip": "G:\\git\\Website\\MySchedule\\index.html",
-              "RelativeToolTip": "MySchedule\\index.html",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-09-01T23:19:37.707Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GameDev.html",
-              "DocumentMoniker": "G:\\git\\Website\\GameDev.html",
-              "RelativeDocumentMoniker": "GameDev.html",
-              "ToolTip": "G:\\git\\Website\\GameDev.html",
-              "RelativeToolTip": "GameDev.html",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-08-31T21:32:37.624Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "index.html",
-              "DocumentMoniker": "G:\\git\\Website\\GAME157-Graphics\\index.html",
-              "RelativeDocumentMoniker": "GAME157-Graphics\\index.html",
-              "ToolTip": "G:\\git\\Website\\GAME157-Graphics\\index.html",
-              "RelativeToolTip": "GAME157-Graphics\\index.html",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAACAAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-08-31T21:32:21.455Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "index.html",
               "DocumentMoniker": "G:\\git\\Website\\index.html",
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "G:\\git\\Website\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABUAAABeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-08-31T21:31:47.685Z",
+              "WhenOpened": "2024-09-04T02:15:00.875Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index.html",
+              "DocumentMoniker": "G:\\git\\Website\\GAME308-GPU\\index.html",
+              "RelativeDocumentMoniker": "GAME308-GPU\\index.html",
+              "ToolTip": "G:\\git\\Website\\GAME308-GPU\\index.html",
+              "RelativeToolTip": "GAME308-GPU\\index.html",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-09-04T01:49:28.849Z",
               "EditorCaption": ""
             }
           ]
