@@ -42,7 +42,7 @@
      the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
      In ordr to do this task, you'll need change some of my code to something way better. <br/>
      Let's start this off by messing with CreateUniformBuffers(). Check out the following code bits<br/>
-           
+    Part 1:<br/>       
     <textarea class="code" spellcheck="false" rows=6>
        struct BufferMemory {
           VkBuffer bufferID;
@@ -55,7 +55,8 @@
            template<class T> 
            std::vector<BufferMemory>  VulkanRenderer::createUniformBuffers() {
      </textarea><br/> 
-
+     
+     Part 2: Next week<br/><br/>
 
      Extra: Create ambient, difffuse[], and spectular[] colours for the new light system.<br />
      Extra: Create more that two lights.<br />
