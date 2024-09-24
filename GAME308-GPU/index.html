@@ -53,11 +53,52 @@
 
       <textarea class="code" spellcheck="false" rows=4>
            template<class T> 
-           std::vector<BufferMemory>  VulkanRenderer::createUniformBuffers() {
-     </textarea><br/> 
-     
-     Part 2: Next week<br/><br/>
+           std::vector<BufferMemory>  VulkanRenderer::CreateUniformBuffers() {
+     </textarea><br/>
+           In class I showed you how how to build the CreateUniformBuffers as a templated function. I'm sure you can do it.  <br/>
+           Another function we should template is UpdateUniformBuffer(...)<br/>
+      <textarea class="code" spellcheck="false" rows=8>
+template <class T>
+        void VulkanRenderer::UpdateUniformBuffer(const T srcData, const BufferMemory &bufferMemory) {
+            void* data;
+            vkMapMemory(device, bufferMemory.bufferMemoryID, 0, sizeof(T), 0, &data);
+            memcpy(data, &srcData, bufferMemory.bufferMemoryLength);
+            vkUnmapMemory(device, bufferMemory.bufferMemoryID);
+        }
 
+      </textarea><br/>
+
+     Part 2: <br/>
+     <p>
+       Now that you have data in a UBO(s), the trick is to get it into the pipeline. This requires dealing with descriptors. 
+         I have dicussed them in class but now you'll have to really deal with them. Give it some thought, it might become obvious. <br/>
+         I have rearranged OnCreate() in the VulkanRenderer.cpp file.       
+     </p>
+    <textarea class="code" spellcheck="false" rows=24>
+         pickPhysicalDevice();
+         createLogicalDevice();  
+         createSwapChain(); 
+         createImageViews();
+         createRenderPass();
+         createDepthResources();
+         createFramebuffers();
+ 
+         createCommandPool();
+         CreateDescriptorSetLayout(); /// Modify Me
+         CreateDescriptorPool();     /// Modify me
+
+         Create2DTextureImage("./textures/mario_fire.png");
+         LoadModelIndexed("./meshes/Mario.obj");
+         CreateGraphicsPipeline("./shaders/simplePhong.vert.spv", "./shaders/simplePhong.frag.spv");
+         cameraUboBuffers = CreateUniformBuffers<CameraUBO>();
+         lightsUboBuffers = CreateUniformBuffers<LightsUBO>();
+
+         CreateDescriptorSets(); /// Modify me
+ 
+         CreateCommandBuffers();
+         createSyncObjects();
+
+         </textarea><br/>
      Extra: Create ambient, difffuse[], and spectular[] colours for the new light system.<br />
      Extra: Create more that two lights.<br />
  </p>
