@@ -65,8 +65,7 @@ template <class T>
             memcpy(data, &srcData, bufferMemory.bufferMemoryLength);
             vkUnmapMemory(device, bufferMemory.bufferMemoryID);
         }
-
-      </textarea><br/>
+      </textarea><br/><br/>
 
      Part 2: <br/>
      <p>
@@ -98,7 +97,13 @@ template <class T>
          CreateCommandBuffers();
          createSyncObjects();
 
-         </textarea><br/>
+         </textarea><br/><br/>
+
+          Part 3: <br/>
+     <p>
+         All that is left is to update the shaders to handle multiple lights and place any lighting data in
+         Lighting UBO. I told it was easy.
+ </p>
      Extra: Create ambient, difffuse[], and spectular[] colours for the new light system.<br />
      Extra: Create more that two lights.<br />
  </p>
