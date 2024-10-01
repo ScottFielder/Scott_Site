@@ -97,7 +97,7 @@
             </p>
             <ul>
                 <li>Loading assets for a graphical game</li>
-                <li>Monitoring XInput for a gaming application</li>
+                <li>Monitoring XInput or any other HID for a gaming application</li>
                 <li>Running a GUI interface</li>
                 <li>Monitoring TCP or UDP network data</li>
             </ul>
@@ -131,10 +131,17 @@
         <li>
             <p>
                 Topic 5 (max 10%): Adding a Game Controller<br />
-                <a class="nav" href="../CodeDepot/XBoxController.zip"> Example code: Game Controller </a><br />
-                <!--
-                <a class="nav" href="https://youtu.be/O_qTRmRuN2U">Topic 5 video legacy stuff from the lock down - just for fun. </a><br /><br />
-                -->    
+                Human Interface Device (HID) is a standarized way communicating with USB devices, it's not just games controllers - wake up. 
+                When a USB device is plugged into a Windows machine, the OS identifies the device by asking for a set of ID bytes. Given this info, the 
+                OS looks on the network for a driver. You have probably seen this when you plug a new devive into your system. <br/><br/>
+
+                The current most popular controllers are PlayStation(Sony) and Xbox(Microsoft). <br/>
+                In class I will discuss the differences between them and walk you through some of the toolkits that are out there out there. 
+                <a class="nav" href="https://github.com/MysteriousJ/Joystick-Input-Examples"> PlayStation+</a><br/>
+                <a class="nav" href="../CodeDepot/XBoxController.zip">XBox Controller </a><br />
+                <a class="nav" href="https://www.libsdl.org/release/SDL-1.2.15/docs/html/guideinput.html">SDL Support </a><br />
+
+                
              </p>
         </li>
         <li>
