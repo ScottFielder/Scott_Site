@@ -36,8 +36,9 @@
             You really need to download the latest copy of GameDev.<br />
             Grab a new copy of ComponentFramework24.0.4 Vulkan.zip as well <br/>
         </p>
-       <H2>Assignment 1:(15/20)<br /> </H2>
+       <H2>Assignment 1:(15/20) Let's set a due date together in the Oct 2 class - maybe a week from now? <br /> </H2>
        <p>
+
      Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify
      the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
      In order to do this task, you'll need change some of my code to something way better. <br/>
@@ -113,15 +114,19 @@ template <class T>
     In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader).<br />
     Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. But, they do have a drawback, they are restricted
     to a maximum of 128 bytes of memory. Can you do a projection, view, and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.<br />
+    Here's a link to a good description of the push constant in case I don't make any sense.<br/>
+    <a class="nav" href="https://vkguide.dev/docs/chapter-3/push_constants/">Push Constants</a><br />
+    The problem with this tutorial is that you cannot just copy the code, paste it in and expect it to run. That will not happen. 
+    
 
-
+</p>
     <br /><br />
     Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). What? Calculate the normal matrix
     for every vertex in the model that's madness. Calculate the normal matrix (as a 4x4) on the CPU side and pass it in via the push constant, along with the normal matrix.<br /><br />
 
     Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment rules need to be enforced.
     See std430 and std120 for details. It's just for you to show off. <br /><br />
-</p>
+
             
     </div>
 </body>
