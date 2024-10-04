@@ -2,8 +2,10 @@
 #extension GL_ARB_separate_shader_objects : enable
 
 layout(binding = 1) uniform GlobalLightingUBO {
-    vec4 position;
+    vec4 pos;
     vec4 diffuse;
+    vec4 specular;
+    vec4 ambient;
 } glights;
 
 layout (location = 0) in vec3 vertNormal;
@@ -17,10 +19,10 @@ layout(binding = 2) uniform sampler2D texSampler;
 
 
 void main() { 
-	vec4 ks = glights.diffuse;    
+	vec4 ks = glights.specular;    
 	vec4 kd = glights.diffuse;    
 	vec4 kt = texture(texSampler,fragTexCoords);
-	vec4 ka = 0.01 * kt;
+	vec4 ka = glights.ambient;
 	
 	float diff = max(dot(vertNormal, lightDir), 0.0);
 
@@ -31,8 +33,9 @@ void main() {
 
 	float spec = max(dot(eyeDir, reflection), 0.0);
 	spec = pow(spec,14.0);
-	
-	fragColor =  ka + diff * (kt + kd) + spec * ks;
-
+	vec4 ambient = ka * kt;
+	vec4 diffuse = diff * kd * kt;
+	vec4 specular = spec * ks + kt;
+	fragColor =  ambient + diffuse + specular;
 } 
 

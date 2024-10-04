@@ -5,14 +5,16 @@ layout (location = 0) in  vec4 vVertex;
 layout (location = 1) in  vec4 vNormal;
 layout (location = 2) in  vec2 texCoords;
 
-layout(binding = 0) uniform CameraUBO {
-    mat4 viewMatrix;
+layout(binding = 0) uniform CameraUBO { 
     mat4 projectionMatrix;
+	mat4 viewMatrix;
 } camera;
 
 layout(binding = 1) uniform GlobalLightingUBO {
-    vec4 position;
+    vec4 pos;
     vec4 diffuse;
+    vec4 specular;
+    vec4 ambient;
 } glights;
 
 layout(push_constant) uniform Push {
