@@ -116,10 +116,11 @@ template <class T>
     to a maximum of 128 bytes of memory. Can you do a projection, view, and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.<br />
     Here's a link to a good description of the push constant in case I don't make any sense.<br/>
     <a class="nav" href="https://vkguide.dev/docs/chapter-3/push_constants/">Push Constants</a><br />
-    The problem with this tutorial is that you cannot just copy the code, paste it in and expect it to run. That will not happen. 
-    
-
 </p>
+ <p>
+     After helping several of you debug code, I realalized that too often you just copy what I write, mindlessly, and have no understanding
+     of what itmeans or how it works. This troubles me. My job is to educate not just make you jump through hoops for a grade. 
+
     <br /><br />
     Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). What? Calculate the normal matrix
     for every vertex in the model that's madness. Calculate the normal matrix (as a 4x4) on the CPU side and pass it in via the push constant, along with the normal matrix.<br /><br />
