@@ -117,16 +117,25 @@ template <class T>
     Here's a link to a good description of the push constant in case I don't make any sense.<br/>
     <a class="nav" href="https://vkguide.dev/docs/chapter-3/push_constants/">Push Constants</a><br />
 </p>
- 
-
-    <br /><br />
+     <br />
+<p>
     Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). What? Calculate the normal matrix
     for every vertex in the model that's madness. Calculate the normal matrix (as a 4x4) on the CPU side and pass it in via the push constant, along with the normal matrix.<br /><br />
 
     Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment rules need to be enforced.
     See std430 and std120 for details. It's just for you to show off. <br /><br />
-
-            
+</p>
+   
+      <H2>Assignment 3:(16/20)<br /> </H2>
+<p>
+    Create a two different objects on the screen in the GPU and draw them.
+    This means storing the data in separate vertex and index buffers. Look how we did the first one.<br />
+    Do you need to  create multiple pipelines? No,  Don't forget the descriptor sets, new ones? Let's chat.  <br />
+    You'll need to update the push constant for each model since that is it's model matrix. That just means you'll
+    need to write those changes into the command buffer. <br />
+    Extra: Go ahead and draw multiple (more than two) objects. Come on we are writing game code<br /><br />
+</p>      
+        
     </div>
 </body>
 </html>
