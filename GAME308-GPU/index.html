@@ -130,10 +130,15 @@ template <class T>
 <p>
     Create a two different objects on the screen in the GPU and draw them.
     This means storing the data in separate vertex and index buffers. Look how we did the first one.<br />
-    Do you need to  create multiple pipelines? No.  Don't forget the descriptor sets, new ones? Let's chat.  <br />
+    Do you need to create multiple pipelines? No. Don't forget the descriptor sets, new ones? Let's chat.  <br />
     You'll need to update the push constant for each model since that is it's model matrix. That just means you'll
-    need to write those changes into the command buffer. <br />
-    Extra: Go ahead and draw multiple (more than two) objects. Come on we are writing game code<br /><br />
+    need to write those changes into the command buffer. That will be interesting what you come up with.  <br /><br/>
+
+    Now to make this look good would need to make multiple textures as well. Given all I've shown you over that past several
+    weeks, you should be able to modify Create2DTextureImage() to handle multiple textures. Look at texture2D.sampler in Vulkan.h(.cpp).<br/>
+    Don't forget the descriptor sets, new ones? Let's chat, again.  
+
+    Extra: Go ahead and draw multiple (more than two) objects with individual textures. Come on we are writing game code<br /><br />
 </p>      
         
     </div>
