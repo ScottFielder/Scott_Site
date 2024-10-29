@@ -17,7 +17,7 @@
         <h3> Helpful tools</h3>
         <a class="nav" href="../Rubrics/programmingRubric.html">General Programming Rubric</a><br />
         <hr />
-        <a class="nav" href="../GameDev/GameDev.zip"><B>GameDev.zip</B></a><br />
+        <a class="nav" href="../CodeDepot/GameDev.zip"><B>GameDev.zip</B></a><br />
         <hr />
         <a class="nav" href="../Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 01 Menu.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 01 Menu </a><br />
         <a class="nav" href="../Audio/Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 02 Boys fort.wav"> Martin Stig Andersen - Limbo (Original Videogame Soundtrack) - 02 Boys fort </a><br />
@@ -50,6 +50,13 @@
     </p>
     <ul>
         <li>
+          <p>
+            Topic 0 (max 10%): Required <br />
+                Dr. Dina Sabie will explain. 
+         </p>
+         </li>
+
+        <li>
             <p>
                 Topic 1 (max 10%): Memory Monitor<br />   
                 For full credit, keep track of all the heap allocations and deallocations by overloading
@@ -58,7 +65,9 @@
                 sum the amount mem allocated and subtrack the amount deallocated looking for memory leaks.
                 Can you give me some statistics about memory allocation and deallocation I can use to analysize 
                 a program. 
-                <a class="nav" href="../CodeDepot/MemoryMonitor.zip"> Example code: MemoryMonitor </a><br />
+             
+                <a class="nav" href="../CodeDepot/Week1 MemoryDemo.zip"> Example code: Week1 MemoryDemo.zip</a><br />
+            
             </p>
         </li>
 
@@ -78,7 +87,9 @@
         <li>
             <p>
                 Topic 3 (max 10%): C++ Concurrency <i>(multi-threading)</i><br />
+                <!--
                 <a class="nav" href="../CodeDepot/ThreadDemo1.zip"> Example code: ThreadDemo1 </a>
+                   -->
                 For full credit, the secondary threads must perform a meaningful task.
                 If the threads share objects in memory, the use of <code>mutexes</code>
                 (a synchronization object) should be considered to prevent race conditions.
@@ -86,16 +97,16 @@
             </p>
             <ul>
                 <li>Loading assets for a graphical game</li>
-                <li>Monitoring XInput for a gaming application</li>
+                <li>Monitoring XInput or any other HID for a gaming application</li>
                 <li>Running a GUI interface</li>
                 <li>Monitoring TCP or UDP network data</li>
             </ul>
         </li>
         <li>
              <p>
-                Topic 4 (max 10%): Profiling <i><br />
+                Topic 4 (max 10%): Profiling <br />
 
-                 Profiling tools are already installed since VS2019. Let me show you a little on geting started analyzing your C# or C++ code. 
+                 Profiling tools are already installed since VS2022. Let me show you a little on geting started analyzing your C# or C++ code. 
                  Yup, I said C#.<br />
                  There's technical publications from Microsoft out there on how to use their profiling (diagnostics report) tools but I find 
                  them unclear. There are a set of (really bad) videos from Microsoft on YouTube, in my opinion, they talk a lot and say very 
@@ -112,18 +123,26 @@
                  Cherno does a really good job of creating some timer wrappers in this video <a href="https://www.youtube.com/watch?v=YbYV8rRo9_A">Intro to Profiling.</a><br/>
 
                  
-                 This is my version of the timing/profiling code - much improved I think, of course.<br/>
+                 This is my version of the timing/profiling code - much better I think, of course.<br/>
                 <a href="../CodeDepot/Timing_Demo.zip">Scott's Timing class demo.</a><br/>
                  <br />
-                 </i>
             </p>
          </li>
         <li>
             <p>
                 Topic 5 (max 10%): Adding a Game Controller<br />
-                <a class="nav" href="../CodeDepot/XBoxController.zip"> Example code: Game Controller </a><br />
-                <a class="nav" href="https://youtu.be/O_qTRmRuN2U">Topic 5 video legacy stuff from the lock down - just for fun. </a><br /><br />
-            </p>
+                Human Interface Device (HID) is a standarized way communicating with USB devices, it's not just games controllers - wake up. 
+                When a USB device is plugged into a Windows machine, the OS identifies the device by asking for a set of ID bytes. Given this info, the 
+                OS looks on the network for a driver. You have probably seen this when you plug a new device into your system. <br/><br/>
+
+                The current most popular controllers are PlayStation(Sony) and Xbox(Microsoft). <br/>
+                In class I will discuss the differences between them and walk you through some of the toolkits that are out there out there. <br/>
+                <a class="nav" href="https://github.com/MysteriousJ/Joystick-Input-Examples"> PlayStation+</a><br/>
+                <a class="nav" href="../CodeDepot/XBoxController.zip">XBox Controller </a><br />
+                <a class="nav" href="https://www.libsdl.org/release/SDL-1.2.15/docs/html/guideinput.html">SDL Support </a><br />
+
+                
+             </p>
         </li>
         <li>
             <p>
@@ -155,7 +174,6 @@
                 If you are working in OpenGL: <a href="https://github.com/ocornut/imgui/tree/master/examples/example_glfw_opengl3"> imgui for OpenGL </a><br />
                 Another option is: <a href="https://github.com/Immediate-Mode-UI/Nuklear"> The nuklear GUI system </a><br />
                 <a class="nav" href="../CodeDepot/ComponentFramework24.4.0 OpenGL.imGui.zip"> Example code: ImGUI.</a><br />
-                Look in Scene0 for a demo and install stuff - its a two hour video <br />
             </p>
         </li>
 <li>
@@ -173,7 +191,10 @@
 <li>
        <p>
            Topic 9 (max 10%): File IO and Streams<br />
-           
+           More that just reading or writing to a file, I will show you serialize C++ objects and write them to file
+           system such that those objects can be recreated at a later time. Ask you networking teacher about that. 
+
+           I will also discuss how all the file systems work: FAT, NTSF, UNIX, and ReFS. 
        </p>
 </li>
 
@@ -181,29 +202,18 @@
   <p>
      Topic 10 (max 10%): Unreal, Unity Plug-ins and DLLs<br />
        Plug-ins are nothing more than a DLL written in C/C++ (unmanaged memory) or even C# (managed memory). <br />
- There are two parts the process (1) build the DLL and (2) create the C# script in Unity that uses it. <br />
- I'll show you how to create a dll in C/C++ in class, it's easy, but there is some explaining I must do.<br />
- A very good conference talk about DLLs was at CppCon 2017 <a href="https://www.youtube.com/watch?v=JPQWQfDhICA">Everything You Ever Wanted to Know about DLLs</a><br />
- <a href="https://docs.unity3d.com/Manual/NativePlugins.html">How to work with native plug-in in Unity</a> <br />
- <a href="https://docs.unity3d.com/Manual/NativePluginInterface.html">Low-level native plug-in interface</a> <br />
+        There are two parts the process (1) build the DLL and (2) create the C# script in Unity that uses it. <br />
+        I'll show you how to create a dll in C/C++ in class, it's easy, but there is some explaining I must do.<br />
+    A very good conference talk about DLLs was at CppCon 2017 <a href="https://www.youtube.com/watch?v=JPQWQfDhICA">Everything You Ever Wanted to Know about DLLs</a><br />
+    <a href="https://docs.unity3d.com/Manual/NativePlugins.html">How to work with native plug-in in Unity</a> <br />
+    <a href="https://docs.unity3d.com/Manual/NativePluginInterface.html">Low-level native plug-in interface</a> <br />
  <br />
- <br />
+
   </p>
 </li>
 
-<li>
-  <p>
-    Topic 11 (max 10%):<br />
-        TBA
- </p>
- </li>
+
     
-<li>
-  <p>
-    Topic 12 (max 10%):<br />
-      TBA
- </p>
- </li>
     
 </ul>
 </body>

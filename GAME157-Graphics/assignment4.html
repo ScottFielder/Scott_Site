@@ -54,11 +54,9 @@ uniform mat4 modelMatrix;
 
 out vec2 uvCoordFromVert;
 out vec3 normalFromVert;
-out float vertDistance;
 void main() {
     uvCoordFromVert = uvCoord;
-    /// This is a hack to just start LOD 
-    vertDistance = length(viewMatrix * modelMatrix * vVertex);
+    normalFromVert = vNormal;
     gl_Position =  vVertex;
 }
 </textarea><br/><br/>
@@ -66,22 +64,22 @@ Tessillation control:<br/>
 <textarea class="code" cols=127 rows=29 spellcheck="false">
 layout(vertices = 3) out;
 
-uniform float tessLevelInner;
-uniform float tessLevelOuter;
+///uniform float tessLevelInner;
+///uniform float tessLevelOuter;
 
 in vec2 uvCoordFromVert[];
 in vec3 normalFromVert[];
-in float vertDistance[];
 
 out vec2 uvCoordFromCtrl[];
 out vec3 normalFromCtrl[];
 void main() {
-    // Pass through input vertices to tessellation evaluation stage
+    /// Pass through input vertices to tessellation evaluation stage
     gl_out[gl_InvocationID].gl_Position =  gl_in[gl_InvocationID].gl_Position;
     uvCoordFromCtrl[gl_InvocationID] = uvCoordFromVert[gl_InvocationID];
     normalFromCtrl[gl_InvocationID] = normalFromVert[gl_InvocationID];
+
    float tesslevel = 1.0;
-    // Set tessellation levels
+    /// Set tessellation levels
     if (gl_InvocationID == 0) {
         gl_TessLevelInner[0] = tesslevel;
 
@@ -94,15 +92,17 @@ void main() {
 
 </textarea><br/><br/>
 Tessillation evaluator:<br/>
-<textarea class="code" cols=127 rows=34 spellcheck="false">
+<textarea class="code" cols=127 rows=38 spellcheck="false">
 layout (triangles, equal_spacing, ccw) in;
 
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 uniform mat4 modelMatrix;
 uniform sampler2D textureData;
+
 in vec2 uvCoordFromCtrl[];
 in vec3 normalFromCtrl[];
+
 out vec2 uvCoordFromEval;
 out vec3 normalFromEval;
 
@@ -124,12 +124,13 @@ void main() {
     normalFromEval =  interpolateVec3(normalFromCtrl[0], normalFromCtrl[1], normalFromCtrl[2]);
     /// Interpolate position across the triangle
     vec4 position = interpolateVec4(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_in[2].gl_Position);
-    vec4 height = vec4(texture(textureData,uvCoordFromEval));
 
-    position.z =  height.r;
+    ///vec4 height = vec4(texture(textureData,uvCoordFromEval));
+    ///position.z =  height.r;
     gl_Position =  projectionMatrix * viewMatrix * modelMatrix * position ;
 }
 </textarea><br/><br/>
+
 Tessillation frag:<br/>
 <textarea class="code" cols=127 rows=9 spellcheck="false">
 in vec2 uvCoordFromEval;
@@ -137,7 +138,7 @@ in vec3 normalFromEval;
 out vec4 fragColor;
 uniform sampler2D textureData;
 void main() {
-    //fragColor = texture(textureData,uvCoordFromEval);
+    ///fragColor = texture(textureData,uvCoordFromEval);
     fragColor = vec4(1.0,1.0,1.0,1.0);
 }
 </textarea><br/><br/>
