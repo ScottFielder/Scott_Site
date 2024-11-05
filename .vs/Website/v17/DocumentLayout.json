@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "G:\\git\\Website\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME309-Engines5\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME309-Engines5\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME308-GPU\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME308-GPU\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -32,11 +36,24 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "index.html",
+              "DocumentMoniker": "G:\\git\\Website\\GAME309-Engines5\\index.html",
+              "RelativeDocumentMoniker": "GAME309-Engines5\\index.html",
+              "ToolTip": "G:\\git\\Website\\GAME309-Engines5\\index.html",
+              "RelativeToolTip": "GAME309-Engines5\\index.html",
+              "ViewState": "AgIAALEAAAAAAAAAAAAAAMAAAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2024-11-05T01:12:30.56Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.html",
               "DocumentMoniker": "G:\\git\\Website\\GAME308-GPU\\index.html",
               "RelativeDocumentMoniker": "GAME308-GPU\\index.html",
               "ToolTip": "G:\\git\\Website\\GAME308-GPU\\index.html",
               "RelativeToolTip": "GAME308-GPU\\index.html",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAswLAAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAswLEAAAB5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2024-10-31T00:29:22.574Z",
               "EditorCaption": ""
