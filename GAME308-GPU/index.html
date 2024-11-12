@@ -136,10 +136,47 @@ template <class T>
 
     Now to make this look good would need to make multiple textures as well. Given all I've shown you over that past several
     weeks, you should be able to modify Create2DTextureImage() to handle multiple textures. Look at texture2D.sampler in Vulkan.h(.cpp).<br/>
-    Don't forget the descriptor sets, new ones? Let's chat, again.  
+    Don't forget the descriptor sets, new ones? Let's chat. One of our garduates, Kyle, has posted a how-to at: <br/>
+    <a class="nav" href="https://kylehalladay.com/blog/tutorial/vulkan/2018/01/28/Textue-Arrays-Vulkan.html">Multiple Textures</a><br/>
+    </p>
+    <p>Kyle wanted to pass the image index though the push constant. Ok, that's cool but our push constant is full so I showed you 
+        how a could make some room in that structure. <br/>
+        <textarea class="code" spellcheck="false" rows=17>
+// A 3x3 cannot be sent to the GPU data due to alignment issues. 
+/// If I try to send a 3x3 yo GPU it will be bumped up to a 4x4. 
+/// I can fake it by storing the 3x3 in an array of 3 Vec4s as 
+/// I have mapped below. Vulkan and OpenGl are column centric - right hand rule.
+/// The real reason to do this is to make room in the push constant for other data.
+///	Vec4    0(x)	3(y)	6(z)    0(w)			
+///	Vec4    1(x)	4(y)	7(z)    0(w)		
+///	Vec4    2(x)	5(y)	9(z)    0(w)		
+struct ModelMatrixPushConst {
+    Matrix4 modelMatrix;
+    Vec4 normalMatrix[3];
+    uint32_t textureIndex;
+    /// 116 bytes, I'm within the 128 byte limit and everything
+	/// lines up on a 4 byte boundry. 
+};
+ </textarea><br/><br/>
 
+    The next trick is to populate the normalMatrix vectors. Again, I did this in class.<br/<br/>
+    <textarea class="code" spellcheck="false" rows=14>    
+ /// See the header file for an explination of how I layed this out in memory
+ modelMatrixPushConst.normalMatrix[0].x = normalMatrix[0];
+ modelMatrixPushConst.normalMatrix[1].x = normalMatrix[1];
+ modelMatrixPushConst.normalMatrix[2].x = normalMatrix[2];
+
+ modelMatrixPushConst.normalMatrix[0].y = normalMatrix[3];
+ modelMatrixPushConst.normalMatrix[1].y = normalMatrix[4];
+ modelMatrixPushConst.normalMatrix[2].y = normalMatrix[5];
+
+ modelMatrixPushConst.normalMatrix[0].z = normalMatrix[6];
+ modelMatrixPushConst.normalMatrix[1].z = normalMatrix[7];
+ modelMatrixPushConst.normalMatrix[2].z = normalMatrix[8];
+</textarea>
+</p>
     Extra: Go ahead and draw multiple (more than two) objects with individual textures. Come on we are writing game code<br /><br />
-</p>      
+      
         
     </div>
 </body>

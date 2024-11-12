@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
 <body>
 
-<div id="header"> <b>GAME 101</b><br />C++ Rocks</div>
+<div id="header"> <b>GAME 101</b><br />C++</div>
 <ul class="nav">
 <li class="nav"><a class="nav" href="../index.html"> Home </a><br/></li>
 <li class="nav"><a class="nav" href="../MySchedule"> My schedule </a><br /></li>
@@ -23,65 +23,25 @@
 
 <H2><u>Useful Stuff</u></H2>
 A really good site for C++ is <a href="http://www.learncpp.com/">www.learncpp.com</a><br/><br/>
-
-
-
+Here is a copy of the 2D graphics that you are using in your Physics class with Professor Umer Noor. <br/>
+<a href="../CodeDepot/SDL_Project24.101.0.zip">SDL_Project24.101.0.zip</a><br/>
 </div>
 
-<h3> Let's get busy</h3><br/>
-<ul>
-First step is to get Visual Sudio 22 Community installed. In this video I'll walk you through it.<br/>
-<a href="https://www.youtube.com/watch?v=HPhlDc9Au3I">Video 0 Installing Visual Studio </a> <br/>
-Next watch this goofy video and we can get started. <br/>
-<a href="https://youtu.be/AM1KPXMrtDg" target="_blank">Video 1 Balloon Drop </a> <br/>
-<a href="https://youtu.be/iE8SrJqzKc0" target="_blank">Video 2 Simulating the Balloon Drop </a> <br/>
-<a href="Day2.zip" download>Week 2 Source code - This is where we are at the end of the second week. </a> <br/>
-<a href="https://youtu.be/68YGlWgo-YM" target="_blank">Video 3 Moving to 3D </a> <br/>
-<a href="SDL_Framework21.0.0.zip" download>Week 4 SDL_Framework21.0.0 - download, unzip it and put it anywhere your want. </a> <br/>
-<a href="../GameDev/GameDev.zip">GameDev.zip - download and unzip it.</a> <br/>
-Move the GameDev folder to C:/ top of your C drive - it has to be there. Sorry.<br/>
-<a href="SDL_Framework21.0.2.zip" download>This is where we are as of Oct 6 </a> <br/><br/>
-
-
-<b>Assignment1:</b> Create a Scene1 (not Scene0) where there are two images one is flappy bird and the other is a cliff. Place flappy bird 
-at the top of the cliff and have him fall to the ground. Use the starting values Umer gave you in the Physics class. Feel free to scale the cliff and/or
-Flappy and adjust the orthographic matrix if you wish. (8/10) <br/>
-Extra: Use a keyboard sdl_event to start the simulation. Use any key you wish.  (1/10) <br/>
-Extra: Launch Flappy with +vel on the x-axis but when Fappy hits the ground forward vel must stop.(1/10) <br/><br/>  
-
-<b>Assignment2: </b> Create a Scene2 and roll a boulder across the bottom of the screen. Really, the ball just has a velocity but by rotating the image 
-as the ball slides it gives the impression that the ball is actually rolling. To calculate the the angle of the ball based on the linear velocity,
-use the following code in Update(...), the radius of the boulder image is 1.4 units (8/10)<br/><br/>
-<textarea class="code" spellcheck="false" rows=5>
-
-	float radiansToDegrees = (360.0f / 2.0f * M_PI);
-	float circumference = 2.0f * M_PI * radius;
-	angle += radiansToDegrees * vel.x * deltaTime / circumference; 
-</textarea><br/><br/>
-
-Extra: Use a keyboard sdl_event to start the simulation. Use any key you wish.  (1/10) <br/>
-Extra: Calculate the radius of the boulder in the x-dimension by using the inverse of the projection matrix. (1/10) <br/><br/>
-
-<b>Assignment4: </b> Umer's binary star gravity well. (8/10)<br/>
-In this assignment just put the binary star code into its own Scene. I will be looking for proper coding style, use of overloaded operators 
-from the math library in your calculations. In the Scene, you will need to change the orthographics projection matrix to better match Umer's starting positions. 
-Easy nothing new. Umer worries about the math, I worry about how you write it. <br/><br/>
-Extra: Manage the three bodies with a std::vector container - look it up.<br> 
-Extra: Pick a grab the Umer's "planet" and move it with the mouse. Hint: Use the inverse of the projection matrix to convert mouse coords to physics 
-coords.<br/><br/>
-
-<b>Assignment3: </b> Collisions! (8/10)<br/>
-After we all did Assignment 2, the boulder rolling, I helped you get two boulders rolling and do some collision detection. Now we are going
-to do the collision response. Crazy math but super cool when it works, trust me you'll love it. Add gravity and let them bounce around.<br/>
-Check out this link to the math for collisions <a href="../../ChalkTalk/collisions.png" target="_blank">collisions.png</a>. Don't panic 
-it's just math. The math will be worked out in Scene's Update(...). I'll show you in class.<br/>
-Extra: Go full 2D, and add gravity. <br/>
-Extra: Place many boulders on the screen using random starting locations.<br/><br/>   
-
-<b>Assignment5: </b> Mastering Events and the Standard Template Library(8/10)<br/>
-Create a new Scene, in this one I will want you to use the Standard Template Library std::vector (and a few others) and use it to create new boulders dymaically. This will require 
-an understanding of templates and the use of sdlEvents.<br/>
-Come to class this will be fun - promise.  <br/><br/>
+  <H4> Let's chat about the graphics framework you will be working with for the next 2.5 years. </H4><br/>
+  <ul>
+       <ul>
+     <li>
+       <p>
+         Topic 0: Polymorphism <br />
+           Inheritance<br/>
+           Private, public and protected<br/>
+           Virural methods (way easier that it sounds)<br/>
+           Absract methods (way easier that it sounds)<br/>
+           Pure virtual functions (again, the words sound scary, it's easier than it sounds)<br/>            
+      </p>
+      </li>
+</Ul>
+           
   
 </body>
 </HTML>
