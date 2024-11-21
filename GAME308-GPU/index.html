@@ -25,7 +25,11 @@
         <a class="nav" href="simplePhong.frag"> simplePhong.frag</a><br />
         <a class="nav" href="glslc.exe">glslc.exe</a><br />
         <a class="nav" href="phong.vert"> phong.vert</a><br />
-        <a class="nav" href="phong.frag"> phong.frag</a><br />   
+        <a class="nav" href="phong.frag"> phong.frag</a><br /> 
+        <a class="nav" href="Plane.obj">Plane.obj</a><br />
+        <a class="nav" href="terrainDiffuse.png">terrainDiffuse.png</a><br />
+        <a class="nav" href="terrainHeight.png">terrainHeight.png</a><br />
+        <a class="nav" href="terrainNormal.png">terrainNormal.png</a><br />
     </div>
 
     <H1> Welcome to Graphics 308 - GPU programming with Vulkan </H1>
@@ -175,7 +179,20 @@ struct ModelMatrixPushConst {
  modelMatrixPushConst.normalMatrix[2].z = normalMatrix[8];
 </textarea>
 </p>
-    Extra: Go ahead and draw multiple (more than two) objects with individual textures. Come on we are writing game code<br /><br />
+   Extra: Go ahead and draw multiple (more than two) objects with individual textures. Come on we are writing game code<br /><br />
+  
+  <H2>Assignment 4 and 5 (combined):(32/40)<br /> </H2>   
+  <p class="mainbody"> 
+In this project I hope to show you how to work the tesillation shaders, the tessillation controler and the tessillation evaluator.<br/>
+From the "Helpful tools panel, download and replace Shaders.h and Shaders.cpp files in your project with these new ones. <br/>
+Draw a plane on the screen. Then tessallate it (just draw it in wire mode). Use the Camera to get a better view. Then add the Phong
+      code to the eval and frag shaders. Be sure to use all three textures to make the scene look good.<br/> 
+      Extra: Can you control the level of tessallation from the keyboard?
+      Extra: Can you get LOD working?
+</p>
+        
+<br/><br/>
+    
       
         
     </div>
