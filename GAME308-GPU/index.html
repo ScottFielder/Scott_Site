@@ -196,7 +196,7 @@ struct ModelMatrixPushConst {
    Extra: Go ahead and draw multiple (more than two) objects with individual textures. Come on we are writing game code<br /><br />
   
   <H2>Assignment 4 and 5 (combined):(32/40)<br /> </H2>   
-  <p class="mainbody"> 
+  <p> 
 In this project I hope to show you how to work the tesillation shaders, the tessillation controler and the tessillation evaluator.<br/>
 From the "Helpful tools panel, download and replace Shaders.h and Shaders.cpp files in your project with these new ones. <br/>
 Draw a plane on the screen. Then tessallate it (just draw it in wire mode). Use the Camera to get a better view. Then add the Phong
@@ -204,7 +204,30 @@ Draw a plane on the screen. Then tessallate it (just draw it in wire mode). Use 
       Extra: Can you control the level of tessallation from the keyboard?
       Extra: Can you get LOD working?
 </p>
-        
+ 
+ <H2>Assignment 4 (16/20)<br /> </H2>  
+   <p>  The task is to visualize the normals on the surface of a 3D object. They should look like little hairs extending off the surface.
+    I'll demo it in class. <br />
+    The geometry shader exists between the vertex shader and the fragment shader. In OpenGL class we never had time to investigate it. Now in Vulkan
+    let's give it a look. <br />
+    The website I showed you in OpenGL <a class="nav" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader"> learnopengl.com </a> is a fair starting point.
+    As I mentioned in class a year ago, the writing and explanations are great the coding examples suck. <br />
+    I'll help:<br />
+
+    Extra: Can you control the color of the normals from the CPU side? (Pass the color in). <br />
+    Extra: Can you control the length of the normals from the CPU side? <br />
+</p>
+
+ <H2>Assignment 5 (16/20)<br /> </H2>  
+  <p>  Now the task is to visualize the mesh as lines on the surface of a 3D object of an already drawn object or  you could<br/>
+        make a object explode using the rigid body physics (Umer) and pass in time. <br />
+    
+   
+    Ideas can be found on the website I showed you in OpenGL <a class="nav" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader"> learnopengl.com </a> is a fair starting point.
+   
+    Extra: Can you offset the mesh line away from the surface? <br />
+    Extra: Can you use the keyboard to control these effects?<br />
+</p>
 <br/><br/>
     
       
