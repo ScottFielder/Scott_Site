@@ -79,23 +79,34 @@
 		</p>
 		<li><b>Topic 0:</b> Templates in C++ and other tools<br /></li>
 
-		We'll do some experiments with C++ templates in this second demo.
-		<br />
+		I did some demos in that horrible classroom last week. <br/>
+		The first was just to show you a templated function. The next was to templete
+		a class. <br/>
 		<a href="../CodeDepot/TemplateDemo.zip">TemplateDemo.zip</a>
 		<br />
-
-
-
+		I finished by starting the code for an abstract class called Component. <br/>
+		I made the argument, no one objected, that I could create a class called Actor that inherits from Component.
+		<br />
 		This a version of our real starting point
 		<a href="../CodeDepot/ComponentFramework25.0.0.zip"> ComponentFramework25.0.0</a>,
 		<br />
 		download it. We will start by incorporating the demo project into the FrameWork.
 		<br />
+
+		My next big step is to explain this:<br/>
+		<textarea class="code" cols=127 rows=8 spellcheck="false">
+			/// See universal references in C++11 
+			template<typename ComponentTemplate, typename ... Args>
+			void AddComponent(Args&& ... args_) {
+				ComponentTemplate* componentObject = new ComponentTemplate(std::forward<Args>(args_)...);
+				components.push_back(componentObject);
+			}
+		</textarea>
 		</p>
 
 		<p>
 		</p>
-		<li><b>Topic 1:</b> The Entity (Actor or Component)</li>
+		<li><b>Topic 1:</b> The Entity (Actor / Component)</li>
 		Using the Actor/Component demo code we created over the last one or two classes, begin inserting these ideas in to the framework - I will guide you, promise.
 		<br />
 		</p>
