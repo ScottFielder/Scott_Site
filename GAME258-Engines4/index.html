@@ -284,14 +284,14 @@
 	}
 	return Ref<ComponentTemplate>(nullptr);
 }
-	
+	</textarea>
 	Now on to Actor.cpp, replace RemoveAllComponents() with<br/>
 		<textarea class="code" spellcheck="false" rows=5>
 	template<typename ComponentTemplate>
 	void Actor::RemoveAllComponents() {
 		components.clear();
 	}
-	
+	</textarea>
 	In GetModelMatrix() you will only need to change one line. This will be the first time you'll use 
 		a Ref to a component.<br/>
 		Ref<TransformComponent> transform  = GetComponent<TransformComponent>(); <br/>
