@@ -284,14 +284,14 @@
 	}
 	return Ref<ComponentTemplate>(nullptr);
 }
-	</textarea><br/><br/>
+	
 	Now on to Actor.cpp, replace RemoveAllComponents() with<br/>
 		<textarea class="code" spellcheck="false" rows=5>
 	template<typename ComponentTemplate>
 	void Actor::RemoveAllComponents() {
 		components.clear();
 	}
-	</textarea><br/><br/>
+	
 	In GetModelMatrix() you will only need to change one line. This will be the first time you'll use 
 		a Ref to a component.<br/>
 		Ref<TransformComponent> transform  = GetComponent<TransformComponent>(); <br/>
@@ -306,9 +306,97 @@
 	<b>Topic 9:</b>Systems<br/>
 	So far we have looked at Entities (Actors), and Components. Now let's look at the third part - Systems.<br/>
 	To start off with, let's look at collisions. In Unity and Unreal they call them colliders. <br/>
-	Let's start by creating a ColliderComponent
-	
+	Let's start by creating a ColliderComponent. 
 </p>
+<p> This is the starting point of the of the collision system. First, define ColliderComponent. 
+	This just holds the type of collision object you actor is using, sphere, AABB, and such. Here's the basic code 
+	for the Component.<br/>
+<textarea class="code" spellcheck="false" rows=41>
+#pragma once
+#include "TransformComponent.h"
+#include <Plane.h>
+using namespace MATHEX;
+
+enum class ColliderType {
+	SPHERE,
+	AABB,
+	PLANE,
+	
+};
+
+/// For an Axis Aligned Bounding Box, their are many ways you could define the box.
+/// My favorite way, the easiest to understand way is pick the center location of 
+/// the box, then specify the radius from that center in 
+/// the x, y,and z dimensions. Umer calls the radius the halfExtent
+struct AABB {
+	Vec3 center;
+	Vec3 halfExtents;
+};
+
+class CollisionComponent: public Component {
+	friend class CollisionSystem;
+    CollisionComponent(const CollisionComponent&) = delete;
+	CollisionComponent(CollisionComponent&&) = delete;
+	CollisionComponent& operator = (const CollisionComponent&) = delete;
+	CollisionComponent& operator = (CollisionComponent&&) = delete;
+protected:
+	ColliderType colliderType;  
+	float radius; /// Sphere collision
+	Vec3 halfExtents; /// AABB
+	Plane plane; /// Plane 
+
+public:
+	CollisionComponent(Component* parent_, float radius_ );
+	CollisionComponent(Component* parent_, Vec3 halfExtents_);
+	CollisionComponent(Component* parent_, Plane plane_);
+	bool OnCreate(){return true;}
+	void OnDestroy(){}
+	void Update(const float deltaTime_){}
+	void Render()const{}
+};
+</textarea>
+	</p>
+	Next, let me build a Collision System. Here's the header file:<br/>
+	<textarea class="code" spellcheck="false" rows=34>
+#pragma once
+#include <vector>
+#include "CollisionComponent.h"
+#include "PhysicsComponent.h"
+#include "Actor.h"
+#include "Debug.h"
+#include <Sphere.h>
+using namespace MATH;
+using namespace MATHEX;
+
+class CollisionSystem {
+private:
+    std::vector<Ref<Actor>> collidingActors;
+public:
+    /// This function will check the the actor being added is new and has the all proper components 
+	void AddActor(Ref<Actor> actor_) {
+		if(actor_->GetComponent<CollisionComponent>().get() == nullptr){
+			Debug::Error("The Actor must have a CollisionComponent - ignored ", __FILE__, __LINE__);
+			return;
+		}
+
+		if(actor_->GetComponent<PhysicsComponent>().get() == nullptr){
+			Debug::Error("The Actor must have a PhysicsComponent - ignored ", __FILE__, __LINE__);
+			return;
+		}
+		collidingActors.push_back(actor_);
+	}
+
+	bool CollisionDetection(const Sphere &s1, const Sphere &s2) const; 
+	bool CollisionDetection(const AABB &bb1, const AABB &bb2) const; 
+	bool CollisionDetection(const Sphere s1, const Plane p1) const;
+	void Update(const float deltaTime);
+	
+};
+</p>
+<p>
+	We will flesh these out in class. Be sure to show up. 
+</p>
+
 </li>
 <!--
 	
