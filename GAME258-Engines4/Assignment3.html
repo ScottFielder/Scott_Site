@@ -5,7 +5,7 @@
 <title>GAME 258</title>
 <link rel="stylesheet" type="text/css" href="../HumberStyle.css" media="all"/>
 <body>
-<div id="header"> <b>GAME 258 Graphics </b><br />Programmable Pipeline</div>
+<div id="header"> <b>GAME 258 Graphics </b><br />OpenGL</div>
 
 <ul class="nav">
 <li class="nav"><a class="nav" href="../index.html"> Home </a><br /></li>
@@ -18,63 +18,67 @@
 
 <div id="rightsidebar">
 <h3> Helpful tools</h3>
-<a href="http://apollo.humber.ca/~fielder/GAME258-Engines4/Texture.cpp">Texture.cpp</a><br/>
 </div>
 
 
 
 <p  class="mainbody"> 
-<H1> Assignment 3 (20/30)</h1>
+<H1> Assignment 3 </H1>
 
-<h3> <br/></h3>
-
-<p  class="mainbody"> 
-<b>Step 1:Create a new class called AssetManager. </b>
-    In class I will show you how add to new methods based on what we did in Actor.h.<br />
-
-    <textarea class="code" spellcheck="false" rows=6>
-template<typename ComponentTemplate, typename ... Args>
-void AddComponent(const char* name, Args&& ... args_) {
-	Ref<ComponentTemplate> t = std::make_shared<ComponentTemplate>(std::forward<Args>(args_)...);
-	componentCatalog[name] = t;
+<h3> Collision System (24/30)<br/></h3>
+     <br/>
+	In the past few classes I vae attemped to demonstrate what the System part of ECS looks like. 
+	There are many Systems we could build but for this project let's just do a simple Collision System.<br/>
+	<p>
+		Build two new classes CollisionComponent and CollisionSystem.  The CollisionComponent contains
+		data regarding the type of collision object is being used (sphere, AABB, plane, ...). The ComponentSystem 
+		will be tasked with job of doing the math behind collisions. 
+    <br/><br/>
+	Extra: Create the code to autonatically build an AABB around an Object. 
+    
+    <p  class="mainbody"> 
+<b>Step 1: Create the shaders. </b>
+        The vertex shader is very simple. <br/>
+        <textarea class="code" spellcheck="false" rows=4>
+void main() {
+    gl_Position = projection * view * modelMatrix * vVertex;
 }
+        </textarea>  <br/>
+        The fragment shader you need to write.  Pass into the fragment shader an unsigned int containing the
+        ID number for each piece. Convert that uint in to RGB-like values. Here's a hint:<br/>
+        <textarea class="code" spellcheck="false" rows=5>
+float redColor = float(0x000000FF & colorID) / 255.0;
+float greenColor = float( (0x0000FF00 & colorID)>>8 ) / 255.0;
+float blueColor = float( (0x00FF0000 & colorID)>>16 ) / 255.0;
+float alphaColor = 0.0;
         </textarea><br/>
-<textarea class="code" spellcheck="false" rows=10>
-    template<typename ComponentTemplate>
-Ref<ComponentTemplate> GetComponent(const char* name) const {
-	auto id = componentCatalog.find(name);
-	if (id == componentCatalog.end()) {
-		Debug::Error("Can't fint requested component", __FILE__, __LINE__);
-		return Ref<ComponentTemplate>(nullptr);
-	}
-	return std::dynamic_pointer_cast<ComponentTemplate>(id->second);
-}
-</textarea>
 <br/><br/>
+        <b>Step 2: Make a method to do the pick. </b><br/>
+         <textarea class="code" spellcheck="false" rows=20>
+ int Scene1::Pick(int x, int y) {
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); /// Paint the backgound white which is 0x00FFFFFF
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
+	Ref<ShaderComponent> shader = assetManager->GetComponent<ShaderComponent>("ColorPickingShader");
+	glUseProgram(shader->GetProgram());
+	for (GLuint i = 0; i < actors.size(); i++) {
+		glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, actors[i]->GetModelMatrix());
+		glUniform1ui(shader->GetUniformID("colorID"), i);
+		actors[i]->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+	}
+	glUseProgram(0);
+	GLuint colorIndex;
+	glReadPixels(x, viewport.height-y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &colorIndex);
+	colorIndex &= 0x00FFFFFF; /// This zeros out the alpha component
 
-<b>Step 2:</b> Add an unordered_map to the class.<br/>
-<textarea class="code" spellcheck="false" rows=4>
-class AssetManager {
-private:
-	std::unordered_map<const char* , Ref<Component> > componentCatalog;
-</textarea>
-	<br/><br/>
+	if (colorIndex == 0x00FFFFFF) return -1; /// Picked nothing
+	else return colorIndex;
+}
+	</textarea><br/>
+	<b>Step 3: Call Pick() from HandleEvents. </b><br/>
 
-<b>Step 3:</b> In the constructor of the AssetManager add all the components yopuu are going to need
-	for your scene. <br/><br/>
-
-<b>Step 4:</b> Create a object of type AssetManager in your new Scene and use it to create
-	all the Actors you need.<br/><br/>
  
-
-<H3>For added marks try the following: (Up to 10% each)<br/></H3>
- 
-<li>Extra: Create a chess set instead of the checkers (They must be placed properly)<br/></li>
-<li>Extra: Place all the actors in a container like a std::vector. The simplify the render() 
-	to loop over all the Actor. <br/></li>
-
 </p>
-
 
 
 </body>
