@@ -1,0 +1,40 @@
+    <p  class="mainbody"> 
+<b>Step 1: Create the shaders. </b>
+        The vertex shader is very simple. <br/>
+        <textarea class="code" spellcheck="false" rows=4>
+void main() {
+    gl_Position = projection * view * modelMatrix * vVertex;
+}
+        </textarea>  <br/>
+        The fragment shader you need to write.  Pass into the fragment shader an unsigned int containing the
+        ID number for each piece. Convert that uint in to RGB-like values. Here's a hint:<br/>
+        <textarea class="code" spellcheck="false" rows=5>
+float redColor = float(0x000000FF & colorID) / 255.0;
+float greenColor = float( (0x0000FF00 & colorID)>>8 ) / 255.0;
+float blueColor = float( (0x00FF0000 & colorID)>>16 ) / 255.0;
+float alphaColor = 0.0;
+        </textarea><br/>
+<br/><br/>
+        <b>Step 2: Make a method to do the pick. </b><br/>
+         <textarea class="code" spellcheck="false" rows=20>
+ int Scene1::Pick(int x, int y) {
+	glClearColor(1.0f, 1.0f, 1.0f, 0.0f); /// Paint the backgound white which is 0x00FFFFFF
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glBindBuffer(GL_UNIFORM_BUFFER, camera->GetMatriciesID());
+	Ref<ShaderComponent> shader = assetManager->GetComponent<ShaderComponent>("ColorPickingShader");
+	glUseProgram(shader->GetProgram());
+	for (GLuint i = 0; i < actors.size(); i++) {
+		glUniformMatrix4fv(shader->GetUniformID("modelMatrix"), 1, GL_FALSE, actors[i]->GetModelMatrix());
+		glUniform1ui(shader->GetUniformID("colorID"), i);
+		actors[i]->GetComponent<MeshComponent>()->Render(GL_TRIANGLES);
+	}
+	glUseProgram(0);
+	GLuint colorIndex;
+	glReadPixels(x, viewport.height-y, 1, 1, GL_RGBA, GL_UNSIGNED_BYTE, &colorIndex);
+	colorIndex &= 0x00FFFFFF; /// This zeros out the alpha component
+
+	if (colorIndex == 0x00FFFFFF) return -1; /// Picked nothing
+	else return colorIndex;
+}
+	</textarea><br/>
+	<b>Step 3: Call Pick() from HandleEvents. </b><br/>
