@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\GameDev.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GameDev.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\MySchedule\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MySchedule\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,14 +31,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "GameDev.html",
-              "DocumentMoniker": "C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\GameDev.html",
-              "RelativeDocumentMoniker": "GameDev.html",
-              "ToolTip": "C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\GameDev.html",
-              "RelativeToolTip": "GameDev.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAGAAAAAAAAAA==",
+              "Title": "index.html",
+              "DocumentMoniker": "C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\MySchedule\\index.html",
+              "RelativeDocumentMoniker": "MySchedule\\index.html",
+              "ToolTip": "C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\MySchedule\\index.html",
+              "RelativeToolTip": "MySchedule\\index.html",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-08-06T15:43:30.827Z",
+              "WhenOpened": "2025-09-03T15:50:28.265Z",
               "EditorCaption": ""
             }
           ]
