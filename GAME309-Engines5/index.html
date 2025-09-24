@@ -96,6 +96,32 @@
                 (a synchronization object) should be considered to prevent race conditions.
                 Here are some ideas for tasks that the secondary threads could perform:
             </p>
+            <li>
+     <p>
+        Topic 4 (max 10%): Profiling <br />
+
+         Profiling tools are already installed since VS2022. Let me show you a little on geting started analyzing your C# or C++ code. 
+         Yup, I said C#.<br />
+         There's technical publications from Microsoft out there on how to use their profiling (diagnostics report) tools but I find 
+         them unclear. There are a set of (really bad) videos from Microsoft on YouTube, in my opinion, they talk a lot and say very 
+         little. Just skip to this link
+         <a href="https://www.youtube.com/watch?v=X1-uHpEqNGM&list=PLReL099Y5nRf2cOurn1hI-gSRxsdbC27C&index=4">Profiling CPU usage</a> <br />
+         Use these tools look at what your capstone is doing over time.<br />
+
+         Problem is you all code too clean and our projects are too small for this type of profiling to be of any use. I just want you to know it 
+         exists. <br/>
+
+         Another way to do timing is to do it yourself. In class, I talked about std::chrono, we saw it first in the Threads topic.<br/>
+         Using this tool, you can create your own timing calls to evaluate the performance of your code. <br/>
+         There is a guy on youTube has a game engine series (TheCherno), and I really like his work. Secretly, I think he steals my good ideas. Ha! <br />
+         Cherno does a really good job of creating some timer wrappers in this video <a href="https://www.youtube.com/watch?v=YbYV8rRo9_A">Intro to Profiling.</a><br/>
+
+         
+         This is my version of the timing/profiling code - much better I think, of course.<br/>
+        <a href="../CodeDepot/Timing_Demo.zip">Scott's Timing class demo.</a><br/>
+         <br />
+    </p>
+ </li>
             <p>
             <ul>
                 <li>Loading assets for a graphical game</li>
@@ -123,32 +149,7 @@
             
         
          
-        <li>
-             <p>
-                Topic 4 (max 10%): Profiling <br />
-
-                 Profiling tools are already installed since VS2022. Let me show you a little on geting started analyzing your C# or C++ code. 
-                 Yup, I said C#.<br />
-                 There's technical publications from Microsoft out there on how to use their profiling (diagnostics report) tools but I find 
-                 them unclear. There are a set of (really bad) videos from Microsoft on YouTube, in my opinion, they talk a lot and say very 
-                 little. Just skip to this link
-                 <a href="https://www.youtube.com/watch?v=X1-uHpEqNGM&list=PLReL099Y5nRf2cOurn1hI-gSRxsdbC27C&index=4">Profiling CPU usage</a> <br />
-                 Use these tools look at what your capstone is doing over time.<br />
-
-                 Problem is you all code too clean and our projects are too small for this type of profiling to be of any use. I just want you to know it 
-                 exists. <br/>
-
-                 Another way to do timing is to do it yourself. In class, I talked about std::chrono, we saw it first in the Threads topic.<br/>
-                 Using this tool, you can create your own timing calls to evaluate the performance of your code. <br/>
-                 There is a guy on youTube has a game engine series (TheCherno), and I really like his work. Secretly, I think he steals my good ideas. Ha! <br />
-                 Cherno does a really good job of creating some timer wrappers in this video <a href="https://www.youtube.com/watch?v=YbYV8rRo9_A">Intro to Profiling.</a><br/>
-
-                 
-                 This is my version of the timing/profiling code - much better I think, of course.<br/>
-                <a href="../CodeDepot/Timing_Demo.zip">Scott's Timing class demo.</a><br/>
-                 <br />
-            </p>
-         </li>
+        
         <!--
         <li>
             <p>
