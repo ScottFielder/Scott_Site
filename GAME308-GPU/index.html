@@ -75,189 +75,43 @@
     1. Build an actor class that contains model matrix, position, vel -  the usual stuff.  <br/>
     2. Add a descriptor set inside each actor. <br/>
     3. Add many characters to the scene.<br/>
-        Extra: Bind two descriptor set at one time - it's tricky. 
+        Extra: Bind two descriptor set at one time - it's tricky but fun. 
     </p>
 
     <p>
     <H2>Assignment 3:(24/30)</H2><br/>
-    Let's create some shadows. Introducing a shadow map. <br/>
-    There are many video's and websites about shadow maps. In class I will go over the basics.
+    Let's create some shadows. Introducing a shadow map.  OR <br/>
+    Build a color picker as I discussed in Game258. 
+    There are many video's and websites about shadow maps and color pickers. In class I will go over the basics.
     This will take some time but the results are worth it.<br/> 
     <a href="https://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/">OpenGL Shadow mapping</a><br />    
-     Extra: remove the peter panning and shadow acne
+     Extra: Remove the peter panning and shadow acne for shadows<br/>
+     Extra: Create a depth buffer for picking to include occlusion. 
+    </p>
+    <p>
+        I guessed by the response I got from many of you on Tues is that you may not be ready for me to cut to loose on Vulkan code.
+        So maybe I'll just write out the rough TODO list.  <br/><br/>
+        1. Create the glsl and SPIRV files for the new pipelines - I think we have covered that. <br/>.
+        2. VkPushConstantRange range = {};<b/>
+        range.stageFlags = VK_SHADER_STAGE_FRAGMENT_BIT | VK_SHADER_STAGE_VERTEX_BIT; /// Send the push to both stages<br/>
+
+        3. Create an offscreen image:<br/>
+        &nbsp; a. Fill out a VkImageCreateInfo form, be sure to set the uasge field to be VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT | VK_IMAGE_USAGE_TRANSFER_SRC_BIT<br\>
+        &nbsp; b. Fill out a VkImageViewCreateInfo form <br/>
+        &nbsp; c. Call vkCreateRenderPass <br/> 
+        &nbsp; d. Fill out a VkFramebufferCreateInfo form <br/>
+        &nbsp; e. Call vkCreateFramebuffer<br/>
+
+        4. In RecordCommandBuffers, the VkRenderPassBeginInfo form points to the new render pass and the frame buffer<br/>
+        5. See you on tuesday for how to get the color that was picked back to the CPU<Br/>
+
+
+
+    </p>
+
  <!--
 
-     Create a two light system. This will require you to modify the shaders and recompile the shaders. You will also need to modify
-     the UBO to create a cameraUBO and a lighsUBO on both the CPU and GPU to carry the lighing data.<br />
-     In order to do this task, you'll need change some of my code to something way better. <br/>
-     Let's start this off by messing with CreateUniformBuffers(). Check out the following code bits<br/>
-    Part 1:<br/>       
-    <textarea class="code" spellcheck="false" rows=6>
-       struct BufferMemory {
-          VkBuffer bufferID;
-          VkDeviceMemory bufferMemoryID;
-          VkDeviceSize bufferMemoryLength;
-        };  
-     </textarea><br/><br/>
-
-      <textarea class="code" spellcheck="false" rows=4>
-           template<class T> 
-           std::vector<BufferMemory>  VulkanRenderer::CreateUniformBuffers() {
-     </textarea><br/>
-           In class I showed you how how to build the CreateUniformBuffers as a templated function. I'm sure you can do it.  <br/>
-           Another function we should template is UpdateUniformBuffer(...)<br/>
-      <textarea class="code" spellcheck="false" rows=8>
-template <class T>
-        void VulkanRenderer::UpdateUniformBuffer(const T srcData, const BufferMemory &bufferMemory) {
-            void* data;
-            vkMapMemory(device, bufferMemory.bufferMemoryID, 0, sizeof(T), 0, &data);
-            memcpy(data, &srcData, bufferMemory.bufferMemoryLength);
-            vkUnmapMemory(device, bufferMemory.bufferMemoryID);
-        }
-      </textarea><br/><br/>
-
-     Part 2: <br/>
-     <p>
-       Now that you have data in a UBO(s), the trick is to get it into the pipeline. This requires dealing with descriptors. 
-         I have dicussed them in class but now you'll have to really deal with them. Give it some thought, it might become obvious. <br/>
-         I have rearranged OnCreate() in the VulkanRenderer.cpp file.       
-     </p>
-    <textarea class="code" spellcheck="false" rows=24>
-         pickPhysicalDevice();
-         createLogicalDevice();  
-         createSwapChain(); 
-         createImageViews();
-         createRenderPass();
-         createDepthResources();
-         createFramebuffers();
- 
-         createCommandPool();
-         CreateDescriptorSetLayout(); /// Modify Me
-         CreateDescriptorPool();     /// Modify me
-
-         Create2DTextureImage("./textures/mario_fire.png");
-         LoadModelIndexed("./meshes/Mario.obj");
-         CreateGraphicsPipeline("./shaders/simplePhong.vert.spv", "./shaders/simplePhong.frag.spv");
-         cameraUboBuffers = CreateUniformBuffers<CameraUBO>();
-         lightsUboBuffers = CreateUniformBuffers<LightsUBO>();
-
-         CreateDescriptorSets(); /// Modify me
- 
-         CreateCommandBuffers();
-         createSyncObjects();
-
-         </textarea><br/><br/>
-
-          Part 3: <br/>
-     <p>
-         All that is left is to update the shaders to handle multiple lights and place any lighting data in
-         Lighting UBO. I told it was easy.
- </p>
-     Extra: Create ambient, difffuse[], and spectular[] colours for the new light system.<br />
-     Extra: Create more that two lights.<br />
- </p>
-
-   <H2>Assignment 2:(16/20)<br /> </H2>
-<p>
-    In this project I want you to use a push constant to shoot over Mario's model matrix to the pipeline (shader).<br />
-    Push are a slightly different way of passing data the shader. In fact, it is even faster than using uniform buffers. But, they do have a drawback, they are restricted
-    to a maximum of 128 bytes of memory. Can you do a projection, view, and model maxtrix in 128 bytes? Quick answer, no. So the camera will remain a UBO.<br />
-    Here's a link to a good description of the push constant in case I don't make any sense.<br/>
-    <a class="nav" href="https://vkguide.dev/docs/chapter-3/push_constants/">Push Constants</a><br />
-</p>
-     <br />
-<p>
-    Extra: It is stupid to calculate the normal matrix on the fly in the vertex shader with the transpose(inverse(of the modelmatrix). What? Calculate the normal matrix
-    for every vertex in the model that's madness. Calculate the normal matrix (as a 4x4) on the CPU side and pass it in via the push constant, along with the normal matrix.<br /><br />
-
-    Extra: If you know too much, the normal matrix is just a rotation therefore really just a 3x3 matrix. However, alighnment rules need to be enforced.
-    See std430 and std120 for details. It's just for you to show off. <br /><br />
-</p>
-   
-      <H2>Assignment 3:(16/20)<br /> </H2>
-<p>
-    Create a two different objects on the screen in the GPU and draw them.
-    This means storing the data in separate vertex and index buffers. Look how we did the first one.<br />
-    Do you need to create multiple pipelines? No. Don't forget the descriptor sets, new ones? Let's chat.  <br />
-    You'll need to update the push constant for each model since that is it's model matrix. That just means you'll
-    need to write those changes into the command buffer. That will be interesting what you come up with.  <br /><br/>
-
-    Now to make this look good would need to make multiple textures as well. Given all I've shown you over that past several
-    weeks, you should be able to modify Create2DTextureImage() to handle multiple textures. Look at texture2D.sampler in Vulkan.h(.cpp).<br/>
-    Don't forget the descriptor sets, new ones? Let's chat. One of our garduates, Kyle, has posted a how-to at: <br/>
-    <a class="nav" href="https://kylehalladay.com/blog/tutorial/vulkan/2018/01/28/Textue-Arrays-Vulkan.html">Multiple Textures</a><br/>
-    </p>
-    <p>Kyle wanted to pass the image index though the push constant. Ok, that's cool but our push constant is full so I showed you 
-        how a could make some room in that structure. <br/>
-        <textarea class="code" spellcheck="false" rows=17>
-// A 3x3 cannot be sent to the GPU data due to alignment issues. 
-/// If I try to send a 3x3 yo GPU it will be bumped up to a 4x4. 
-/// I can fake it by storing the 3x3 in an array of 3 Vec4s as 
-/// I have mapped below. Vulkan and OpenGl are column centric - right hand rule.
-/// The real reason to do this is to make room in the push constant for other data.
-///	Vec4    0(x)	3(y)	6(z)    0(w)			
-///	Vec4    1(x)	4(y)	7(z)    0(w)		
-///	Vec4    2(x)	5(y)	9(z)    0(w)		
-struct ModelMatrixPushConst {
-    Matrix4 modelMatrix;
-    Vec4 normalMatrix[3];
-    uint32_t textureIndex;
-    /// 116 bytes, I'm within the 128 byte limit and everything
-	/// lines up on a 4 byte boundry. 
-};
- </textarea><br/><br/>
-
-    The next trick is to populate the normalMatrix vectors. Again, I did this in class.<br/<br/>
-    <textarea class="code" spellcheck="false" rows=14>    
- /// See the header file for an explination of how I layed this out in memory
- modelMatrixPushConst.normalMatrix[0].x = normalMatrix[0];
- modelMatrixPushConst.normalMatrix[1].x = normalMatrix[1];
- modelMatrixPushConst.normalMatrix[2].x = normalMatrix[2];
-
- modelMatrixPushConst.normalMatrix[0].y = normalMatrix[3];
- modelMatrixPushConst.normalMatrix[1].y = normalMatrix[4];
- modelMatrixPushConst.normalMatrix[2].y = normalMatrix[5];
-
- modelMatrixPushConst.normalMatrix[0].z = normalMatrix[6];
- modelMatrixPushConst.normalMatrix[1].z = normalMatrix[7];
- modelMatrixPushConst.normalMatrix[2].z = normalMatrix[8];
-</textarea>
-</p>
-   Extra: Go ahead and draw multiple (more than two) objects with individual textures. Come on we are writing game code<br /><br />
-  
-  <H2>Assignment 4 and 5 (combined):(32/40)<br /> </H2>   
-  <p> 
-In this project I hope to show you how to work the tesillation shaders, the tessillation controler and the tessillation evaluator.<br/>
-From the "Helpful tools panel, download and replace Shaders.h and Shaders.cpp files in your project with these new ones. <br/>
-Draw a plane on the screen. Then tessallate it (just draw it in wire mode). Use the Camera to get a better view. Then add the Phong
-      code to the eval and frag shaders. Be sure to use all three textures to make the scene look good.<br/> 
-      Extra: Can you control the level of tessallation from the keyboard?
-      Extra: Can you get LOD working?
-</p>
- 
- <H2>Assignment 4 (16/20)<br /> </H2>  
-   <p>  The task is to visualize the normals on the surface of a 3D object. They should look like little hairs extending off the surface.
-    I'll demo it in class. <br />
-    The geometry shader exists between the vertex shader and the fragment shader. In OpenGL class we never had time to investigate it. Now in Vulkan
-    let's give it a look. <br />
-    The website I showed you in OpenGL <a class="nav" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader"> learnopengl.com </a> is a fair starting point.
-    As I mentioned in class a year ago, the writing and explanations are great the coding examples suck. <br />
-    I'll help:<br />
-
-    Extra: Can you control the color of the normals from the CPU side? (Pass the color in). <br />
-    Extra: Can you control the length of the normals from the CPU side? <br />
-</p>
-
- <H2>Assignment 5 (16/20)<br /> </H2>  
-  <p>  Now the task is to visualize the mesh as lines on the surface of a 3D object of an already drawn object or  you could<br/>
-        make a object explode using the rigid body physics (Umer) and pass in time. <br />
     
-   
-    Ideas can be found on the website I showed you in OpenGL <a class="nav" href="https://learnopengl.com/Advanced-OpenGL/Geometry-Shader"> learnopengl.com </a> is a fair starting point.
-   
-    Extra: Can you offset the mesh line away from the surface? <br />
-    Extra: Can you use the keyboard to control these effects?<br />
-</p>
      -->
 <br/><br/>
     
