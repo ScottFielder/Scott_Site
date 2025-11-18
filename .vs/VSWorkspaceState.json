@@ -1,10 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\CodeDepot",
-    "\\GAME258-Engines4",
+    "\\CodeDepot\\ComponentFramework24.0.4 Vulkan",
+    "\\CodeDepot\\ComponentFramework25.0.0",
+    "\\CodeDepot\\ComponentFramework25.0.0\\ComponentFramework",
+    "\\GAME308-GPU",
     "\\GAME356-Networking"
   ],
-  "SelectedNode": "\\GAME258-Engines4",
+  "SelectedNode": "\\GAME308-GPU\\index.html",
   "PreviewInSolutionExplorer": false
 }
