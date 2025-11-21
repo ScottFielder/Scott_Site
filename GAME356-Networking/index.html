@@ -69,10 +69,116 @@
 
 <p>
 <H2>Assignment 4:(20/25)</H2><br/>
-	Build UDP project in Unity of Unreal to communicate with C++. No chat silliness, this time send 
+	<p>
+	Build UDP project in Unity or Unreal to communicate with C++. No chat silliness, this time send 
 	positional data including orientation. <br/>
+	</p>
+    <p> 
+     I wanted to demonstrate how to serialize data at the byte level. Here is the finalized code I was writing in class. <br/>
+     <a class="nav" href="../CodeDepot/UDPServer - wData.zip">UDPServer - wData.zip</a><br />
+     <a class="nav" href="../CodeDepot/UDPClient - wData.zip">UDPClient - wData.zip</a><br />
 
-	
+	<p>
+	In today's class I asked Cody to show you some code on how to make UDP work in Unity<br/>
+	<textarea class="code" cols=10 rows=100 spellcheck="false">
+
+using UnityEngine;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using System;
+using System.Text;
+
+public class UdpClientManager : MonoBehaviour
+{
+    // - Singleton, for referencing from other classes
+    public static UdpClientManager Instance;
+
+    private UdpClient m_Client;
+    private Thread receiverThread;
+    private const int serverPort = 0x1A2B;
+    private const string serverIp = "192.168.1.13";
+
+    float timer = 2f;
+
+    private void Awake()
+    {
+        // - Prevent Duplicates
+        if (Instance != null) Destroy(this.gameObject);
+
+        // - Initialize Singleton
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        InitializeUDP();
+    }
+
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+    }
+
+    private void InitializeUDP()
+    {
+        // - Create UDP Client in Unity
+        m_Client = new UdpClient();
+
+        // - Create background Thread for Networking Send/Receive
+        receiverThread = new Thread(new ThreadStart(PingServerThread));
+        receiverThread.IsBackground = true;
+        receiverThread.Start();
+    }
+
+    private void PingServerThread()
+    {
+         
+        while (true)
+        {
+            // - Wrapping the main code in a timer to prevent flooding of messages
+            if (timer <= 0)
+            {
+                // - Try to ping the server
+                try
+                {
+                    string message = "Pinging server from Unity";
+                 
+                    IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, serverPort);
+                    byte[] data = Encoding.UTF8.GetBytes(message);
+                    m_Client.Send(data, data.Length, serverIp, serverPort);
+
+                    timer = 2f;
+
+                    Debug.Log($"Message sent to server: {message}");
+                }
+
+                // - Catch any net exceptions
+                catch (SocketException e)
+                {
+                    Debug.Log($"Socket closed: {e.Message}");
+                }
+
+                // - Catch any other issues that might arise
+                catch (Exception e)
+                {
+                    Debug.Log($"Received Thread Error: {e}");
+                }
+            }
+        }
+    }
+
+    // - Because UDP Client is active when we press play, we want to close it when we stop playing
+    private void OnApplicationQuit()
+    {
+        if (receiverThread != null) receiverThread.Abort();
+        if (m_Client != null) m_Client.Close();
+    }
+}
+</textarea>
+</p>
+
+<p>
 	For the extra credit: Do it between two Unity projects or better between a Unity build and an Unreal build<br/> 
 </p>
 	<br /><br />
