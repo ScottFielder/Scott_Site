@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "G:\\git\\Website\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|G:\\git\\Website\\GAME157-Graphics\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:GAME157-Graphics\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -32,13 +32,13 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "index.html",
-              "DocumentMoniker": "G:\\git\\Website\\index.html",
-              "RelativeDocumentMoniker": "index.html",
-              "ToolTip": "G:\\git\\Website\\index.html",
-              "RelativeToolTip": "index.html",
-              "ViewState": "AgIAACoAAAAAAAAAAAAAADcAAAAnAAAAAAAAAA==",
+              "DocumentMoniker": "G:\\git\\Website\\GAME157-Graphics\\index.html",
+              "RelativeDocumentMoniker": "GAME157-Graphics\\index.html",
+              "ToolTip": "G:\\git\\Website\\GAME157-Graphics\\index.html",
+              "RelativeToolTip": "GAME157-Graphics\\index.html",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACEAAAByAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-01-13T05:18:54.808Z",
+              "WhenOpened": "2026-01-13T05:36:18.103Z",
               "EditorCaption": ""
             }
           ]
