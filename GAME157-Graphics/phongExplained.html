@@ -129,7 +129,7 @@ void main() {
 	vec4 ka = 0.1 * kd;
 	float diff = max(dot(vertNormal, lightDir), 0.0);
 
-	/// Reflection is based incedent which means a vector from the light source
+	/// Reflection is based incedent direction which means a vector from the light source
 	/// not the direction to the light source
 	vec3 reflection = normalize(reflect(-lightDir, vertNormal));
 	float spec = max(dot(eyeDir, reflection), 0.0);
@@ -143,7 +143,7 @@ void main() {
 
 		Since this is the fragment shader, the code is being run on a per-pixel level. So, given a pixel P<sub>1</sub>, on some triangle,
 		the normal to the surface at that point is N and the lightDir vector is drawn below. The drawings I'm providing are a "lying"
-		version of the story.  None of the vectors, except the vertex are "at the vertex position" they are really ate the origin
+		version of the story.  None of the vectors, except the vertex are "at the vertex position" they are really at the origin
 		but remember, they are directional vectors only, so my pictures, although technically wrong, is painting a
 		correct picture.    <br />
 		<img src="phong6.png" alt="Smiley face" /><br />
