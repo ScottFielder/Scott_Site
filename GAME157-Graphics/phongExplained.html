@@ -64,6 +64,11 @@ void main() {
     vec3 vertDir = normalize(vertPos);
     eyeDir = -vertDir;
     lightDir = normalize(vec3(lightPos) - vertPos); 
+	/// vVertex is in Model space 
+	/// modelMatrix * vVertex is in World space
+	/// viewMatrix * modelMatrix * vVertex is in Camera space 
+	/// projectionMatrix * viewMatrix * modelMatrix * vVertex is in NDC space 
+	/// I'll explain spaces in class. 
     gl_Position = projectionMatrix * viewMatrix * modelMatrix * vVertex;
     
 }
@@ -110,7 +115,8 @@ void main() {
 		Normalizing the lights position gives the lightDir from the point-of-view of the, matrix shifted, vertex.  The lightDir
 		will be passed to the fragment shader.<br /> <br />
 		<img src="phong5.png" alt="Smiley face" /><br />
-</p><br />
+</p>
+<br />
 
 	<h2>Now the fragment shader </h2><br />
 <textarea class="code" cols=127 rows=22 spellcheck="false">
