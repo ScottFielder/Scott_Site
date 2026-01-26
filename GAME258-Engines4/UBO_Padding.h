@@ -22,7 +22,7 @@ on std140. Notice that even a bool if 4 bytes long and both Vec3 and Vec4 are 16
 	const static size_t INT = BASE_ALIGNMENT;
 	const static size_t FLOAT = BASE_ALIGNMENT;
 	const static size_t BOOL = BASE_ALIGNMENT;
-	const static size_t DOUBLE = BASE_ALIGNMENT;
+	const static size_t DOUBLE = 2 * BASE_ALIGNMENT;
 	const static size_t VEC2 = 2 * BASE_ALIGNMENT;
 	const static size_t VEC3 = 4 * BASE_ALIGNMENT;
 	const static size_t VEC4 = 4 * BASE_ALIGNMENT;

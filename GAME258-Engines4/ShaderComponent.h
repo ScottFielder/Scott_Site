@@ -1,6 +1,6 @@
 #pragma once
-#include "Component.h"
 #include "glew.h"
+#include "Component.h"
 #include <unordered_map>
 #include <string>
 

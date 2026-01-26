@@ -1,36 +1,19 @@
 #pragma once
 #include "Actor.h"
-#include "Matrix.h"
+#include <MMath.h>
+#include <QMath.h>
 using namespace MATH;
-
-class CameraActor:public Actor {
-	/// Unless you know what these do don't allow them
-	/// to be created implicitly 
-	CameraActor(const CameraActor&) = delete;
-	CameraActor(CameraActor&&) = delete;
-	CameraActor& operator=(const CameraActor&) = delete;
-	CameraActor& operator=(CameraActor&&) = delete;
-
+class CameraActor : public Actor  {
 private:
 	Matrix4 projectionMatrix;
 	Matrix4 viewMatrix;
-	/// This is experimental for an Umer project: ray casting and ray tracing 
-	Matrix4 rayCastMatrix;
-
-	unsigned int uboMatriciesID;
-	const GLuint bindingPoint; /// This must be unique to the camera = 0, lights = 1
+	Quaternion orientation;
+	Matrix4 translate;
 public:
-	CameraActor(Component* parent_);
-	virtual ~CameraActor();
-
-	bool OnCreate() override;
-	void OnDestroy() override;
-	Matrix4 GetProjectionMatrix() const { return projectionMatrix; }
-	Matrix4 GetViewMatrix() const { return viewMatrix; }
-
-	void UpdateProjectionMatrix(const float fovy, const float aspectRatio, const float near, const float far);
-	void UpdateViewMatrix();
-	void UpdateRayCastMatrix();
-	GLuint GetMatriciesID() const { return uboMatriciesID; }
+	CameraActor(Actor *parent_, float fovy, float aspectRatio, float near, float far);
+	~CameraActor();
+	bool OnCreate();
+	Matrix4 GetProjectionMatrix() { return projectionMatrix;}
+	Matrix4 GetViewMatrix() { return viewMatrix;}
 };
 

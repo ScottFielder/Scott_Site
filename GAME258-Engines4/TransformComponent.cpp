@@ -28,7 +28,7 @@ void TransformComponent::Update(const float deltaTime) {
 	std::cout << "Hello from Update " << deltaTime << '\n';
 }
 
-void TransformComponent::Render()const {}
+void TransformComponent::Render() const {}
 
 Matrix4 TransformComponent::GetTransformMatrix() const {
 	return MMath::translate(pos) * MMath::scale(scale) * MMath::toMatrix4(orientation);
