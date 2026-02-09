@@ -72,6 +72,37 @@
 		Get Mario on the screen! <br />
 		</li>
 		</p>
+
+		<p>
+	    <li><b>Topic 5:</b> Parenting objects </li>
+Once you have one on the screen, I need you to make the following modification to the Actor class:
+
+
+<textarea class="code" cols=127 rows=13 spellcheck="false">
+Matrix4 Actor::GetModelMatrix() {
+	TransformComponent* transform = GetComponent<TransformComponent>();
+	if (transform) {
+		modelMatrix = transform->GetTransformMatrix();
+	} else {
+		modelMatrix.loadIdentity();
+	}
+	if (parent) { /// <== LOOK AT IT! Think!
+		modelMatrix = dynamic_cast<Actor*>(parent)->GetModelMatrix() * modelMatrix;
+	}
+	return modelMatrix;
+}
+</Actor*></TransformComponent></textarea>
+<br />
+
+</p>
+<p>
+		<li>
+	<b> Assignment 1: Feb 13</b>
+	<p>
+		<a href="Assignment1.html">Making a Checkerboard several actors parented to the board </a>
+		</p></p>
+</li>
+</li>
 	</ul>
 
 </body>
