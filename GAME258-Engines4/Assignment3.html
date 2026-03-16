@@ -38,7 +38,7 @@
 		Let's just do a simple collision. 
 		Just in case your forgot how to do the collision response let's just bounce off each other. 
 
-		<textarea class="code" spellcheck="false" rows=35>
+		<textarea class="code" spellcheck="false" rows=20>
 void CollisionSystem::SphereSphereCollisionResponse(Sphere s1, Ref<PhysicsComponent> pc1, Sphere s2, Ref<PhysicsComponent> pc2) {
     float e = 1.0f; /// coefficient of restitution
     Vec3 L = s1.center - s2.center;
