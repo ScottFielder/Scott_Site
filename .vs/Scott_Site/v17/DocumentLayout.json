@@ -14,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,6 +29,10 @@
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "index.html",
@@ -36,7 +40,7 @@
               "RelativeDocumentMoniker": "GAME157-Graphics\\index.html",
               "ToolTip": "C:\\Users\\Scott\\Desktop\\GitHub\\Scott_Site\\GAME157-Graphics\\index.html",
               "RelativeToolTip": "GAME157-Graphics\\index.html",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADoAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAG8AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-02-17T19:02:53.238Z",
               "EditorCaption": ""
