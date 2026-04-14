@@ -33,9 +33,9 @@ In this last project bring together add phong lighting to the eval and frag shad
 	
 	Extra: In class I told you the 
 	equation for making "fog" to complete this underwater scene. Here is the code: <br/><br/>
-	<textarea class="code" cols=127 rows=4 spellcheck="false">
+	<textarea class="code" cols=80 rows=4 spellcheck="false">
 	/// GLSL Example
-	float fogAmount = 1.0 - exp(-distance * density); // More distance = higher fogAmount
+	float fogAmount = 1.0 - exp(-distance * density);
 	vec3 finalColor = mix(originalColor, fogColor, fogAmount);
 	</textarea><Br/>
 	Check out this link:<br/>
