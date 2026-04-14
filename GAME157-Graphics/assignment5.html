@@ -29,9 +29,18 @@
 
 
 <p  class="mainbody"> 
-In this last project bring together add phong lighting to the eval and frag shaders. In class I showed the 
-	equation for making "fog" to complete this underwater scene. 
-
+In this last project bring together add phong lighting to the eval and frag shaders. 
+	
+	Extra: In class I told you the 
+	equation for making "fog" to complete this underwater scene. Here is the code: <br/><br/>
+	<textarea class="code" cols=127 rows=4 spellcheck="false">
+	/// GLSL Example
+	float fogAmount = 1.0 - exp(-distance * density); // More distance = higher fogAmount
+	vec3 finalColor = mix(originalColor, fogColor, fogAmount);
+	</textarea><Br/>
+	Check out this link:<br/>
+	    <a class="nav" href="https://learn.microsoft.com/en-us/windows/win32/direct3d9/dx9-graphics">Microsoft's Fog (I know...) </a><br />
+</p>
 	Extra: Add Umer's jellyfish to the scene or the submarine. 
 
 
