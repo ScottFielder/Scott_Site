@@ -22,12 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -44,7 +40,7 @@
               "RelativeDocumentMoniker": "GAME157-Graphics\\assignment2.html",
               "ToolTip": "G:\\git\\WebSite\\GAME157-Graphics\\assignment2.html",
               "RelativeToolTip": "GAME157-Graphics\\assignment2.html",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABoAAABcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAABcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2026-05-25T22:57:12.76Z",
               "EditorCaption": ""
@@ -59,8 +55,7 @@
               "RelativeToolTip": "GAME157-Graphics\\index.html",
               "ViewState": "AgIAAGAAAAAAAAAAAAAAAHMAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-05-19T00:30:04.058Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-19T00:30:04.058Z"
             },
             {
               "$type": "Document",

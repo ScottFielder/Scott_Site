@@ -17,21 +17,21 @@ Trackball::~Trackball() {}
 void Trackball::setWindowDimensions() {
 	int viewport[4];
 	glGetIntegerv(GL_VIEWPORT, viewport);
-	invNDC = MMath::inverse(MMath::viewportNDC(viewport[2], viewport[3]));
+	invNDC = MMath::inverse(MMath::NDCtoViewport(viewport[2], viewport[3]));
 }
 
 void Trackball::HandleEvents(const SDL_Event& sdlEvent) {
-	if (sdlEvent.type == SDL_EventType::SDL_MOUSEBUTTONDOWN) {
+	if (sdlEvent.type == SDL_EventType::SDL_EVENT_MOUSE_BUTTON_DOWN) {
 		onLeftMouseDown(sdlEvent.button.x, sdlEvent.button.y);
 	}
-	else if (sdlEvent.type == SDL_EventType::SDL_MOUSEBUTTONUP) {
+	else if (sdlEvent.type == SDL_EventType::SDL_EVENT_MOUSE_BUTTON_UP) {
 		onLeftMouseUp(sdlEvent.button.x, sdlEvent.button.y);
 	}
-	else if (sdlEvent.type == SDL_EventType::SDL_MOUSEMOTION &&
-		SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+	else if (sdlEvent.type == SDL_EventType::SDL_EVENT_MOUSE_MOTION &&
+		SDL_GetMouseState(nullptr, nullptr) & SDL_BUTTON_MASK(SDL_BUTTON_LEFT)) {
 		onMouseMove(sdlEvent.button.x, sdlEvent.button.y);
 	}
-	else if (sdlEvent.window.event == SDL_WINDOWEVENT_SIZE_CHANGED) {
+	else if (sdlEvent.type == SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED) {
 		setWindowDimensions();
 	}
 }
@@ -54,7 +54,7 @@ void Trackball::onMouseMove(int x, int y) {
 	if ( cosAngle <= VERY_SMALL){
 		printf("%f\n",cosAngle);
 	}
-	float angle = acos(cosAngle) * 180.0f / M_PI; /// acos() returns radians must convert to degrees
+	float angle = acos(cosAngle) * 180.0f / 3.141592654f; /// acos() returns radians must convert to degrees
 	Vec3 rotAxis = VMath::cross(beginV, endV);
 	Quaternion delta = QMath::angleAxisRotation(angle, rotAxis); // UN - Songho used the name "delta" quaternion. I like that as it's the change in rotation
 	mouseRotationQuat = prevQuat * delta; // UN - Spent a day realizing that order of multiplication is important here
