@@ -13,7 +13,7 @@
 <li class="nav"><a class="nav" href="../ETC/index.html"> /etc </a><br/></li>
 </ul>
 <H2>&nbsp;</H2>
-<H1> Assignment 5 - end of classes</h1>
+<H1> Assignment 5</h1>
 
 
 <div id="rightsidebar">
@@ -29,7 +29,120 @@
 
 
 <p  class="mainbody"> 
-In this last project let's make an underwater scene bringing together diffuse,
+In this project I hope to show you how to work the tesillation shaders, the tessillation controler and the tessillation evaluator.<br/>
+From the "Helpful tools panel, download and replace Shaders.h and Shaders.cpp files in your project with these new ones. <br/>
+Draw a plane on the screen. Then tessallate it (just draw it in wire mode). Use the Camera to get a better view.  <br/>
+We are making a terrain surface.<br/>
+</p>
+
+<p>
+Ok, I felt a little bad about just making you look at my tessilation shader code and you all panicing to try to copy it.
+My intent was to show what was going in these two new added stages, not just to ask you to be Xerox machines. 
+In truth, the process of tessillation is rather rigid, there is very little modifications you can make. In that light, 
+let me go back over the four new shaders. 
+</p>
+
+Tessillation Vert:<br/>
+<textarea class="code" cols=127 rows=19 spellcheck="false">
+layout(location = 0) in vec4 vVertex;
+layout(location = 1) in vec3 vNormal;
+layout(location = 2) in vec2 uvCoord;
+
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+
+out vec2 uvCoordFromVert;
+out vec3 normalFromVert;
+void main() {
+    uvCoordFromVert = uvCoord;
+    normalFromVert = vNormal;
+    gl_Position =  vVertex;
+}
+</textarea><br/><br/>
+Tessillation control:<br/>
+<textarea class="code" cols=127 rows=29 spellcheck="false">
+layout(vertices = 3) out;
+
+///uniform float tessLevelInner;
+///uniform float tessLevelOuter;
+
+in vec2 uvCoordFromVert[];
+in vec3 normalFromVert[];
+
+out vec2 uvCoordFromCtrl[];
+out vec3 normalFromCtrl[];
+void main() {
+    /// Pass through input vertices to tessellation evaluation stage
+    gl_out[gl_InvocationID].gl_Position =  gl_in[gl_InvocationID].gl_Position;
+    uvCoordFromCtrl[gl_InvocationID] = uvCoordFromVert[gl_InvocationID];
+    normalFromCtrl[gl_InvocationID] = normalFromVert[gl_InvocationID];
+
+   float tesslevel = 1.0;
+    /// Set tessellation levels
+    if (gl_InvocationID == 0) {
+        gl_TessLevelInner[0] = tesslevel;
+
+        gl_TessLevelOuter[0] = tesslevel;
+        gl_TessLevelOuter[1] = tesslevel;
+        gl_TessLevelOuter[2] = tesslevel;
+
+    }
+}
+
+</textarea><br/><br/>
+Tessillation evaluator:<br/>
+<textarea class="code" cols=127 rows=38 spellcheck="false">
+layout (triangles, equal_spacing, ccw) in;
+
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+uniform mat4 modelMatrix;
+uniform sampler2D textureData;
+
+in vec2 uvCoordFromCtrl[];
+in vec3 normalFromCtrl[];
+
+out vec2 uvCoordFromEval;
+out vec3 normalFromEval;
+
+vec2 interpolateVec2(vec2 v0, vec2 v1, vec2 v2) {
+    return gl_TessCoord.x * v0 + gl_TessCoord.y * v1 + gl_TessCoord.z * v2;
+}
+
+vec3 interpolateVec3(vec3 v0, vec3 v1, vec3 v2) {
+    return  gl_TessCoord.x * v0 + gl_TessCoord.y * v1 + gl_TessCoord.z * v2;
+}
+
+vec4 interpolateVec4(vec4 v0, vec4 v1, vec4 v2) {
+    return  gl_TessCoord.x * v0 + gl_TessCoord.y * v1 + gl_TessCoord.z * v2;
+}
+
+void main() {
+   
+    uvCoordFromEval = interpolateVec2(uvCoordFromCtrl[0], uvCoordFromCtrl[1], uvCoordFromCtrl[2]);
+    normalFromEval =  interpolateVec3(normalFromCtrl[0], normalFromCtrl[1], normalFromCtrl[2]);
+    /// Interpolate position across the triangle
+    vec4 position = interpolateVec4(gl_in[0].gl_Position, gl_in[1].gl_Position, gl_in[2].gl_Position);
+
+    ///vec4 height = vec4(texture(textureData,uvCoordFromEval));
+    ///position.z =  height.r;
+    gl_Position =  projectionMatrix * viewMatrix * modelMatrix * position ;
+}
+</textarea><br/><br/>
+
+Tessillation frag:<br/>
+<textarea class="code" cols=127 rows=9 spellcheck="false">
+in vec2 uvCoordFromEval;
+in vec3 normalFromEval;
+out vec4 fragColor;
+uniform sampler2D textureData;
+void main() {
+    ///fragColor = texture(textureData,uvCoordFromEval);
+    fragColor = vec4(1.0,1.0,1.0,1.0);
+}
+</textarea><br/><br/>
+ Let's make an underwater scene bringing together diffuse,
 	normal and height textures add phong lighting to the eval and frag shaders and magic. <br/>
 	
 	Extra: In class I told you about the equation for making "fog" to complete 
@@ -47,12 +160,7 @@ In this last project let's make an underwater scene bringing together diffuse,
 
 </p>
 
- Have a good summer<br/>
-
-
-
-
-
+ Have a good rest of your summer<br/>
 
 </body>
 </HTML>
