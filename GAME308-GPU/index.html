@@ -83,7 +83,18 @@
     build a color picker as I discussed in Game258. 
     There are many video's and websites about shadow maps and color pickers. In class I will go over the basics.
     This will take some time but the results are worth it.<br/> 
-    <a href="https://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/">OpenGL Shadow mapping</a><br />    
+    <a href="https://www.opengl-tutorial.org/intermediate-tutorials/tutorial-16-shadow-mapping/">OpenGL Shadow mapping</a><br /> <br/>  
+     If you are going to do a color picker, let me give you some hints:<br\>
+        CreatePickStagingBuffer(); /// Create the staging buffer for the color picker<br/> 
+        CreateFencePick(); /// Create the fence that will be used in the command buffer<br/> 
+        CreatePickImage(); /// Create the image to draw into <br/> 
+        CreatePickImageView(); /// Create what might be said to be a descriptor pointing to the Image 
+        CreatePickFrameBuffer(); /// Create the frame buffer for the color picker<br/> 
+        CreatePickRenderPass(); /// Create the render pass for the color picker<br/> 
+        CreateCommandPoolPick(); /// Create the command pool for the color picker<br/> 
+        CreateCommandBufferPick(); /// Create the command buffer for the color picker<br/> 
+        <br/>
+
      Extra: Remove the peter panning and shadow acne for shadows<br/>
      Extra: Create a depth buffer for picking to include occlusion. 
     </p>
